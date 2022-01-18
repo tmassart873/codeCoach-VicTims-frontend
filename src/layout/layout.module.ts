@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { LayoutComponent } from './layout/layout.component';
 import { FooterComponent } from './footer/footer.component';
+import {RouterModule} from "@angular/router";
 
 
 
@@ -12,8 +13,12 @@ import { FooterComponent } from './footer/footer.component';
     LayoutComponent,
     FooterComponent
   ],
+  exports: [
+    LayoutComponent
+  ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ]
 })
 export class LayoutModule { }
