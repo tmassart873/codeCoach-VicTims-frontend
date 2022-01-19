@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
+import {InitService} from "../materialize/init.service";
 
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.css']
 })
-export class HomepageComponent implements OnInit {
+export class HomepageComponent implements OnInit, AfterViewInit {
 
-  constructor() { }
+  constructor(private initService: InitService) { }
 
   ngOnInit(): void {
+  }
+  ngAfterViewInit(): void {
+    this.initService.initParallax();
   }
 
 }

@@ -27,9 +27,14 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "./node_modules/materialize-css/dist/css/materialize.css",
+              "./node_modules/material-design-icons/iconfont/material-icons.css",
+              "src/css/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/js/jquery-3.5.0.min.js",
+              "/node_modules/materialize-css/dist/js/materialize.js"
+            ]
           },
           "configurations": {
             "production": {
