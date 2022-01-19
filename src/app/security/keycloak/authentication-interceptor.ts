@@ -2,7 +2,8 @@ import {HttpErrorResponse, HttpEvent, HttpHandler, HttpRequest} from "@angular/c
 import {KeycloakService} from "./keycloak.service";
 import {catchError, Observable, throwError} from "rxjs";
 import {Router} from "@angular/router";
-
+import {Injectable} from "@angular/core";
+@Injectable()
 export class AuthenticationInterceptor {
   constructor(private keycloakService: KeycloakService, private router: Router) {
   }
