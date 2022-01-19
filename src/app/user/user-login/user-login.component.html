@@ -2,34 +2,55 @@
   <div class="container">
 
     <div class="row">
+
       <div class="col s12 m12">
         <h1 class="center teal-text lighten-3">Sign in</h1>
         <div class="content-container-with-padding z-depth-4">
-          <div class="row">
-            <form class="col s12">
+
+            <div class="row">
+            <form class="col s12" [formGroup]="loginForm">
               <div class="row">
+
                 <div class="input-field col s12">
-                  <input id="email" type="email" class="validate">
+                  <input formControlName="email" id="email" type="email" class="validate">
                   <label for="email">Email</label>
                 </div>
+                <div class="col"
+                     *ngIf="getFormAttribute('email').invalid && (getFormAttribute('email').dirty||getFormAttribute('email').touched)">
+                  <small *ngIf="getFormAttribute('email').errors?.['required']" [style.color]="'red'">
+                    E-mail is required.
+                  </small>
+                  <small *ngIf="getFormAttribute('email').errors?.['email']" [style.color]="'red'">
+                    E-mail is not valid.
+                  </small>
+                </div>
+
               </div>
               <div class="row">
                 <div class="input-field col s12">
-                  <input id="password" type="password" class="validate">
+                  <input formControlName="password" id="password" type="password" class="validate">
                   <label for="password">Password</label>
+                </div>
+                <div class="col"
+                     *ngIf="getFormAttribute('password').invalid && (getFormAttribute('password').dirty||getFormAttribute('password').touched)">
+                  <small *ngIf="getFormAttribute('password').errors?.['required']" [style.color]="'red'">
+                    Please fill in your password.
+                  </small>
                 </div>
               </div>
               <div class="row right-align">
-                <a class="waves-effect waves-light teal lighten-3 btn-large black-text">Reset password<i
+                <a class="waves-effect waves-light teal lighten-3 btn-large black-text" (click)="onReset()">Reset password<i
                   class="material-icons right">autorenew</i></a>
-                <a class="waves-effect waves-light yellow darken-2 btn-large black-text">Sign in<i
+                <a class="waves-effect waves-light yellow darken-2 btn-large black-text" (click)="onSubmit()">Sign in<i
                   class="material-icons right">send</i></a>
-
               </div>
             </form>
           </div>
+
         </div>
+
       </div>
+
     </div>
 
   </div>
