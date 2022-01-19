@@ -41,10 +41,13 @@
               <div class="row right-align">
                 <a class="waves-effect waves-light teal lighten-3 btn-large black-text" (click)="onReset()">Reset password<i
                   class="material-icons right">autorenew</i></a>
-                <a class="waves-effect waves-light yellow darken-2 btn-large black-text" (click)="onSubmit()">Sign in<i
+                <a class="waves-effect waves-light yellow darken-2 btn-large black-text" (click)="onSubmit(loginForm.value)">Sign in<i
                   class="material-icons right">send</i></a>
               </div>
             </form>
+<!--              <div *ngIf="message">
+                {{message}}
+              </div>-->
           </div>
 
         </div>

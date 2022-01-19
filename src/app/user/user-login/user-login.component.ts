@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {UserService} from "../../service/user.service";
 import {Router, Route, ActivatedRoute} from "@angular/router";
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
+import {KeycloakService} from "../../security/keycloak/keycloak.service";
 
 @Component({
   selector: 'app-user-login',
@@ -22,19 +23,23 @@ export class UserLoginComponent implements OnInit {
     }
 
   );
+  message!: string;
 
   constructor(private userService: UserService,
               private route: ActivatedRoute,
               private router: Router,
-              private formBuilder: FormBuilder) { }
+              private formBuilder: FormBuilder,
+              private keycloakService: KeycloakService) { }
 
   ngOnInit(): void {
 
   }
 
-  onSubmit(): void{
+  onSubmit(loginData: any): void{
           this.loginForm.reset();
           this.router.navigate([`/users/${this.id}/profile`]);
+    this.keycloakService.logIn(loginData)
+      .subscribe(_ => this.message = 'Success!', err => this.message = 'Wrong username and/or password!')
     }
   onReset(): void{
     this.loginForm.get('password')?.reset();
