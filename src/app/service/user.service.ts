@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {environment} from "../../environments/environment";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {User} from "../user/model/User";
-import {catchError, Observable, of, tap} from "rxjs";
+import {catchError, map, Observable, of, tap} from "rxjs";
 
 
 @Injectable({
@@ -22,6 +22,13 @@ export class UserService {
     return this.http.get<User[]>(this.userUrl);
   }
 
+  getUserByEmail(email: string):Observable<any>{
+    console.log(`${this.userUrl}/${email}`);
+   // let mail=email.replace('@','');
+    // mail=mail.replace('.','');
+    return this.http.get<User>(`${this.userUrl}/${encodeURIComponent(email)}`);
+  }
+
   login() {
 
   }
@@ -31,6 +38,15 @@ export class UserService {
       tap(_ => this.log(`created new user`)),
       catchError(this.handleError<any>('createUser'))
     )
+  }
+
+  getUserId(email:string):Observable<string>{
+    let id ='';
+   // let mail=email.replace('@','');
+    // mail=mail.replace('.','');
+
+    return this.getUserByEmail(email).pipe(map(user => user.id));
+
   }
 
   private log(message: string){

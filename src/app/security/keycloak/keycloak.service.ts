@@ -4,6 +4,9 @@ import {HttpKeycloakService} from "./http-keycloak.service";
 import {KeycloakTokenResponse} from "./keycloak-token-response";
 import {KeycloakToken} from "./keycloak-token";
 import * as JWT from "jwt-decode";
+import {HttpClient} from "@angular/common/http";
+import {User} from "../../user/model/User";
+import {UserService} from "../../service/user.service";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +15,7 @@ export class KeycloakService {
   private readonly token_key_name = 'access_token';
   private _loggedInUser$: Subject<string | null> = new Subject();
 
-  constructor(private httpKeycloakService: HttpKeycloakService) {
+  constructor(private httpKeycloakService: HttpKeycloakService, private userService: UserService) {
 
   }
 
@@ -54,4 +57,5 @@ export class KeycloakService {
     }
     return null;
   }
+
 }
