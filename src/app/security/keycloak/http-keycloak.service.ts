@@ -19,7 +19,7 @@ export class HttpKeycloakService {
   logIn(loginData: any): Observable<KeycloakTokenResponse> {
 
     const body = new URLSearchParams();
-    body.set('username', loginData.username);
+    body.set('username', loginData.email);
     body.set('password', loginData.password);
     body.set('client_id', 'codeCoach-victims');
     body.set('client_secret', 'fbee3b2c-e2c6-4c41-a6b6-87e89d3f5d79');
