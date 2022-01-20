@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {UserService} from "../../service/user.service";
+import {Router, Route, ActivatedRoute} from "@angular/router";
+import {FormBuilder, FormControl, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-user-login',
@@ -7,9 +10,37 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserLoginComponent implements OnInit {
 
-  constructor() { }
+  id!: string;
+  loginForm = this.formBuilder.group({
+      email: new FormControl('',[
+        Validators.required,
+        Validators.email
+      ]),
+      password: new FormControl('', [
+        Validators.required,
+      ])
+    }
+
+  );
+
+  constructor(private userService: UserService,
+              private route: ActivatedRoute,
+              private router: Router,
+              private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+
   }
 
+  onSubmit(): void{
+          this.loginForm.reset();
+          this.router.navigate([`/users/${this.id}/profile`]);
+    }
+  onReset(): void{
+    this.loginForm.get('password')?.reset();
+  }
+
+  getFormAttribute(formControlName: string): any {
+    return this.loginForm.get(`${formControlName}`);
+  }
 }

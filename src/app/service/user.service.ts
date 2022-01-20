@@ -18,6 +18,14 @@ export class UserService {
     this.userUrl = `${environment.backEndUrl}/users`;
   }
 
+  getUsers(): Observable<any>{
+    return this.http.get<User[]>(this.userUrl);
+  }
+
+  login() {
+
+  }
+
   createUser(user: User): Observable<User> {
     return this.http.post<User>(this.userUrl, user, this.httpOptions).pipe(
       tap(_ => this.log(`created new user`)),
@@ -26,7 +34,7 @@ export class UserService {
   }
 
   private log(message: string){
-    console.log(`PetService: ${message}`);
+    console.log(`UserService: ${message}`);
   }
 
   /**
