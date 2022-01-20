@@ -17,10 +17,11 @@
                 </div>
                 <div class="col"
                      *ngIf="getFormAttribute('email').invalid && (getFormAttribute('email').dirty||getFormAttribute('email').touched)">
-                  <small *ngIf="getFormAttribute('email').errors?.['required']" [style.color]="'red'">
+                  <small *ngIf="getFormAttribute('email').errors?.required" [style.color]="'red'">
                     E-mail is required.
                   </small>
-                  <small *ngIf="getFormAttribute('email').errors?.['email']" [style.color]="'red'">
+
+                  <small *ngIf="getFormAttribute('email').errors?.pattern" [style.color]="'red'">
                     E-mail is not valid.
                   </small>
                 </div>
@@ -33,7 +34,7 @@
                 </div>
                 <div class="col"
                      *ngIf="getFormAttribute('password').invalid && (getFormAttribute('password').dirty||getFormAttribute('password').touched)">
-                  <small *ngIf="getFormAttribute('password').errors?.['required']" [style.color]="'red'">
+                  <small *ngIf="getFormAttribute('password').errors?.required" [style.color]="'red'">
                     Please fill in your password.
                   </small>
                 </div>
@@ -41,10 +42,13 @@
               <div class="row right-align">
                 <a class="waves-effect waves-light teal lighten-3 btn-large black-text" (click)="onReset()">Reset password<i
                   class="material-icons right">autorenew</i></a>
-                <a class="waves-effect waves-light yellow darken-2 btn-large black-text" (click)="onSubmit()">Sign in<i
+                <a class="waves-effect waves-light yellow darken-2 btn-large black-text" (click)="onSubmit(loginForm.value)">Sign in<i
                   class="material-icons right">send</i></a>
               </div>
             </form>
+<!--              <div *ngIf="message">
+                {{message}}
+              </div>-->
           </div>
 
         </div>
