@@ -17,4 +17,11 @@ export class InitService {
   }
 
 
+  initSideNav():any{
+    $(document).ready(function(){
+      $('.sidenav').sidenav();
+    });
+  }
+
+
 }

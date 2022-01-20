@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {KeycloakService} from "../../app/security/keycloak/keycloak.service";
 
 @Component({
   selector: 'app-layout',
@@ -7,10 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LayoutComponent implements OnInit {
 
-  constructor() { }
+  constructor(private keyCloakService: KeycloakService) { }
 
   ngOnInit(): void {
 
+  }
+
+  isLoggedIn(){
+    return this.keyCloakService.isLoggedIn();
   }
 
 }

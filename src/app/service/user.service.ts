@@ -9,7 +9,8 @@ import {catchError, Observable, of, tap} from "rxjs";
   providedIn: 'root'
 })
 export class UserService {
-  private userUrl: string;
+
+  private readonly userUrl: string;
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -19,7 +20,10 @@ export class UserService {
   }
 
   getUsers(): Observable<any>{
-    return this.http.get<User[]>(this.userUrl);
+    return this.http.get<User[]>(this.userUrl).pipe(
+      tap(_ => this.log(`got all users`)),
+      catchError(this.handleError<any>('getUsers'))
+    );
   }
 
   login() {

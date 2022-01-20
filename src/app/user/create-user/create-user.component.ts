@@ -1,6 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../service/user.service";
-import {FormBuilder} from "@angular/forms";
+import {FormBuilder, FormControl, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-create-user',
@@ -20,24 +20,61 @@ export class CreateUserComponent implements OnInit {
   }
 
   userForm = this.formBuilder.group({
-    id: '',
-    firstName: '',
-    lastName: '',
-    password: '',
-    email: '',
-    company: '',
+    id: new FormControl(''),
+    firstName: new FormControl('', [
+          Validators.required
+        ]),
+    lastName: new FormControl('', [
+      Validators.required
+    ]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.pattern("^(?=.*[0-9])(?=.*[A-Z]).{8,255}$"),
+    ]),
+    email:new FormControl('', [
+      Validators.required,
+      Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),
+    ]),
+    company:new FormControl(''),
   })
 
   createUser(){
-    this.userService.createUser(this.userForm.value);
+    this.userService.createUser(this.userForm.value).subscribe();
   }
 
   onSubmit() {
-    console.log(this.passwordRepeat);
-    this.createUser();
+    if(this.userForm.invalid){
+      this.userForm.markAllAsTouched();
+    } else {
+      this.createUser();
+    }
   }
 
-  logIt() {
-    console.log(this.passwordRepeat);
+  changePasswordRepeat(event: any) {
+    this.passwordRepeat = event.target.value;
+  }
+
+  validatePasswordEqualsPasswordRepeat(): boolean{
+    return this.passwordRepeat === this.userForm.get('password')?.value;
+  }
+
+  get firstName(): FormControl{
+    return this.userForm.get('firstName') as FormControl;
+  }
+
+  get lastName(): FormControl{
+    return this.userForm.get('lastName') as FormControl;
+  }
+
+  get password(): FormControl{
+    return this.userForm.get('password') as FormControl;
+  }
+
+  get email(): FormControl{
+    return this.userForm.get('email') as FormControl;
+  }
+
+  get company(): FormControl{
+    return this.userForm.get('company') as FormControl;
   }
 }

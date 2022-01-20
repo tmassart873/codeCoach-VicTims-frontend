@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../service/user.service";
 import {Router, Route, ActivatedRoute} from "@angular/router";
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
+import {KeycloakService} from "../../security/keycloak/keycloak.service";
 
 @Component({
   selector: 'app-user-login',
@@ -12,31 +13,43 @@ export class UserLoginComponent implements OnInit {
 
   id!: string;
   loginForm = this.formBuilder.group({
-      email: new FormControl('',[
+      email: new FormControl('', [
         Validators.required,
-        Validators.email
+        Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),
+        //Validators.email,
       ]),
       password: new FormControl('', [
         Validators.required,
       ])
     }
-
   );
+  message!: string;
 
   constructor(private userService: UserService,
               private route: ActivatedRoute,
               private router: Router,
-              private formBuilder: FormBuilder) { }
+              private formBuilder: FormBuilder,
+              private keycloakService: KeycloakService) {
+  }
 
   ngOnInit(): void {
 
   }
 
-  onSubmit(): void{
-          this.loginForm.reset();
-          this.router.navigate([`/users/${this.id}/profile`]);
-    }
-  onReset(): void{
+  onSubmit(loginData: any): void {
+    this.keycloakService.logIn(loginData)
+      .subscribe(_ => {
+          this.message = 'Success!';
+          this.router.navigate([`/users/${this.id}/profile`])
+        },
+        err => {
+          this.message = 'Wrong username and/or password!';
+          this.loginForm.reset()
+        });
+
+  }
+
+  onReset(): void {
     this.loginForm.get('password')?.reset();
   }
 
