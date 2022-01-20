@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {UserService} from "../../service/user.service";
 import {FormBuilder} from "@angular/forms";
 
@@ -37,4 +37,7 @@ export class CreateUserComponent implements OnInit {
     this.createUser();
   }
 
+  logIt() {
+    console.log(this.passwordRepeat);
+  }
 }
