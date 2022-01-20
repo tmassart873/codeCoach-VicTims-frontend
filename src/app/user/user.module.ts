@@ -6,6 +6,7 @@ import { CoacheeDetailComponent } from './user-coachee-detail/coachee-detail.com
 import { ApplyForCoachComponent } from './apply-for-coach/apply-for-coach.component';
 import { CoachDetailComponent } from './user-coach-detail/coach-detail.component';
 import { UserLoginComponent } from './user-login/user-login.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 
@@ -18,8 +19,9 @@ import { UserLoginComponent } from './user-login/user-login.component';
     CoachDetailComponent,
     UserLoginComponent
   ],
-  imports: [
-    CommonModule
-  ]
+    imports: [
+        CommonModule,
+        ReactiveFormsModule
+    ]
 })
 export class UserModule { }
