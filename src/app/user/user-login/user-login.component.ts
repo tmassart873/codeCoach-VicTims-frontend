@@ -16,7 +16,6 @@ export class UserLoginComponent implements OnInit {
       email: new FormControl('', [
         Validators.required,
         Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),
-        //Validators.email,
       ]),
       password: new FormControl('', [
         Validators.required,
@@ -38,17 +37,19 @@ export class UserLoginComponent implements OnInit {
 
   onSubmit(loginData: any): void {
     this.keycloakService.logIn(loginData)
-      .subscribe(_ => {
+      .subscribe({
+        next: _ => {
           this.message = 'Success!';
           this.userService.getUserId(this.loginForm.get('email')?.value).subscribe(id => this.router.navigate([`/users/${id}/profile`]));
-
-        },
-        err => {
+        }
+        ,
+        error: err => {
           this.message = 'Wrong username and/or password!';
           this.loginForm.reset()
-        });
-
+        }
+      });
   }
+
 
   onReset(): void {
     this.loginForm.get('password')?.reset();
