@@ -22,7 +22,7 @@ export class HttpKeycloakService {
     body.set('username', loginData.email);
     body.set('password', loginData.password);
     body.set('client_id', 'codeCoach-victims');
-    body.set('client_secret', 'fbee3b2c-e2c6-4c41-a6b6-87e89d3f5d79');
+    body.set('client_secret', '4dd1f8b5-0198-41ed-841f-f2b5a9eca83b');
     body.set('grant_type', 'password');
     return this.http.post<KeycloakTokenResponse>(this.url, body.toString(), this.httpOptions);
   }
