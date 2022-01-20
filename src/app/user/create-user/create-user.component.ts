@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {UserService} from "../../service/user.service";
+import {FormBuilder} from "@angular/forms";
 
 @Component({
   selector: 'app-create-user',
@@ -7,9 +9,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateUserComponent implements OnInit {
 
-  constructor() { }
+  passwordRepeat?: string;
+
+  constructor(
+    private userService: UserService,
+    private formBuilder: FormBuilder
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  userForm = this.formBuilder.group({
+    id: '',
+    firstName: '',
+    lastName: '',
+    password: '',
+    email: '',
+    company: '',
+  })
+
+  createUser(){
+    this.userService.createUser(this.userForm.value);
+  }
+
+  onSubmit() {
+    console.log(this.passwordRepeat);
+    this.createUser();
   }
 
 }
