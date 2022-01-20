@@ -38,10 +38,15 @@ export class UserLoginComponent implements OnInit {
 
   onSubmit(loginData: any): void {
     this.keycloakService.logIn(loginData)
-      .subscribe(_ => this.message = 'Success!', err => this.message = 'Wrong username and/or password!');
+      .subscribe(_ => {
+          this.message = 'Success!';
+          this.router.navigate([`/users/${this.id}/profile`])
+        },
+        err => {
+          this.message = 'Wrong username and/or password!';
+          this.loginForm.reset()
+        });
 
-    this.loginForm.reset();
-    this.router.navigate([`/users/${this.id}/profile`]);
   }
 
   onReset(): void {
