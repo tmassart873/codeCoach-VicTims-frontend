@@ -3,6 +3,7 @@ import {environment} from "../../environments/environment";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {User} from "../user/model/User";
 import {catchError, map, Observable, of, tap} from "rxjs";
+import {KeycloakService} from "../security/keycloak/keycloak.service";
 
 
 @Injectable({
@@ -15,7 +16,7 @@ export class UserService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private keycloakService: KeycloakService) {
     this.userUrl = `${environment.backEndUrl}/users`;
   }
 
@@ -24,6 +25,24 @@ export class UserService {
       tap(_ => UserService.log(`got all users`)),
       catchError(this.handleError<any>('getUsers'))
     );
+  }
+  getUser() {
+    let userName = this.keycloakService.getEmailAddress();
+
+    if (userName) {
+      let id: string | null;
+      this.getUserId(userName).pipe(tap(userid => id = userid));
+      let token = this.keycloakService.getToken();
+
+      if (token) {
+        let header = new HttpHeaders().set(
+          "Authorization",
+          token);
+        return this.http.get<User>(`${this.userUrl}/${userName}`, {headers: header});
+      }
+    }
+    let userProfile: User = {company: "", id: "", password: "", userRole: "", firstName: "", lastName: "", email: ""};
+    return of(userProfile);
   }
 
   getUserByEmail(email: string):Observable<any>{
