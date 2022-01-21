@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {environment} from "../../environments/environment";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {User} from "../user/model/User";
-import {catchError, Observable, of, tap} from "rxjs";
+import {catchError, map, Observable, of, tap} from "rxjs";
 
 
 @Injectable({
@@ -21,23 +21,27 @@ export class UserService {
 
   getUsers(): Observable<any>{
     return this.http.get<User[]>(this.userUrl).pipe(
-      tap(_ => this.log(`got all users`)),
+      tap(_ => UserService.log(`got all users`)),
       catchError(this.handleError<any>('getUsers'))
     );
   }
 
-  login() {
-
+  getUserByEmail(email: string):Observable<any>{
+      return this.http.get<User>(`${this.userUrl}/${encodeURIComponent(email)}`);
   }
 
   createUser(user: User): Observable<User> {
     return this.http.post<User>(this.userUrl, user, this.httpOptions).pipe(
-      tap(_ => this.log(`created new user`)),
+      tap(_ => UserService.log(`created new user`)),
       catchError(this.handleError<any>('createUser'))
     )
   }
 
-  private log(message: string){
+  getUserId(email:string):Observable<string>{
+    return this.getUserByEmail(email).pipe(map(user => user.id));
+  }
+
+  private static log(message: string){
     console.log(`UserService: ${message}`);
   }
 
@@ -54,7 +58,7 @@ export class UserService {
       console.error(error); // log to console instead
 
       // TODO: better job of transforming error for user consumption
-      this.log(`${operation} failed: ${error.message}`);
+      UserService.log(`${operation} failed: ${error.message}`);
 
       // Let the app keep running by returning an empty result.
       return of(result as T);

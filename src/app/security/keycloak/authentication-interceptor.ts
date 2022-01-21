@@ -14,9 +14,6 @@ export class AuthenticationInterceptor {
       return next.handle(req);
     }
 
-    if(this.router.url === '/login') {
-      return next.handle(req);
-    }
 
     req = req.clone({
       setHeaders: {

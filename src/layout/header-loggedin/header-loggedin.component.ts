@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {KeycloakService} from "../../app/security/keycloak/keycloak.service";
+import {Router} from "@angular/router";
+import {UserService} from "../../app/service/user.service";
+import {User} from "../../app/user/model/User";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-header-loggedin',
@@ -7,9 +12,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderLoggedinComponent implements OnInit {
 
-  constructor() { }
+  private email!: string | null;
+  user$!: Observable<User>;
 
-  ngOnInit(): void {
+  constructor(private keycloakService: KeycloakService, private router: Router, private userService: UserService) {
   }
 
+  ngOnInit(): void {
+    this.email = this.keycloakService.getEmailAddress();
+    if(this.email !== null){
+      this.user$ =this.userService.getUserByEmail(this.email);
+    }
+  }
+
+
+  logOut() {
+    this.keycloakService.logout();
+    this.router.navigate(['']);
+  }
 }

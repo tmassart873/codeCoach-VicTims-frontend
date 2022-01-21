@@ -44,14 +44,15 @@ export class KeycloakService {
   }
 
   sendSignal() : void {
-    this._loggedInUser$.next(this.getUsername());
+    this._loggedInUser$.next(this.getEmailAddress());
   }
 
-  private getUsername(): string | null {
+  getEmailAddress(): string | null {
     let token = this.getToken();
     if (token) {
       return (JWT.default(token) as KeycloakToken).preferred_username
     }
     return null;
   }
+
 }
