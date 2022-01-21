@@ -14,13 +14,15 @@ export class CoacheeDetailComponent implements OnInit {
   user$!: Observable<User>;
   email!: string | null;
 
-  constructor(private keycloakService: KeycloakService, private userService: UserService) { }
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-    this.email = this.keycloakService.getEmailAddress();
+    this.user$ = this.userService.getUser();
+   /* this.email = this.keycloakService.getEmailAddress();
     if(this.email !== null){
       this.user$ =this.userService.getUserByEmail(this.email);
-      console.log(this.user$)
+      console.log(this.user$)*/
     }
-  }
+
+
 }
