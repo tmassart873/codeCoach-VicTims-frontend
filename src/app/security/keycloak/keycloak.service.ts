@@ -4,9 +4,6 @@ import {HttpKeycloakService} from "./http-keycloak.service";
 import {KeycloakTokenResponse} from "./keycloak-token-response";
 import {KeycloakToken} from "./keycloak-token";
 import * as JWT from "jwt-decode";
-import {HttpClient} from "@angular/common/http";
-import {User} from "../../user/model/User";
-import {UserService} from "../../service/user.service";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +12,7 @@ export class KeycloakService {
   private readonly token_key_name = 'access_token';
   private _loggedInUser$: Subject<string | null> = new Subject();
 
-  constructor(private httpKeycloakService: HttpKeycloakService, private userService: UserService) {
+  constructor(private httpKeycloakService: HttpKeycloakService) {
 
   }
 
@@ -47,10 +44,10 @@ export class KeycloakService {
   }
 
   sendSignal() : void {
-    this._loggedInUser$.next(this.getUsername());
+    this._loggedInUser$.next(this.getEmailAddress());
   }
 
-  private getUsername(): string | null {
+  getEmailAddress(): string | null {
     let token = this.getToken();
     if (token) {
       return (JWT.default(token) as KeycloakToken).preferred_username

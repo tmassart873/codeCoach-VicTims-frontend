@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../service/user.service";
-import {Router, Route, ActivatedRoute} from "@angular/router";
+import {Router, ActivatedRoute} from "@angular/router";
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {KeycloakService} from "../../security/keycloak/keycloak.service";
 
@@ -12,6 +12,7 @@ import {KeycloakService} from "../../security/keycloak/keycloak.service";
 export class UserLoginComponent implements OnInit {
 
   id!: string;
+  email!: string;
   loginForm = this.formBuilder.group({
       email: new FormControl('', [
         Validators.required,
@@ -36,16 +37,13 @@ export class UserLoginComponent implements OnInit {
   }
 
   onSubmit(loginData: any): void {
+    this.email = this.loginForm.get('email')?.value;
     this.keycloakService.logIn(loginData)
       .subscribe({
         next: _ => {
           this.message = 'Success!';
-          this.userService.getUserId(this.loginForm.get('email')?.value).subscribe(id => this.router.navigate([`/users/${id}/profile`]));
-        }
-        ,
-        error: err => {
-          this.message = 'Wrong username and/or password!';
-          this.loginForm.reset()
+          this.userService.getUserId(this.loginForm.get('email')?.value).subscribe(id => this.router.navigate([`/users/${id}/profile`])
+         );
         }
       });
   }
