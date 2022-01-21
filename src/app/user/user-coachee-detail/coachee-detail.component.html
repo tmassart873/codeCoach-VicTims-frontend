@@ -1,4 +1,4 @@
-<main>
+<main *ngIf="user$| async as user">
 
   <div class="row">
 
@@ -6,7 +6,7 @@
       <div class="content-container">
         <h6>My Profile</h6>
         <div class="collection">
-          <a *ngIf="user$| async as user" class="collection-item black-text active yellow darken-2" routerLink="users/{{user.id}}/profile">Profile Information</a>
+          <a  class="collection-item black-text active yellow darken-2" routerLink="/users/{{user.id}}/profile">Profile Information</a>
           <a  class="collection-item grey-text text-darken-2">Coaching sessions</a>
           <a  class="collection-item grey-text text-darken-2">Apply to become a coach</a>
         </div>
@@ -33,23 +33,23 @@
                 <tbody>
                 <tr>
                   <td><strong>First name</strong></td>
-                  <td>Anna</td>
+                  <td>{{user.firstName}}</td>
                 </tr>
                 <tr>
                   <td><strong>Last name</strong></td>
-                  <td>Leroy</td>
+                  <td>{{user.lastName}}</td>
                 </tr>
                 <tr>
                   <td><strong>Email</strong></td>
-                  <td>anna.leroy@gmail.com</td>
+                  <td>{{user.email}}</td>
                 </tr>
                 <tr>
-                  <td><strong>Class</strong></td>
-                  <td>4 - Latin Science</td>
+                  <td><strong>Company</strong></td>
+                  <td>{{user.company}}</td>
                 </tr>
                 <tr>
                   <td><strong>CodeCoach role</strong></td>
-                  <td>Coachee</td>
+                  <td>{{user.userRole.toLowerCase()}}</td>
                 </tr>
                 </tbody>
               </table>

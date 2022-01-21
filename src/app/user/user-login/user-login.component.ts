@@ -45,6 +45,11 @@ export class UserLoginComponent implements OnInit {
           this.userService.getUserId(this.loginForm.get('email')?.value).subscribe(id => this.router.navigate([`/users/${id}/profile`])
          );
         }
+        ,
+        error: err => {
+          this.message = 'Wrong username and/or password!';
+          this.loginForm.reset()
+        }
       });
   }
 
