@@ -9,17 +9,18 @@ import {InitService} from "../../app/materialize/init.service";
 })
 export class LayoutComponent implements OnInit, AfterViewInit {
 
-  constructor(private keyCloakService: KeycloakService, private initService: InitService) { }
+  constructor(private keyCloakService: KeycloakService, private initService: InitService) {
+  }
 
   ngOnInit(): void {
-
   }
-  ngAfterViewInit():void{
+
+  ngAfterViewInit(): void {
     this.initService.initSideNav();
     this.initService.initParallax();
   }
-  isLoggedIn(){
+
+  isLoggedIn() {
     return this.keyCloakService.isLoggedIn();
   }
-
 }

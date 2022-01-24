@@ -8,56 +8,56 @@
         <div class="collection">
           <a  class="collection-item black-text active yellow darken-2" routerLink="/users/{{user.id}}/profile">Profile Information</a>
           <a  class="collection-item grey-text text-darken-2">Coaching sessions</a>
-          <a  class="collection-item grey-text text-darken-2">Apply to become a coach</a>
+          <a  class="collection-item grey-text text-darken-2"routerLink="/users/{{user.id}}/become-coach">Apply to become a coach</a>
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="col s12 m12">
-      <div class="content-container">
+  <div *ngIf="user$| async as user" class="col s12 m12">
+    <div class="content-container">
 
-        <section class="card-panel grey lighten-5">
-          <div class="right">
-            <a class="waves-effect waves-light btn-large btn-floating yellow darken-2"><i
-              class="material-icons left">edit</i>Edit</a>
+      <section class="card-panel grey lighten-5">
+        <div class="right">
+          <a class="waves-effect waves-light btn-large btn-floating yellow darken-2"><i
+            class="material-icons left">edit</i>Edit</a>
+        </div>
+        <h5>Profile Information</h5>
+        <div class="divider"></div>
+        <div class="row">
+          <div class="col l2 m2 s12">
+            <img src="../../../assets/img/dummy/profile-picture.png" class="responsive-img circle"
+                 alt="Profile Picture">
           </div>
-          <h5>Profile Information</h5>
-          <div class="divider"></div>
-          <div class="row">
-            <div class="col l2 m2 s12">
-              <img src="assets/img/dummy/profile-picture.png" class="responsive-img circle"
-                   alt="Profile Picture">
-            </div>
-            <div class="col l10 m12 s12">
-              <table class="highlight">
-                <tbody>
-                <tr>
-                  <td><strong>First name</strong></td>
-                  <td>{{user.firstName}}</td>
-                </tr>
-                <tr>
-                  <td><strong>Last name</strong></td>
-                  <td>{{user.lastName}}</td>
-                </tr>
-                <tr>
-                  <td><strong>Email</strong></td>
-                  <td>{{user.email}}</td>
-                </tr>
-                <tr>
-                  <td><strong>Company</strong></td>
-                  <td>{{user.company}}</td>
-                </tr>
-                <tr>
-                  <td><strong>CodeCoach role</strong></td>
-                  <td>{{user.userRole.toLowerCase()}}</td>
-                </tr>
-                </tbody>
-              </table>
-            </div>
+          <div class="col l10 m12 s12">
+            <table class="highlight">
+              <tbody>
+              <tr>
+                <td><strong>First name</strong></td>
+                <td>{{user.firstName}}</td>
+              </tr>
+              <tr>
+                <td><strong>Last name</strong></td>
+                <td>{{user.lastName}}</td>
+              </tr>
+              <tr>
+                <td><strong>Email</strong></td>
+                <td>{{user.email}}</td>
+              </tr>
+              <tr>
+                <td><strong>Company</strong></td>
+                <td>{{user.company}}</td>
+              </tr>
+              <tr>
+                <td><strong>CodeCoach role</strong></td>
+                <td>{{user.userRole.toLowerCase()}}</td>
+              </tr>
+              </tbody>
+            </table>
           </div>
-        </section>
+        </div>
+      </section>
 
-      </div>
     </div>
   </div>
 
