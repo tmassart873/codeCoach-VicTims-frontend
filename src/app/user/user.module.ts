@@ -9,7 +9,6 @@ import { UserLoginComponent } from './user-login/user-login.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
 import { UserProfileComponent } from './user-profile/user-profile.component';
-import { BecomeCoachComponent } from './become-coach/become-coach.component';
 
 
 
@@ -21,8 +20,7 @@ import { BecomeCoachComponent } from './become-coach/become-coach.component';
     ApplyForCoachComponent,
     CoachDetailComponent,
     UserLoginComponent,
-    UserProfileComponent,
-    BecomeCoachComponent
+    UserProfileComponent
   ],
     imports: [
         CommonModule,
