@@ -8,11 +8,10 @@
         <div class="collection">
           <a  class="collection-item black-text active yellow darken-2" routerLink="/users/{{user.id}}/profile">Profile Information</a>
           <a  class="collection-item grey-text text-darken-2">Coaching sessions</a>
-          <a  class="collection-item grey-text text-darken-2">Apply to become a coach</a>
+          <a  class="collection-item grey-text text-darken-2"routerLink="/users/{{user.id}}/become-coach">Apply to become a coach</a>
         </div>
       </div>
     </div>
   </div>
   <router-outlet></router-outlet>
-
 </main>
