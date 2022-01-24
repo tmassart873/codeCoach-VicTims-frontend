@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {KeycloakService} from "../../app/security/keycloak/keycloak.service";
 import {InitService} from "../../app/materialize/init.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-layout',
