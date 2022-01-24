@@ -6,15 +6,12 @@ import {InitService} from "../materialize/init.service";
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.css']
 })
-export class HomepageComponent implements OnInit, AfterViewInit {
+export class HomepageComponent implements OnInit {
 
-  constructor(private initService: InitService) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
-  ngAfterViewInit(): void {
-    this.initService.initParallax();
-    this.initService.initSideNav();
-  }
+
 
 }
