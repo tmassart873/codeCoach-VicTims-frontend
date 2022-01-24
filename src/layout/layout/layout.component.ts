@@ -10,10 +10,10 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class LayoutComponent implements OnInit, AfterViewInit {
 
-  constructor(private keyCloakService: KeycloakService, private initService: InitService, private activatedRoute:ActivatedRoute) { }
+  constructor(private keyCloakService: KeycloakService, private initService: InitService, private route:Router) { }
 
   ngOnInit(): void {
-    console.log(this.activatedRoute);
+    console.log(this.route);
   }
   ngAfterViewInit():void{
     this.initService.initSideNav();
