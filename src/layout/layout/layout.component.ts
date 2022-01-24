@@ -1,7 +1,6 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {KeycloakService} from "../../app/security/keycloak/keycloak.service";
 import {InitService} from "../../app/materialize/init.service";
-import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-layout',
@@ -10,16 +9,18 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class LayoutComponent implements OnInit, AfterViewInit {
 
-  constructor(private keyCloakService: KeycloakService, private initService: InitService, private route:Router) { }
+  constructor(private keyCloakService: KeycloakService, private initService: InitService) {
+  }
 
   ngOnInit(): void {
-    console.log(this.route);
   }
-  ngAfterViewInit():void{
+
+  ngAfterViewInit(): void {
     this.initService.initSideNav();
     this.initService.initParallax();
   }
-  isLoggedIn(){
+
+  isLoggedIn() {
     return this.keyCloakService.isLoggedIn();
   }
 }
