@@ -16,9 +16,7 @@ export class LayoutComponent implements OnInit, AfterViewInit {
   constructor(private keyCloakService: KeycloakService,
               private initService: InitService) { }
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   ngAfterViewInit(): void {
     this.initService.initSideNav();
