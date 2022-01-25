@@ -11,8 +11,6 @@ import {Session} from "../session/model/Session";
   providedIn: 'root'
 })
 export class SessionService {
-  coachId!: string;
-  coach!: Observable<any>;
 
   private readonly sessionUrl: string;
   httpOptions = {

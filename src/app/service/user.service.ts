@@ -67,6 +67,7 @@ export class UserService {
     return this.selectedCoachId;
   }
 
+
   private static log(message: string) {
     console.log(`UserService: ${message}`);
   }
