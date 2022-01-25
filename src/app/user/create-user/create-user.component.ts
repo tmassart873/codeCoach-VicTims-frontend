@@ -21,20 +21,14 @@ export class CreateUserComponent implements OnInit {
 
   userForm = this.formBuilder.group({
     id: new FormControl(''),
-    firstName: new FormControl('', [
-          Validators.required
-        ]),
-    lastName: new FormControl('', [
-      Validators.required
-    ]),
-    password: new FormControl('', [
-      Validators.required,
-      Validators.pattern("^(?=.*[0-9])(?=.*[A-Z]).{8,255}$"),
-    ]),
-    email:new FormControl('', [
-      Validators.required,
-      Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),
-    ]),
+    firstName: new FormControl('',
+      [Validators.required]),
+    lastName: new FormControl('',
+      [Validators.required]),
+    password: new FormControl('',
+      [Validators.required, Validators.pattern("^(?=.*[0-9])(?=.*[A-Z]).{8,255}$"),]),
+    email:new FormControl('',
+      [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),]),
     company:new FormControl(''),
   })
 

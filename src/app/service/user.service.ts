@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {environment} from "../../environments/environment";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {User} from "../user/model/User";
-import {catchError, map, Observable, of, tap} from "rxjs";
+import {catchError, map, Observable, of, Subject, tap} from "rxjs";
 import {KeycloakService} from "../security/keycloak/keycloak.service";
 
 
@@ -10,43 +10,37 @@ import {KeycloakService} from "../security/keycloak/keycloak.service";
   providedIn: 'root'
 })
 export class UserService {
+  private userLoggedIn = new Subject<User>();
 
   private readonly userUrl: string;
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    headers: new HttpHeaders({'Content-Type': 'application/json'})
   };
 
-  constructor(private http: HttpClient, private keycloakService: KeycloakService) {
+  constructor(private http: HttpClient) {
     this.userUrl = `${environment.backEndUrl}/users`;
   }
 
-  getUsers(): Observable<any>{
+  getUsers(): Observable<any> {
     return this.http.get<User[]>(this.userUrl).pipe(
       tap(_ => UserService.log(`got all users`)),
       catchError(this.handleError<any>('getUsers'))
     );
   }
-  getUser() {
-    let userName = this.keycloakService.getEmailAddress();
 
-    if (userName) {
-      let id: string | null;
-      this.getUserId(userName).pipe(tap(userid => id = userid));
-      let token = this.keycloakService.getToken();
-
-      if (token) {
-        let header = new HttpHeaders().set(
-          "Authorization",
-          token);
-        return this.http.get<User>(`${this.userUrl}/${userName}`, {headers: header});
-      }
-    }
-    let userProfile: User = {company: "", id: "", password: "", userRole: "", firstName: "", lastName: "", email: ""};
-    return of(userProfile);
-  }
-
-  getUserByEmail(email: string):Observable<any>{
-      return this.http.get<User>(`${this.userUrl}/${encodeURIComponent(email)}`);
+  getUserByEmail(email: string): Observable<User> {
+    return this.http.get<User>(`${this.userUrl}/${encodeURIComponent(email)}`).pipe(tap(user => {
+      const userToLogin: User = {
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        password: undefined,
+        email: user.email,
+        company: user.company,
+        userRole: undefined
+      };
+      this.userLoggedIn.next(userToLogin);
+    }))
   }
 
   createUser(user: User): Observable<User> {
@@ -56,11 +50,15 @@ export class UserService {
     )
   }
 
-  getUserId(email:string):Observable<string>{
+  getUserId(email: string): Observable<string> {
     return this.getUserByEmail(email).pipe(map(user => user.id));
   }
 
-  private static log(message: string){
+  get user() : Subject<User> {
+    return this.userLoggedIn;
+  }
+
+  private static log(message: string) {
     console.log(`UserService: ${message}`);
   }
 

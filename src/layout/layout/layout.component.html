@@ -6,7 +6,7 @@
     </div>
 
     <div *ngIf="isLoggedIn()">
-      <app-header-loggedin></app-header-loggedin>
+      <app-header-loggedin (eventActiveRouter)="adjustFooterStyle($event)"></app-header-loggedin>
     </div>
 
   </div>
@@ -14,6 +14,6 @@
     <router-outlet></router-outlet>
   </div>
   <div class="row">
-    <app-footer></app-footer>
+    <app-footer #footerComponent></app-footer>
   </div>
 </div>

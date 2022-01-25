@@ -1,6 +1,7 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {KeycloakService} from "../../app/security/keycloak/keycloak.service";
 import {InitService} from "../../app/materialize/init.service";
+import {FooterComponent} from "../footer/footer.component";
 
 @Component({
   selector: 'app-layout',
@@ -9,10 +10,14 @@ import {InitService} from "../../app/materialize/init.service";
 })
 export class LayoutComponent implements OnInit, AfterViewInit {
 
-  constructor(private keyCloakService: KeycloakService, private initService: InitService) {
-  }
+  @ViewChild('footerComponent', {static : true})
+  private footer : FooterComponent = new FooterComponent();
+
+  constructor(private keyCloakService: KeycloakService,
+              private initService: InitService) { }
 
   ngOnInit(): void {
+
   }
 
   ngAfterViewInit(): void {
@@ -22,5 +27,9 @@ export class LayoutComponent implements OnInit, AfterViewInit {
 
   isLoggedIn() {
     return this.keyCloakService.isLoggedIn();
+  }
+
+  adjustFooterStyle($event: boolean) {
+    this.footer.activeRouteIsProfileCoach = $event;
   }
 }

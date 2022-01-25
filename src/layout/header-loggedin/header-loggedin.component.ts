@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {KeycloakService} from "../../app/security/keycloak/keycloak.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../../app/service/user.service";
 import {User} from "../../app/user/model/User";
 import {Observable} from "rxjs";
@@ -12,10 +12,17 @@ import {Observable} from "rxjs";
 })
 export class HeaderLoggedinComponent implements OnInit {
 
+  COACH : string = 'COACH';
+
   private email!: string | null;
   user$!: Observable<User>;
 
-  constructor(private keycloakService: KeycloakService, private router: Router, private userService: UserService) {
+  @Output()
+  eventActiveRouter: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  constructor(private keycloakService: KeycloakService,
+              private router: Router,
+              private userService: UserService) {
   }
 
   ngOnInit(): void {
@@ -30,4 +37,10 @@ export class HeaderLoggedinComponent implements OnInit {
     this.keycloakService.logout();
     this.router.navigate(['']);
   }
+
+  onRouterLinkActive(event: boolean) {
+    this.eventActiveRouter.emit(event);
+  }
+
+
 }
