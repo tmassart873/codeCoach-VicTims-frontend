@@ -23,7 +23,7 @@
       <div class="container">
         <ul class="tabs tabs-transparent">
           <li class="tab"><a *ngIf="user$| async as user"  class="grey-text text-darken-2" routerLink="/users/{{user.id}}/profile">My Profile</a></li>
-          <li class="tab"><a class="black-text" href="#">Find a coach</a></li>
+          <li class="tab"><a *ngIf="user$| async as user" class="black-text" routerLink="/users/{{user.id}}/coach-overview">Find a coach</a></li>
         </ul>
       </div>
     </div>
