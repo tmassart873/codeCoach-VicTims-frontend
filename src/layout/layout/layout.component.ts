@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {KeycloakService} from "../../app/security/keycloak/keycloak.service";
 import {InitService} from "../../app/materialize/init.service";
 import {FooterComponent} from "../footer/footer.component";
@@ -19,11 +19,13 @@ export class LayoutComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
 
   }
-  ngAfterViewInit():void{
+
+  ngAfterViewInit(): void {
     this.initService.initSideNav();
     this.initService.initParallax();
   }
-  isLoggedIn(){
+
+  isLoggedIn() {
     return this.keyCloakService.isLoggedIn();
   }
 
