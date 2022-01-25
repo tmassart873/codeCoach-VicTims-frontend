@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-
 import {UserService} from "../../service/user.service";
 import {SessionService} from "../../service/session.service";
 import {FormBuilder, FormControl, Validators,} from "@angular/forms";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-request-session',
@@ -10,7 +10,8 @@ import {FormBuilder, FormControl, Validators,} from "@angular/forms";
   styleUrls: ['./request-session.component.css']
 })
 export class RequestSessionComponent implements OnInit {
-  private coacheeId = this.userService.user.subscribe(user => user.id);
+
+  private coacheeId = this.userService.user.id;
   private coachId = this.userService.getSelectedCoachId();
 
   requestSessionForm = this.formBuilder.group({
@@ -28,22 +29,25 @@ export class RequestSessionComponent implements OnInit {
       location: new FormControl('', [
         Validators.required
       ]),
-      remarks: new FormControl('', [
-        Validators.required
-      ])
+      remarks: '',
     }
   );
-  constructor(private formBuilder: FormBuilder, private sessionService: SessionService,private userService: UserService) {
+  constructor(private formBuilder: FormBuilder, private sessionService: SessionService,private userService: UserService, private router:Router) {
   }
 
   ngOnInit(): void {
+    if(this.userService.user.id===undefined) this.router.navigate(['']);
   }
+
   createSession(){
+    console.log(this.requestSessionForm.value);
     this.sessionService.requestSession(this.requestSessionForm.value).subscribe();
   }
   onSubmit(){
-    this.createSession();
+     this.createSession();
   }
 
-
+  getFormAttribute(formControlName: string):any {
+    return this.requestSessionForm.get(`${formControlName}`)
+  }
 }
