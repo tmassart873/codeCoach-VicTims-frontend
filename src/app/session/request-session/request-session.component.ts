@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormBuilder, FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
 import {RouterModule} from "@angular/router";
 
 @Component({
@@ -9,7 +9,17 @@ import {RouterModule} from "@angular/router";
 })
 export class RequestSessionComponent implements OnInit {
 
-  constructor() { }
+  requestSessionForm = this.formBuilder.group({
+      date: new FormControl('', [
+        Validators.required,
+      ]),
+      time: new FormControl('', [
+        Validators.required,
+      ])
+    }
+  );
+
+  constructor(private formBuilder:FormBuilder) { }
 
   ngOnInit(): void {
   }
