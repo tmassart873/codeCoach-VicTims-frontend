@@ -37,7 +37,7 @@ export class UserService {
         password: undefined,
         email: user.email,
         company: user.company,
-        userRole: undefined
+        userRole: user.userRole
       };
       this.userLoggedIn = userToLogin;
     }))
