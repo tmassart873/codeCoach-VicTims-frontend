@@ -11,8 +11,8 @@ import {Router} from "@angular/router";
 })
 export class RequestSessionComponent implements OnInit {
 
-  private coacheeId = this.userService.user.id;
-  private coachId = this.userService.getSelectedCoachId();
+  private coacheeId!:string;
+  private coachId!:string
 
   requestSessionForm = this.formBuilder.group({
       coacheeId: `${this.coacheeId}`,
@@ -33,13 +33,15 @@ export class RequestSessionComponent implements OnInit {
     }
   );
   constructor(private formBuilder: FormBuilder, private sessionService: SessionService,private userService: UserService, private router:Router) {
+
   }
 
   ngOnInit(): void {
-    if(this.userService.user.id===undefined) this.router.navigate(['']);
   }
 
   createSession(){
+    this.coacheeId= this.userService.user.id;
+    this.coachId = this.userService.getSelectedCoachId();
     console.log(this.requestSessionForm.value);
     this.sessionService.requestSession(this.requestSessionForm.value).subscribe();
   }
