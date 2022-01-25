@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {KeycloakService} from "../../app/security/keycloak/keycloak.service";
 import {InitService} from "../../app/materialize/init.service";
 import {FooterComponent} from "../footer/footer.component";
