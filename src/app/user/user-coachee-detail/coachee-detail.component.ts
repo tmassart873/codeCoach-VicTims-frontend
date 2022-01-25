@@ -8,21 +8,22 @@ import {User} from "../model/User";
   templateUrl: './coachee-detail.component.html',
   styleUrls: ['./coachee-detail.component.css']
 })
-export class CoacheeDetailComponent implements OnInit {
+export class CoacheeDetailComponent implements OnInit{
 
   user$!: Observable<User>;
-  // user! : User;
+  user! : User;
   email!: string | null;
 
   constructor(private userService: UserService) {
   }
 
   ngOnInit(): void {
-    this.user$ = this.userService.user;
-    // this.userService.user.subscribe({
-    //   next : value => this.user = value
-    // });
+    // this.userService.user.subscribe( {
+    //   next: value => console.log(value.firstName)
+    //   }
+    // );
+    // if(this.userService.user !== null)
+    //   this.user$ = this.userService.user;
+    this.user = this.userService.user;
   }
-
-
 }
