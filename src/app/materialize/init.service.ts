@@ -23,5 +23,11 @@ export class InitService {
     });
   }
 
+  initSelect(){
+    $(document).ready(function(){
+      $('select').formSelect();
+    });
+  }
+
 
 }
