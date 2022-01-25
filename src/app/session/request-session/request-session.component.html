@@ -49,6 +49,9 @@
                   <small *ngIf="getFormAttribute('time').errors?.required" [style.color]="'red'">
                     Time is required.
                   </small>
+                  <small *ngIf="getFormAttribute('time').errors?.pattern" [style.color]="'red'">
+                    Time should be of pattern hh:mm.
+                  </small>
                 </div>
               </div>
               <div class="row">

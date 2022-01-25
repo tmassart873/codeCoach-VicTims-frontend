@@ -26,7 +26,8 @@ export class RequestSessionComponent implements OnInit {
         Validators.pattern("^[0-9]{2}[\\/][0-9]{2}[\\/][0-9]{4}"),
       ]),
       time: new FormControl('', [
-        Validators.required
+        Validators.required,
+        Validators.pattern("^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$"),
       ]),
       location: new FormControl('', [
         Validators.required
