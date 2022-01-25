@@ -60,6 +60,10 @@ export class UserService {
     return this.getUserByEmail(email).pipe(map(user => user.id));
   }
 
+  getCoaches(): Observable<User[]> {
+    return this.http.get<User[]>(this.userUrl);
+  }
+
   private static log(message: string){
     console.log(`UserService: ${message}`);
   }

@@ -20,16 +20,12 @@
               </div>
               <div class="input-field col l3 m6 s12">
                 <select multiple>
-                  <option value="" disabled selected>Choose year</option>
-                  <option value="1">year 1</option>
-                  <option value="2">year 2</option>
-                  <option value="3">year 3</option>
-                  <option value="1">year 4</option>
-                  <option value="2">year 5</option>
-                  <option value="3">year 6</option>
-                  <option value="3">year 7</option>
+                  <option value="" disabled selected>Choose Experience</option>
+                  <option value="1">junior</option>
+                  <option value="2">medior</option>
+                  <option value="3">senior</option>
                 </select>
-                <label>Filter by Year</label>
+                <label>Filter by Experience</label>
               </div>
               <div class="input-field col l6 m12 s12">
                 <i class="material-icons prefix">search</i>
@@ -41,11 +37,11 @@
 
           <div class="row">
 
-            <div class="col l3 m4 s12">
-              <h5 class="header">Antoine Leroy</h5>
+            <div class="col l3 m4 s12" *ngFor="let coach of $coaches | async">
+              <h5 class="header">{{coach.firstName}} {{coach.lastName}}</h5>
               <div class="card horizontal">
                 <div class="card-image">
-                  <img src="img/dummy/profile-picture-coach.jpg">
+                  <img src="assets/img/dummy/profile-picture-coach.jpg">
 
                 </div>
                 <div class="card-stacked">
@@ -68,88 +64,6 @@
                 </div>
               </div>
             </div>
-
-            <div class="col l3 m4 s12">
-              <h5 class="header">Sofie Dumoulin</h5>
-              <div class="card horizontal">
-                <div class="card-image">
-                  <img src="img/dummy/profile-picture.jpg">
-                </div>
-                <div class="card-stacked">
-                  <div class="card-content">
-                    <table class="highlight responsive-table">
-                      <tbody>
-                      <tr>
-                        <td><strong>Mathematics</strong></td>
-                        <td>1</td>
-                      </tr>
-                      <tr>
-                        <td><strong>History</strong></td>
-                        <td>1,2</td>
-                      </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <a class="btn-floating halfway-fab waves-effect waves-light yellow darken-2 btn-large"><i
-                    class="material-icons">send</i></a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col l3 m4 s12">
-              <h5 class="header">Hans Vandeputte</h5>
-              <div class="card horizontal">
-                <div class="card-image">
-                  <img src="img/dummy/profile-picture-coach.jpg">
-                </div>
-                <div class="card-stacked">
-                  <div class="card-content">
-                    <table class="highlight responsive-table">
-                      <tbody>
-                      <tr>
-                        <td><strong>Biology</strong></td>
-                        <td>1,2</td>
-                      </tr>
-                      <tr>
-                        <td><strong>Chemistry</strong></td>
-                        <td>1</td>
-                      </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <a class="btn-floating halfway-fab waves-effect waves-light yellow darken-2 btn-large"><i
-                    class="material-icons">send</i></a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col l3 m4 s12">
-              <h5 class="header">Jeff Levec</h5>
-              <div class="card horizontal">
-                <div class="card-image">
-                  <img src="img/dummy/profile-picture-coach.jpg">
-                </div>
-                <div class="card-stacked">
-                  <div class="card-content">
-                    <table class="highlight responsive-table">
-                      <tbody>
-                      <tr>
-                        <td><strong>Mathematics</strong></td>
-                        <td>1,2,3</td>
-                      </tr>
-                      <tr>
-                        <td><strong>Biology</strong></td>
-                        <td>1,2</td>
-                      </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <a class="btn-floating halfway-fab waves-effect waves-light yellow darken-2 btn-large"><i
-                    class="material-icons">send</i></a>
-                </div>
-              </div>
-            </div>
-
 
           </div>
 
