@@ -1,7 +1,6 @@
 import {Component, OnInit } from '@angular/core';
 import {UserService} from "../../service/user.service";
 import {Observable} from "rxjs";
-import {KeycloakService} from "../../security/keycloak/keycloak.service";
 import {User} from "../model/User";
 
 @Component({

@@ -42,7 +42,8 @@ export class UserLoginComponent implements OnInit {
       .subscribe({
         next: _ => {
           this.message = 'Success!';
-          this.userService.getUserId(this.loginForm.get('email')?.value).subscribe(id => this.router.navigate([`/users/${id}/profile`])
+          console.log(this.userService.getUserId(this.loginForm.get('email')?.value));
+          this.userService.getUserId(this.loginForm.get('email')?.value).subscribe(id => {console.log(id), this.router.navigate([`/users/${id}`])}
          );
         }
         ,
