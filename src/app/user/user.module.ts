@@ -6,7 +6,7 @@ import { CoacheeDetailComponent } from './user-coachee-detail/coachee-detail.com
 import { ApplyForCoachComponent } from './apply-for-coach/apply-for-coach.component';
 import { CoachDetailComponent } from './user-coach-detail/coach-detail.component';
 import { UserLoginComponent } from './user-login/user-login.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
 
 
@@ -23,6 +23,7 @@ import {RouterModule} from "@angular/router";
     imports: [
         CommonModule,
         ReactiveFormsModule,
+        FormsModule,
         RouterModule
     ]
 })

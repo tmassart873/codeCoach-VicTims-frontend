@@ -32,9 +32,7 @@ export class UserLoginComponent implements OnInit {
               private keycloakService: KeycloakService) {
   }
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   onSubmit(loginData: any): void {
     this.email = this.loginForm.get('email')?.value;
@@ -42,17 +40,16 @@ export class UserLoginComponent implements OnInit {
       .subscribe({
         next: _ => {
           this.message = 'Success!';
-          this.userService.getUserId(this.loginForm.get('email')?.value).subscribe(id => this.router.navigate([`/users/${id}/profile`])
-         );
-        }
-        ,
+          this.userService.getUserId(this.loginForm.get('email')?.value)
+            .subscribe(id => this.router.navigate([`/users/${id}/profile`])
+            );
+        },
         error: err => {
           this.message = 'Wrong username and/or password!';
           this.loginForm.reset()
         }
       });
   }
-
 
   onReset(): void {
     this.loginForm.get('password')?.reset();

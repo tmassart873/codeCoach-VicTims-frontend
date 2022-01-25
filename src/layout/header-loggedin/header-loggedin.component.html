@@ -2,30 +2,60 @@
   <nav class="white nav-extended" role="navigation">
     <div class="nav-wrapper container">
       <a id="logo-container-signed-in" href="#" class="brand-logo">CodeCoach</a>
+      <!--TODO should be CodeCoach or You-Coach based on being a Coach -->
       <ul class="right hide-on-med-and-down">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About us</a></li>
-        <li><a href="#">Contact</a></li>
-        <li><a class="waves-effect waves-light grey lighten-2 btn black-text" (click)="logOut()">Sign out<i
-          class="material-icons right">person</i></a></li>
+        <li>
+          <a href="#">Home</a>
+        </li>
+        <li>
+          <a href="#">About us</a>
+        </li>
+        <li>
+          <a href="#">Contact</a>
+        </li>
+        <li>
+          <a class="waves-effect waves-light grey lighten-2 btn black-text" (click)="logOut()">Sign out
+            <i class="material-icons right">person</i>
+          </a>
+        </li>
       </ul>
       <a href="#" data-target="nav-mobile-signed-in" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul id="nav-mobile-signed-in" class="sidenav">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About us</a></li>
-        <li><a href="#">Contact</a></li>
-        <li><a class="waves-effect waves-light  grey lighten-2 btn black-text" (click)="logOut()">Sign out<i
-          class="material-icons right">person</i></a></li>
+        <li>
+          <a href="#">Home</a>
+        </li>
+        <li>
+          <a href="#">About us</a>
+        </li>
+        <li>
+          <a href="#">Contact</a>
+        </li>
+        <li>
+          <a class="waves-effect waves-light  grey lighten-2 btn black-text" (click)="logOut()">Sign out
+            <i class="material-icons right">person</i>
+          </a>
+        </li>
       </ul>
 
     </div>
-    <div class="nav-content yellow darken-2">
+    <div *ngIf="user$| async as user"
+         [ngClass]="{'nav-content yellow darken-2': !(eventActiveRouter | async),
+         'collection-item black-text active teal lighten-3': eventActiveRouter | async}">
+      <!-- TODO have to make a class selector based on being a coach or coachee -->
       <div class="container">
         <ul class="tabs tabs-transparent">
-          <li class="tab"><a *ngIf="user$| async as user"  class="grey-text text-darken-2" routerLink="/users/{{user.id}}/profile">My Profile</a></li>
-          <li class="tab"><a class="black-text" href="#">Find a coach</a></li>
+          <li class="tab">
+            <a class="grey-text text-darken-2" [routerLink]="['./','users',user.id,'profile']">My Profile</a>
+          </li>
+          <li class="tab">
+            <a class="black-text" href="#">Find a coach</a>
+          </li>
+          <li class="tab" *ngIf="user.userRole === COACH">
+            <a class="black-text" [routerLink]="['./','users',user.id,'coach-profile']" routerLinkActive="active-link" (isActiveChange)="this.onRouterLinkActive($event)" >My Coach Profile</a>
+          </li>
         </ul>
       </div>
     </div>
   </nav>
+<!--  routerLinkActive="active-link" (isActiveChange)="this.onRouterLinkActive($event)"-->
 </header>

@@ -1,7 +1,6 @@
-import {Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../service/user.service";
 import {Observable} from "rxjs";
-import {KeycloakService} from "../../security/keycloak/keycloak.service";
 import {User} from "../model/User";
 
 @Component({
@@ -12,17 +11,18 @@ import {User} from "../model/User";
 export class CoacheeDetailComponent implements OnInit {
 
   user$!: Observable<User>;
+  // user! : User;
   email!: string | null;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService) {
+  }
 
   ngOnInit(): void {
-    this.user$ = this.userService.getUser();
-   /* this.email = this.keycloakService.getEmailAddress();
-    if(this.email !== null){
-      this.user$ =this.userService.getUserByEmail(this.email);
-      console.log(this.user$)*/
-    }
+    this.user$ = this.userService.user;
+    // this.userService.user.subscribe({
+    //   next : value => this.user = value
+    // });
+  }
 
 
 }

@@ -1,4 +1,5 @@
-<footer class="page-footer yellow darken-2">
+<footer  [ngClass]="{'page-footer yellow darken-2': !activeRouteIsProfileCoach,
+         'page-footer teal lighten-3': activeRouteIsProfileCoach}">
   <div class="container">
     <div class="row">
       <div class="col l6 s12">
