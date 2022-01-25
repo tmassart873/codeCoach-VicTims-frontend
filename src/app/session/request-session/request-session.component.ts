@@ -11,8 +11,9 @@ import {Router} from "@angular/router";
 })
 export class RequestSessionComponent implements OnInit {
 
-  private coacheeId!:string;
-  private coachId!:string
+  private coacheeId!: string;
+  private coachId!: string
+
 
   requestSessionForm = this.formBuilder.group({
       coacheeId: `${this.coacheeId}`,
@@ -21,7 +22,8 @@ export class RequestSessionComponent implements OnInit {
         Validators.required
       ]),
       date: new FormControl('', [
-        Validators.required
+        Validators.required,
+        Validators.pattern("^[0-9]{2}[\\/][0-9]{2}[\\/][0-9]{4}"),
       ]),
       time: new FormControl('', [
         Validators.required
@@ -32,24 +34,29 @@ export class RequestSessionComponent implements OnInit {
       remarks: '',
     }
   );
-  constructor(private formBuilder: FormBuilder, private sessionService: SessionService,private userService: UserService, private router:Router) {
+
+  constructor(private formBuilder: FormBuilder,
+              private sessionService: SessionService,
+              private userService: UserService,
+              private router: Router) {
 
   }
 
   ngOnInit(): void {
   }
 
-  createSession(){
-    this.coacheeId= this.userService.user.id;
+  createSession() {
+    this.coacheeId = this.userService.user.id;
     this.coachId = this.userService.getSelectedCoachId();
     console.log(this.requestSessionForm.value);
     this.sessionService.requestSession(this.requestSessionForm.value).subscribe();
   }
-  onSubmit(){
-     this.createSession();
+
+  onSubmit() {
+    this.createSession();
   }
 
-  getFormAttribute(formControlName: string):any {
+  getFormAttribute(formControlName: string): any {
     return this.requestSessionForm.get(`${formControlName}`)
   }
 }

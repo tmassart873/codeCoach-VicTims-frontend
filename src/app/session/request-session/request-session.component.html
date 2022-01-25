@@ -40,6 +40,9 @@
                   <small *ngIf="getFormAttribute('date').errors?.required" [style.color]="'red'">
                     Date is required.
                   </small>
+                  <small *ngIf="getFormAttribute('date').errors?.pattern" [style.color]="'red'">
+                    Date should be of pattern dd/mm/yyyy.
+                  </small>
                 </div>
                 <div class="col s6"
                      *ngIf="getFormAttribute('time').invalid && (getFormAttribute('time').dirty||getFormAttribute('time').touched)">
