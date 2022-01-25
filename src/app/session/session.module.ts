@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RequestSessionComponent } from './request-session/request-session.component';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    RequestSessionComponent
+  ],
   imports: [
     CommonModule
   ]
