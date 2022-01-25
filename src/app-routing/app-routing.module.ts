@@ -8,11 +8,13 @@ import {CoacheeDetailComponent} from "../app/user/user-coachee-detail/coachee-de
 import {UserPanelComponent} from "../app/user/user-panel/user-panel.component";
 import {ApplyForCoachComponent} from "../app/user/apply-for-coach/apply-for-coach.component";
 import {CoachDetailComponent} from "../app/user/user-coach-detail/coach-detail.component";
+import {CoachOverviewComponent} from "../app/user/user-coach-overview/coach-overview.component";
 
 const routes: Routes = [
   {path: '', component: HomepageComponent},
   {path: 'login', component: UserLoginComponent},
   {path: 'register', component: CreateUserComponent},
+  {path: 'users/coaches-overview', component: CoachOverviewComponent},
   {path: 'users/:id/coach-profile', component: CoachDetailComponent},
   {path: 'users/:id', component: UserPanelComponent, children: [
       {path: 'profile', component: CoacheeDetailComponent},

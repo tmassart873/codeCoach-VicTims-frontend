@@ -1,3 +1,5 @@
+import {CoachInformation} from "./CoachInformation";
+
 export interface User{
   id: string,
   firstName: string,
@@ -6,4 +8,5 @@ export interface User{
   email: string,
   company: string,
   userRole?: string
+  coachInformation?: CoachInformation | null
 }
