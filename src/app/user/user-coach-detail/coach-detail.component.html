@@ -8,9 +8,9 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-<main>
+<main *ngIf="user">
 
-  <div class="row">
+  <div class="row" >
 
     <div class="col s12 m2">
       <div class="content-container">
@@ -43,19 +43,19 @@
                 <tbody>
                 <tr>
                   <td><strong>First name</strong></td>
-                  <td>Antoine</td>
+                  <td>{{user.firstName}}</td>
                 </tr>
                 <tr>
                   <td><strong>Last name</strong></td>
-                  <td>Leroy</td>
+                  <td>{{user.lastName}}</td>
                 </tr>
                 <tr>
                   <td><strong>Email</strong></td>
-                  <td>antoine.leroy@gmail.com</td>
+                  <td>{{user.email}}</td>
                 </tr>
                 <tr>
                   <td><strong>Class</strong></td>
-                  <td>4 - Latin Science</td>
+                  <td>ADD IT TO THE USER MODEL</td>
                 </tr>
                 </tbody>
               </table>
