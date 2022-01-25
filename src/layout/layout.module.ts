@@ -6,8 +6,6 @@ import { FooterComponent } from './footer/footer.component';
 import {RouterModule} from "@angular/router";
 import { HeaderLoggedinComponent } from './header-loggedin/header-loggedin.component';
 
-
-
 @NgModule({
   declarations: [
     HeaderComponent,

@@ -59,6 +59,11 @@ export class UserService {
   }
 
   private static log(message: string) {
+  getCoaches(): Observable<User[]> {
+    return this.http.get<User[]>(this.userUrl);
+  }
+
+  private static log(message: string){
     console.log(`UserService: ${message}`);
   }
 
