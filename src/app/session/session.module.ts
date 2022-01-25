@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RequestSessionComponent } from './request-session/request-session.component';
-
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {RequestSessionComponent} from './request-session/request-session.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -9,7 +9,10 @@ import { RequestSessionComponent } from './request-session/request-session.compo
     RequestSessionComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule
+
   ]
 })
-export class SessionModule { }
+export class SessionModule {
+}

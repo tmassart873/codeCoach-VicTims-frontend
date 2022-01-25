@@ -11,6 +11,8 @@ import {UserService} from "./service/user.service";
 import {HomepageComponent} from './homepage/homepage.component';
 import {AuthenticationInterceptor} from "./security/keycloak/authentication-interceptor";
 import { ErrorComponent } from './security/error/error.component';
+import {RequestSessionComponent} from "./session/request-session/request-session.component";
+import {SessionModule} from "./session/session.module";
 
 @NgModule({
   declarations: [
@@ -22,6 +24,7 @@ import { ErrorComponent } from './security/error/error.component';
     BrowserModule,
     LayoutModule,
     UserModule,
+    SessionModule,
     AppRoutingModule,
     RouterModule.forRoot([]),
     HttpClientModule,
