@@ -58,9 +58,8 @@ export class UserService {
     return this.userLoggedIn;
   }
 
-  private static log(message: string) {
   getCoaches(): Observable<User[]> {
-    return this.http.get<User[]>(this.userUrl);
+    return this.http.get<User[]>(this.userUrl + '?isCoach=true');
   }
 
   private static log(message: string){

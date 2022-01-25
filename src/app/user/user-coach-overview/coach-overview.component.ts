@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {UserService} from "../../service/user.service";
 import {User} from "../model/User";
 import {Observable} from "rxjs";
+import {InitService} from "../../materialize/init.service";
 
 @Component({
   selector: 'app-coach-overview',
@@ -10,7 +11,7 @@ import {Observable} from "rxjs";
 })
 export class CoachOverviewComponent implements OnInit {
 
-  $coaches!: Observable<User[]>;
+  coaches$!: Observable<User[]>;
 
   constructor(private userService: UserService) { }
 
@@ -19,6 +20,10 @@ export class CoachOverviewComponent implements OnInit {
   }
 
   getCoaches(): void {
-    this.$coaches = this.userService.getCoaches()
+    this.coaches$ = this.userService.getCoaches();
   }
+
+  // ngAfterViewInit() {
+  //   this.initService.initCardPanel();
+  // }
 }
