@@ -41,7 +41,7 @@ export class UserLoginComponent implements OnInit {
         next: _ => {
           this.message = 'Success!';
           this.userService.getUserId(this.loginForm.get('email')?.value)
-            .subscribe(id => this.router.navigate([`/users/${id}/profile`])
+            .subscribe(id => this.router.navigate([`/users/${id}`])
             );
         },
         error: err => {

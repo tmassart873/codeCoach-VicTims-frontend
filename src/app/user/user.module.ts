@@ -8,8 +8,9 @@ import { CoachDetailComponent } from './user-coach-detail/coach-detail.component
 import { UserLoginComponent } from './user-login/user-login.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
-
-
+import {UserRoutingModule} from "./user-routing/user-routing.module";
+import { UserPanelComponent } from './user-panel/user-panel.component';
+import { UserSidebarComponent } from './user-sidebar/user-sidebar.component';
 
 @NgModule({
   declarations: [
@@ -18,13 +19,16 @@ import {RouterModule} from "@angular/router";
     CoacheeDetailComponent,
     ApplyForCoachComponent,
     CoachDetailComponent,
-    UserLoginComponent
+    UserLoginComponent,
+    UserPanelComponent,
+    UserSidebarComponent
   ],
     imports: [
-        CommonModule,
-        ReactiveFormsModule,
-        FormsModule,
-        RouterModule
+      CommonModule,
+      ReactiveFormsModule,
+      FormsModule,
+      RouterModule,
+      UserRoutingModule
     ]
 })
 export class UserModule { }
