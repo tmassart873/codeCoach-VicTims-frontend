@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Observable} from "rxjs";
+import {User} from "../model/User";
+import {UserService} from "../../service/user.service";
 
 @Component({
   selector: 'app-coach-detail',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CoachDetailComponent implements OnInit {
 
-  constructor() { }
+  user$!: Observable<User>;
+  user! : User;
+
+  constructor(private userService: UserService) {
+  }
 
   ngOnInit(): void {
+    this.user = this.userService.user;
   }
+
 
 }

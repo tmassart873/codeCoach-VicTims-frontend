@@ -82,4 +82,8 @@ export class UserService {
     };
   }
 
+  becomeCoach(id: string, value: any): Observable<void> {
+    return this.http.put<void>(`${this.userUrl}/${id}`, value);
+  }
+
 }
