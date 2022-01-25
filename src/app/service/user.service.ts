@@ -26,6 +26,7 @@ export class UserService {
       catchError(this.handleError<any>('getUsers'))
     );
   }
+
   getUser() {
     let userName = this.keycloakService.getEmailAddress();
 
@@ -41,7 +42,7 @@ export class UserService {
         return this.http.get<User>(`${this.userUrl}/${userName}`, {headers: header});
       }
     }
-    let userProfile: User = {company: "", id: "", password: "", userRole: "", firstName: "", lastName: "", email: ""};
+    let userProfile: User = {company: "", id: "", password: "", userRole: "", firstName: "", lastName: "", email: "", coachInformation: null};
     return of(userProfile);
   }
 

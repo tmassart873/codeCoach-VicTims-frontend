@@ -47,14 +47,10 @@
                 <div class="card-stacked">
                   <div class="card-content">
                     <table class="highlight responsive-table">
-                      <tbody>
-                      <tr>
-                        <td><strong>Mathematics</strong></td>
-                        <td>1,2,3</td>
-                      </tr>
-                      <tr>
-                        <td><strong>Biology</strong></td>
-                        <td>1,2</td>
+                      <tbody *ngIf="coach.coachInformation" >
+                      <tr  *ngFor="let topic of coach.coachInformation.topics">
+                        <td><strong>{{topic.name}}</strong></td>
+                        <td>1,2,3 (level) </td>
                       </tr>
                       </tbody>
                     </table>
