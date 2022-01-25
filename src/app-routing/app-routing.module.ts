@@ -19,6 +19,7 @@ const routes: Routes = [
       {path: 'profile', component: CoacheeDetailComponent},
       {path: 'become-coach', component: ApplyForCoachComponent}
     ]},
+  {path: 'sessions/request-session', component: RequestSessionComponent},
   {path: '**', redirectTo: ''}
 ]
 

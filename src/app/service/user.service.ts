@@ -11,6 +11,7 @@ import {KeycloakService} from "../security/keycloak/keycloak.service";
 })
 export class UserService {
   private userLoggedIn = new Subject<User>();
+  private selectedCoachId!:string;
 
   private readonly userUrl: string;
   httpOptions = {
@@ -56,6 +57,13 @@ export class UserService {
 
   get user() : Subject<User> {
     return this.userLoggedIn;
+  }
+
+  setSelectedCoachId(id:string){
+    this.selectedCoachId= id;
+  }
+  getSelectedCoachId():string{
+    return this.selectedCoachId;
   }
 
   private static log(message: string) {
