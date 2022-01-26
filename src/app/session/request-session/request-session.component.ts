@@ -4,6 +4,7 @@ import {SessionService} from "../../service/session.service";
 import {FormBuilder, FormControl, Validators,} from "@angular/forms";
 import {Router} from "@angular/router";
 import {InitService} from "../../materialize/init.service";
+import {User} from "../../user/model/User";
 
 @Component({
   selector: 'app-request-session',
@@ -11,7 +12,7 @@ import {InitService} from "../../materialize/init.service";
   styleUrls: ['./request-session.component.css']
 })
 export class RequestSessionComponent implements OnInit {
-
+  private user!: User|null;
   private coacheeId!: string | undefined;
   private coachId!: string|undefined;
 
@@ -42,21 +43,29 @@ export class RequestSessionComponent implements OnInit {
               private userService: UserService,
               private initService: InitService,
               private router: Router) {
-
+    this.user = this.userService.user;
   }
 
   ngOnInit(): void {
     this.initService.initSelect();
+    this.coacheeId=this.user?.id;
+    console.log('init coacheeid:'+this.coacheeId);
+    this.coachId=this.userService.getSelectedCoachId();
+    console.log('init coachid:'+this.coachId);
     // if(this.coacheeId===undefined||this.coacheeId===null||this.coachId===undefined||this.coachId===null){
     //   this.router.navigate(['']);
     // } <-- activate this when everything works
   }
 
   createSession() {
-    this.coacheeId = this.userService.user?.id;
-    this.coachId = this.userService.getSelectedCoachId();
+    this.requestSessionForm.patchValue({
+      coachId: this.coachId,
+      coacheeId: this.coacheeId
+    });
+
     console.log(this.requestSessionForm.value);
     this.sessionService.requestSession(this.requestSessionForm.value).subscribe();
+
   }
 
   onSubmit() {

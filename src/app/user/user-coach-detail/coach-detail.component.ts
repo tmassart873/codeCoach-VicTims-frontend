@@ -25,7 +25,7 @@ export class CoachDetailComponent implements OnInit {
     this.route.params.subscribe(params => id = params['id']);
     this.userService.setSelectedCoachId(id);
     console.log(id);
-    console.log(this.userService.getSelectedCoachId());
+    console.log(this.userService.user?.id);
     this.router.navigate(['/sessions/request-session']);
   }
 }

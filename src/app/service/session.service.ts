@@ -22,14 +22,14 @@ export class SessionService {
   }
 
   requestSession(session: Session): Observable<Session> {
-    return this.http.post<Session>(this.sessionUrl, this.httpOptions).pipe(
+    return this.http.post<Session>(this.sessionUrl, session,this.httpOptions).pipe(
       tap(_ => SessionService.log(`created new session`)),
       catchError(this.handleError<any>('created new session'))
     );
   }
 
   private static log(message: string) {
-    console.log(`UserService: ${message}`);
+    console.log(`SessionService: ${message}`);
   }
 
   /**
