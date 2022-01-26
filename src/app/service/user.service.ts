@@ -61,7 +61,11 @@ export class UserService {
     return null;
   }
 
-  private static log(message: string) {
+  getCoaches(): Observable<User[]> {
+    return this.http.get<User[]>(this.userUrl + '?isCoach=true');
+  }
+
+  private static log(message: string){
     console.log(`UserService: ${message}`);
   }
 
@@ -83,6 +87,10 @@ export class UserService {
       // Let the app keep running by returning an empty result.
       return of(result as T);
     };
+  }
+
+  becomeCoach(id: string, value: any): Observable<void> {
+    return this.http.put<void>(`${this.userUrl}/${id}`, value);
   }
 
 }

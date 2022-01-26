@@ -1,7 +1,4 @@
-import {Component, OnInit} from '@angular/core';
-import {User} from "../model/User";
-import {UserService} from "../../service/user.service";
-import {Subject} from "rxjs";
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-coach-detail',
