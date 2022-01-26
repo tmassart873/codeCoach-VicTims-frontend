@@ -21,7 +21,7 @@ export class ApplyForCoachComponent implements OnInit {
 
   becomeCoach() {
     this.user = this.userService.user;
-    this.user.userRole = 'Coach';
+    this.user.userRole = 'COACH';
     const userId = this.user.id;
     this.userService.becomeCoach(userId,this.user).subscribe();
     this.router.navigate([`users/${userId}/coach-profile`]);

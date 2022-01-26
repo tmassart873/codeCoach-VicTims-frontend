@@ -30,6 +30,7 @@ export class HeaderLoggedinComponent implements OnInit {
     if(this.email !== null){
       this.user$ =this.userService.getUserByEmail(this.email);
     }
+
   }
 
 
