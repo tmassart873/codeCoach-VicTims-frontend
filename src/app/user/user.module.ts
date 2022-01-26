@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CreateUserComponent } from './create-user/create-user.component';
 import { CoachOverviewComponent } from './user-coach-overview/coach-overview.component';
-import { CoacheeDetailComponent } from './user-coachee-detail/coachee-detail.component';
+import { UserDetailComponent } from './user-detail/user-detail.component';
 import { ApplyForCoachComponent } from './apply-for-coach/apply-for-coach.component';
 import { CoachDetailComponent } from './user-coach-detail/coach-detail.component';
 import { UserLoginComponent } from './user-login/user-login.component';
@@ -16,7 +16,7 @@ import { UserSidebarComponent } from './user-sidebar/user-sidebar.component';
   declarations: [
     CreateUserComponent,
     CoachOverviewComponent,
-    CoacheeDetailComponent,
+    UserDetailComponent,
     ApplyForCoachComponent,
     CoachDetailComponent,
     UserLoginComponent,
