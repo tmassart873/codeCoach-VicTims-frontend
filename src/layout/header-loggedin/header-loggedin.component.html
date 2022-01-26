@@ -37,7 +37,7 @@
       </ul>
 
     </div>
-    <div *ngIf="user$| async as user"
+    <div *ngIf="user"
          [ngClass]="{'nav-content yellow darken-2': !(eventActiveRouter | async),
          'collection-item black-text active teal lighten-3': eventActiveRouter | async}">
       <!-- TODO have to make a class selector based on being a coach or coachee -->

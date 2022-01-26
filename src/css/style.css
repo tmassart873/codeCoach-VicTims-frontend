@@ -47,6 +47,25 @@ p {
   font-size: 16rem;
 }
 
+/*Creates table with scrollable tbody*/
+.topics-table tbody {
+  display:block;
+  height:150px;
+  overflow:auto;
+  word-break: break-all;
+}
+.topics-table thead, tbody tr {
+  display:table;
+  width:100%;
+  table-layout:fixed;
+}
+.topics-table thead {
+  width: calc( 100% - 1em )
+}
+.topics-table table {
+  width:100%;
+}
+
 .parallax-container {
   min-height: 380px;
   line-height: 0;
@@ -56,6 +75,7 @@ p {
   .parallax-container .section {
     width: 100%;
   }
+
 
 @media only screen and (max-width : 992px) {
   .parallax-container .section {
