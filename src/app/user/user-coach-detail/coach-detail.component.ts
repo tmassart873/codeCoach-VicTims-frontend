@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {User} from "../model/User";
 import {UserService} from "../../service/user.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 @Component({
   selector: 'app-coach-detail',
@@ -13,8 +12,8 @@ export class CoachDetailComponent implements OnInit {
 
   user!: User | null;
 
-  constructor(private route:ActivatedRoute, private router: Router, private http:HttpClient, private userService:UserService) { }
-
+  constructor(private route: ActivatedRoute, private router: Router, private userService: UserService) {
+  }
 
 
   ngOnInit(): void {
@@ -22,8 +21,8 @@ export class CoachDetailComponent implements OnInit {
   }
 
   requestSession() {
-    let id ='';
-    this.route.params.subscribe(params=> id = params['id']);
+    let id = '';
+    this.route.params.subscribe(params => id = params['id']);
     this.userService.setSelectedCoachId(id);
     console.log(id);
     console.log(this.userService.getSelectedCoachId());
