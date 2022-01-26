@@ -12,6 +12,7 @@ import {HomepageComponent} from './homepage/homepage.component';
 import {AuthenticationInterceptor} from "./security/keycloak/authentication-interceptor";
 import { ErrorComponent } from './security/error/error.component';
 import { FilterTopicsPipe } from './pipes/filter-topics.pipe';
+import { FilterFirstNameLastNameEmailPipe } from './pipes/filter-first-name-last-name-email.pipe';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { FilterTopicsPipe } from './pipes/filter-topics.pipe';
     HomepageComponent,
     ErrorComponent,
     FilterTopicsPipe,
+    FilterFirstNameLastNameEmailPipe,
   ],
   imports: [
     BrowserModule,
@@ -35,9 +37,11 @@ import { FilterTopicsPipe } from './pipes/filter-topics.pipe';
     {provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true}
   ],
   exports: [
-    FilterTopicsPipe
+    FilterTopicsPipe,
+    FilterFirstNameLastNameEmailPipe
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule {
 }

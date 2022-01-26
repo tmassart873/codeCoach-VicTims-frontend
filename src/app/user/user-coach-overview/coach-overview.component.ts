@@ -12,6 +12,7 @@ export class CoachOverviewComponent implements OnInit {
 
   coaches$!: Observable<User[]>;
   searchTopic!: string;
+  searchName!: string;
 
   constructor(private userService: UserService) { }
 

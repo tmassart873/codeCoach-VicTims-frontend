@@ -16,7 +16,7 @@ export class FilterTopicsPipe implements PipeTransform {
 
     for (let Coach of arrayOfCoaches) {
       if (Coach.coachInformation?.topics !== undefined) {
-        if (Coach.coachInformation?.topics.filter((topic) => topic.name.toLocaleLowerCase().includes(topicFilter.toLocaleLowerCase())).length > 0) {
+        if (Coach.coachInformation?.topics.filter((topic) => topic.name.trim().toLocaleLowerCase().includes(topicFilter.trim().toLocaleLowerCase())).length > 0) {
           coachArrayReturn.push(Coach);
         }
       }
