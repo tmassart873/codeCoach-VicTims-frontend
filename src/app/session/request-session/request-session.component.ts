@@ -44,6 +44,9 @@ export class RequestSessionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // if(this.coacheeId===undefined||this.coacheeId===null||this.coachId===undefined||this.coachId===null){
+    //   this.router.navigate(['']);
+    // } <-- activate this when everything works
   }
 
   createSession() {

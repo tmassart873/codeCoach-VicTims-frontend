@@ -13,12 +13,10 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 export class CoachDetailComponent implements OnInit {
 
 
-  constructor(private route:ActivatedRoute, private router: Router, private http:HttpClient,private userService:UserService) { }
+  constructor(private route:ActivatedRoute, private router: Router, private http:HttpClient, private userService:UserService) { }
   user$!: Observable<User>;
   user! : User;
 
-  constructor(private userService: UserService) {
-  }
 
   ngOnInit(): void {
     this.user = this.userService.user;
