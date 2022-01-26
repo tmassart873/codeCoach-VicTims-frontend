@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-<main>
+<main *ngIf="user">
 
   <div class="row">
 
@@ -40,19 +40,23 @@
                 <tbody>
                 <tr>
                   <td><strong>First name</strong></td>
-                  <td>Antoine</td>
+                  <td>{{user.firstName}}</td>
                 </tr>
                 <tr>
                   <td><strong>Last name</strong></td>
-                  <td>Leroy</td>
+                  <td>{{user.lastName}}</td>
                 </tr>
                 <tr>
                   <td><strong>Email</strong></td>
-                  <td>antoine.leroy@gmail.com</td>
+                  <td>{{user.email}}</td>
                 </tr>
                 <tr>
                   <td><strong>Class</strong></td>
                   <td>4 - Latin Science</td>
+                </tr>
+                <tr *ngIf="user.company">
+                  <td><strong>Company</strong></td>
+                  <td>{{user.company}}</td>
                 </tr>
                 </tbody>
               </table>

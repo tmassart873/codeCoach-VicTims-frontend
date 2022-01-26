@@ -10,20 +10,13 @@ import {User} from "../model/User";
 })
 export class CoacheeDetailComponent implements OnInit{
 
-  user$!: Observable<User>;
-  user! : User;
+  user! : User | null;
   email!: string | null;
 
   constructor(private userService: UserService) {
   }
 
   ngOnInit(): void {
-    // this.userService.user.subscribe( {
-    //   next: value => console.log(value.firstName)
-    //   }
-    // );
-    // if(this.userService.user !== null)
-    //   this.user$ = this.userService.user;
     this.user = this.userService.user;
   }
 }

@@ -10,7 +10,6 @@ import {KeycloakService} from "../security/keycloak/keycloak.service";
   providedIn: 'root'
 })
 export class UserService {
-  private userLoggedIn! : User;
 
   private readonly userUrl: string;
   httpOptions = {
@@ -39,7 +38,7 @@ export class UserService {
         company: user.company,
         userRole: user.userRole
       };
-      this.userLoggedIn = userToLogin;
+      localStorage.setItem('userToLogin', JSON.stringify(userToLogin));
     }))
   }
 
@@ -54,8 +53,12 @@ export class UserService {
     return this.getUserByEmail(email).pipe(map(user => user.id));
   }
 
-  get user() :User {
-    return this.userLoggedIn;
+  get user(): User | null {
+    const userToLogin = localStorage.getItem('userToLogin');
+    if (userToLogin) {
+      return JSON.parse(userToLogin);
+    }
+    return null;
   }
 
   private static log(message: string) {

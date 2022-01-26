@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {User} from "../model/User";
+import {UserService} from "../../service/user.service";
+import {Subject} from "rxjs";
 
 @Component({
   selector: 'app-coach-detail',
@@ -7,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CoachDetailComponent implements OnInit {
 
-  constructor() { }
+  user!: User | null;
+
+  constructor(private userService: UserService) {
+  }
 
   ngOnInit(): void {
+    this.user = this.userService.user!;
   }
 
 }
