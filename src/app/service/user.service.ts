@@ -35,7 +35,14 @@ export class UserService {
         password: undefined,
         email: user.email,
         company: user.company,
-        userRole: user.userRole
+        userRole: user.userRole,
+        coachInformation: {
+          id: user.coachInformation?.id,
+          coachXp: user.coachInformation?.coachXp,
+          introduction: user.coachInformation?.introduction,
+          availability: user.coachInformation?.availability,
+          topics: user.coachInformation?.topics
+        }
       };
       localStorage.setItem('userToLogin', JSON.stringify(userToLogin));
     }))
