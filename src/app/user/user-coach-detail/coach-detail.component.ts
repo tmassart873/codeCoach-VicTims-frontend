@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {Observable} from "rxjs";
 import {User} from "../model/User";
 import {UserService} from "../../service/user.service";
 
@@ -10,15 +9,13 @@ import {UserService} from "../../service/user.service";
 })
 export class CoachDetailComponent implements OnInit {
 
-  user$!: Observable<User>;
-  user! : User;
+  user!: User | null;
 
   constructor(private userService: UserService) {
   }
 
   ngOnInit(): void {
-    this.user = this.userService.user;
+    this.user = this.userService.user!;
   }
-
 
 }

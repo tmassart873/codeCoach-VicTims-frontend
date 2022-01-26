@@ -54,6 +54,10 @@
                   <td><strong>Class</strong></td>
                   <td>ADD IT TO THE USER MODEL</td>
                 </tr>
+                <tr *ngIf="user.company">
+                  <td><strong>Company</strong></td>
+                  <td>{{user.company}}</td>
+                </tr>
                 </tbody>
               </table>
             </div>
