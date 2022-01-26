@@ -11,6 +11,7 @@ import {RouterModule} from "@angular/router";
 import {UserRoutingModule} from "./user-routing/user-routing.module";
 import { UserPanelComponent } from './user-panel/user-panel.component';
 import { UserSidebarComponent } from './user-sidebar/user-sidebar.component';
+import {AppModule} from "../app.module";
 
 @NgModule({
   declarations: [
@@ -24,11 +25,12 @@ import { UserSidebarComponent } from './user-sidebar/user-sidebar.component';
     UserSidebarComponent
   ],
     imports: [
-      CommonModule,
-      ReactiveFormsModule,
-      FormsModule,
-      RouterModule,
-      UserRoutingModule
+        CommonModule,
+        ReactiveFormsModule,
+        FormsModule,
+        RouterModule,
+        UserRoutingModule,
+        AppModule
     ]
 })
 export class UserModule { }

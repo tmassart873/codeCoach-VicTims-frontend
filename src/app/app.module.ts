@@ -11,17 +11,18 @@ import {UserService} from "./service/user.service";
 import {HomepageComponent} from './homepage/homepage.component';
 import {AuthenticationInterceptor} from "./security/keycloak/authentication-interceptor";
 import { ErrorComponent } from './security/error/error.component';
+import { FilterTopicsPipe } from './pipes/filter-topics.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomepageComponent,
     ErrorComponent,
+    FilterTopicsPipe,
   ],
   imports: [
     BrowserModule,
     LayoutModule,
-    UserModule,
     AppRoutingModule,
     RouterModule.forRoot([]),
     HttpClientModule,
@@ -32,6 +33,9 @@ import { ErrorComponent } from './security/error/error.component';
   providers: [
     UserService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true}
+  ],
+  exports: [
+    FilterTopicsPipe
   ],
   bootstrap: [AppComponent]
 })

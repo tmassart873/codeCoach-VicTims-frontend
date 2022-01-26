@@ -11,6 +11,7 @@
             <option value="3">Mathematics</option>
           </select>
           <label>Filter by Topic</label>
+          <input type="text" class="validate" [(ngModel)] = "searchTopic">
         </div>
         <div class="input-field col l3 m6 s12">
           <select multiple>
@@ -30,7 +31,7 @@
     </header>
 
     <div class="row card-panel">
-      <div class="col l3 m6 s12" *ngFor="let coach of coaches$ | async">
+      <div class="col l3 m6 s12" *ngFor='let coach of coaches$ | async | filterTopics:searchTopic'>
         <div class="card">
 
         <h5 class="header center-align">{{coach.firstName}} {{coach.lastName}}</h5>
