@@ -23,7 +23,4 @@ export class CoachOverviewComponent implements OnInit {
     this.coaches$ = this.userService.getCoaches();
   }
 
-  // ngAfterViewInit() {
-  //   this.initService.initCardPanel();
-  // }
 }
