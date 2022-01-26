@@ -1,6 +1,19 @@
 <main *ngIf="user">
 
-    <div class="col s12 m12">
+  <div class="row">
+
+    <div class="col s12 m6 l4">
+      <div class="content-container">
+        <h6>My Profile</h6>
+        <div class="collection">
+          <a  class="collection-item black-text active yellow darken-2" routerLink="/users/{{user.id}}/profile">Profile Information</a>
+          <a  class="collection-item grey-text text-darken-2">Coaching sessions</a>
+          <a  class="collection-item grey-text text-darken-2">Apply to become a coach</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col s12 m6 l8">
       <div class="content-container">
 
         <section class="card-panel grey lighten-5">
@@ -11,7 +24,7 @@
           <h5>Profile Information</h5>
           <div class="divider"></div>
           <div class="row">
-            <div class="col l2 m2 s12">
+            <div class="col l2 m12 s12">
               <img src="../../../assets/img/dummy/profile-picture.png" class="responsive-img circle"
                    alt="Profile Picture">
             </div>
@@ -36,7 +49,7 @@
                 </tr>
                 <tr>
                   <td><strong>CodeCoach role</strong></td>
-                  <td>{{user.userRole | lowercase}}</td>
+                  <td>{{user.userRole.toLowerCase()}}</td>
                 </tr>
                 </tbody>
               </table>
@@ -46,4 +59,6 @@
 
       </div>
     </div>
+  </div>
+
 </main>
