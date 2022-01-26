@@ -23,7 +23,6 @@ export class LayoutComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this.initService.initSideNav();
     this.initService.initParallax();
-    this.initService.initSelect();
   }
 
   isLoggedIn() {

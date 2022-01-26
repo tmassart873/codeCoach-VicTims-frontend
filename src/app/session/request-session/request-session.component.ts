@@ -3,6 +3,7 @@ import {UserService} from "../../service/user.service";
 import {SessionService} from "../../service/session.service";
 import {FormBuilder, FormControl, Validators,} from "@angular/forms";
 import {Router} from "@angular/router";
+import {InitService} from "../../materialize/init.service";
 
 @Component({
   selector: 'app-request-session',
@@ -39,11 +40,13 @@ export class RequestSessionComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private sessionService: SessionService,
               private userService: UserService,
+              private initService: InitService,
               private router: Router) {
 
   }
 
   ngOnInit(): void {
+    this.initService.initSelect();
 
     // if(this.coacheeId===undefined||this.coacheeId===null||this.coachId===undefined||this.coachId===null){
     //   this.router.navigate(['']);
