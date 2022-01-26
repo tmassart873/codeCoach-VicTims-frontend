@@ -41,4 +41,7 @@ export class HeaderLoggedinComponent implements OnInit {
     return false;
   }
 
+  get user(): User | null {
+    return this.userService.user;
+  }
 }
