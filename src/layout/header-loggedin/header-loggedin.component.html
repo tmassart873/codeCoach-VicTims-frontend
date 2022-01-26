@@ -47,7 +47,7 @@
           <li class="tab"><a class="grey-text text-darken-2" [routerLink]="['./','users',user.id,'profile']">My Profile</a></li>
 <!--          <a class="grey-text text-darken-2" [routerLink]="['./','users',user.id,'profile']">My Profile</a>-->
           <li class="tab"><a class="black-text" routerLink="/users/coaches-overview">Find a coach</a></li>
-          <li class="tab" *ngIf="user.userRole === COACH">
+          <li class="tab" *ngIf="isACoach()">
           <a class="black-text" [routerLink]="['./','users',user.id,'coach-profile']" routerLinkActive="active-link" (isActiveChange)="this.onRouterLinkActive($event)" >My Coach Profile</a>
           </li>
         </ul>

@@ -12,7 +12,7 @@ import {Observable} from "rxjs";
 })
 export class HeaderLoggedinComponent implements OnInit {
 
-  COACH : string = 'COACH';
+  COACH: string = 'COACH';
 
   private email!: string | null;
   user$!: Observable<User>;
@@ -27,12 +27,10 @@ export class HeaderLoggedinComponent implements OnInit {
 
   ngOnInit(): void {
     this.email = this.keycloakService.getEmailAddress();
-    if(this.email !== null){
-      this.user$ =this.userService.getUserByEmail(this.email);
+    if (this.email !== null) {
+      this.user$ = this.userService.getUserByEmail(this.email);
     }
-
   }
-
 
   logOut() {
     this.keycloakService.logout();
@@ -43,5 +41,8 @@ export class HeaderLoggedinComponent implements OnInit {
     this.eventActiveRouter.emit(event);
   }
 
+  isACoach() {
+    return this.userService.user.userRole === this.COACH;
+  }
 
 }
