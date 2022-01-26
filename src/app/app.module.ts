@@ -19,8 +19,7 @@ import { FilterFirstNameLastNameEmailPipe } from './pipes/filter-first-name-last
     AppComponent,
     HomepageComponent,
     ErrorComponent,
-    FilterTopicsPipe,
-    FilterFirstNameLastNameEmailPipe,
+
   ],
   imports: [
     BrowserModule,
@@ -36,10 +35,7 @@ import { FilterFirstNameLastNameEmailPipe } from './pipes/filter-first-name-last
     UserService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true}
   ],
-  exports: [
-    FilterTopicsPipe,
-    FilterFirstNameLastNameEmailPipe
-  ],
+
   bootstrap: [AppComponent]
 })
 

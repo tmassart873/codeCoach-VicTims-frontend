@@ -14,6 +14,8 @@ import { UserSidebarComponent } from './user-sidebar/user-sidebar.component';
 import { CoachInformationComponent } from './user-coach-detail/coach-information/coach-information.component';
 import { CoachingTopicsComponent } from './user-coach-detail/coaching-topics/coaching-topics.component';
 import { MyCoachProfileTabComponent } from './user-coach-detail/my-coach-profile-tab/my-coach-profile-tab.component';
+import {FilterTopicsPipe} from "../pipes/filter-topics.pipe";
+import {FilterFirstNameLastNameEmailPipe} from "../pipes/filter-first-name-last-name-email.pipe";
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { MyCoachProfileTabComponent } from './user-coach-detail/my-coach-profile
     UserSidebarComponent,
     CoachInformationComponent,
     CoachingTopicsComponent,
-    MyCoachProfileTabComponent
+    MyCoachProfileTabComponent,
+    FilterTopicsPipe,
+    FilterFirstNameLastNameEmailPipe,
   ],
     imports: [
         CommonModule,
@@ -35,6 +39,10 @@ import { MyCoachProfileTabComponent } from './user-coach-detail/my-coach-profile
         FormsModule,
         RouterModule,
         UserRoutingModule,
-    ]
+    ],
+  exports: [
+    FilterTopicsPipe,
+    FilterFirstNameLastNameEmailPipe
+  ],
 })
 export class UserModule { }
