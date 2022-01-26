@@ -14,8 +14,6 @@ export class HeaderLoggedinComponent implements OnInit {
 
   COACH: string = 'COACH';
 
-  user!: User | null;
-
   @Output()
   eventActiveRouter: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -25,7 +23,6 @@ export class HeaderLoggedinComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.user = this.userService.user;
   }
 
   logOut() {
@@ -38,9 +35,10 @@ export class HeaderLoggedinComponent implements OnInit {
   }
 
   isACoach() {
-    if(this.user){
-      return this.user.userRole === this.COACH;
+    if (this.userService.user){
+      return this.userService.user.userRole === this.COACH;
     }
     return false;
   }
+
 }
