@@ -2,8 +2,7 @@ import {Injectable} from '@angular/core';
 import {environment} from "../../environments/environment";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {User} from "../user/model/User";
-import {catchError, map, Observable, of, Subject, tap} from "rxjs";
-import {KeycloakService} from "../security/keycloak/keycloak.service";
+import {catchError, map, Observable, of, tap} from "rxjs";
 
 
 @Injectable({
