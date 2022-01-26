@@ -40,7 +40,8 @@ export class RequestSessionComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private sessionService: SessionService,
               private userService: UserService,
-              private router: Router, private initService:InitService) {
+              private initService: InitService,
+              private router: Router) {
 
   }
 
