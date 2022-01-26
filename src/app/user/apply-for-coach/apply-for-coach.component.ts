@@ -10,8 +10,6 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class ApplyForCoachComponent implements OnInit {
 
-  user!: User | null;
-
   constructor(private userService: UserService, private activatedRoute: ActivatedRoute, private router: Router) {
   }
 
@@ -20,12 +18,10 @@ export class ApplyForCoachComponent implements OnInit {
 
 
   becomeCoach() {
-    this.user = this.userService.user;
-    if(this.user) {
-      this.user.userRole = 'COACH';
-      const userId = this.user.id;
-      this.userService.becomeCoach(userId, this.user).subscribe();
-      this.router.navigate([`users/${userId}/coach-profile`]);
+    const user = this.userService.user;
+    if (user) {
+      this.userService.becomeCoach();
+      this.router.navigate([`users/${user.id}/coach-profile`]);
     }
   }
 }

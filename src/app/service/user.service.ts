@@ -2,8 +2,7 @@ import {Injectable} from '@angular/core';
 import {environment} from "../../environments/environment";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {User} from "../user/model/User";
-import {catchError, map, Observable, of, Subject, tap} from "rxjs";
-import {KeycloakService} from "../security/keycloak/keycloak.service";
+import {catchError, map, Observable, of, tap} from "rxjs";
 
 
 @Injectable({
@@ -65,7 +64,7 @@ export class UserService {
     return this.http.get<User[]>(this.userUrl + '?isCoach=true');
   }
 
-  private static log(message: string){
+  private static log(message: string) {
     console.log(`UserService: ${message}`);
   }
 
@@ -89,8 +88,16 @@ export class UserService {
     };
   }
 
-  becomeCoach(id: string, value: any): Observable<void> {
-    return this.http.put<void>(`${this.userUrl}/${id}`, value);
+  becomeCoach(): void {
+    if (this.user) {
+      let user: User = this.user;
+      const id: String = this.user.id;
+      user.userRole = 'COACH';
+      this.http.put<User>(`${this.userUrl}/${id}`, null)
+        .pipe(
+          tap(user => localStorage.setItem('userToLogin', JSON.stringify(user)))
+        ).subscribe();
+    }
   }
 
 }
