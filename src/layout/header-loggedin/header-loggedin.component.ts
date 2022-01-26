@@ -42,7 +42,11 @@ export class HeaderLoggedinComponent implements OnInit {
   }
 
   isACoach() {
-    return this.userService.user.userRole === this.COACH;
+    if (this.userService.user){
+      return this.userService.user.userRole === this.COACH;
+    }
+    return false;
+
   }
 
 }
