@@ -30,11 +30,11 @@ import { MyCoachProfileTabComponent } from './user-coach-detail/my-coach-profile
     MyCoachProfileTabComponent
   ],
     imports: [
-      CommonModule,
-      ReactiveFormsModule,
-      FormsModule,
-      RouterModule,
-      UserRoutingModule
+        CommonModule,
+        ReactiveFormsModule,
+        FormsModule,
+        RouterModule,
+        UserRoutingModule,
     ]
 })
 export class UserModule { }

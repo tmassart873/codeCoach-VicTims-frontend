@@ -1,8 +1,7 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../service/user.service";
 import {User} from "../model/User";
 import {Observable} from "rxjs";
-import {InitService} from "../../materialize/init.service";
 
 @Component({
   selector: 'app-coach-overview',
@@ -12,6 +11,8 @@ import {InitService} from "../../materialize/init.service";
 export class CoachOverviewComponent implements OnInit {
 
   coaches$!: Observable<User[]>;
+  searchTopic!: string;
+  searchName!: string;
 
   constructor(private userService: UserService) { }
 
