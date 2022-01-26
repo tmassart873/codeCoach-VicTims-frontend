@@ -11,6 +11,9 @@ import {RouterModule} from "@angular/router";
 import {UserRoutingModule} from "./user-routing/user-routing.module";
 import { UserPanelComponent } from './user-panel/user-panel.component';
 import { UserSidebarComponent } from './user-sidebar/user-sidebar.component';
+import { CoachInformationComponent } from './user-coach-detail/coach-information/coach-information.component';
+import { CoachingTopicsComponent } from './user-coach-detail/coaching-topics/coaching-topics.component';
+import { MyCoachProfileTabComponent } from './user-coach-detail/my-coach-profile-tab/my-coach-profile-tab.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,10 @@ import { UserSidebarComponent } from './user-sidebar/user-sidebar.component';
     CoachDetailComponent,
     UserLoginComponent,
     UserPanelComponent,
-    UserSidebarComponent
+    UserSidebarComponent,
+    CoachInformationComponent,
+    CoachingTopicsComponent,
+    MyCoachProfileTabComponent
   ],
     imports: [
       CommonModule,

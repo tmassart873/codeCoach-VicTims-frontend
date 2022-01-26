@@ -1,0 +1,38 @@
+<section class="card-panel grey lighten-5">
+  <div class="right">
+    <a class="waves-effect waves-light btn-large btn-floating teal lighten-3"><i
+      class="material-icons left">edit</i>Edit</a>
+  </div>
+  <h5>Coach Information</h5>
+  <div class="divider"></div>
+  <div class="row">
+    <div class="col l12 m12 s12">
+      <table class="highlight">
+        <tbody>
+        <tr>
+          <td><strong>Coach XP</strong></td>
+          <td>
+            <div class="center">
+                                            <span class="new badge teal lighten-3 teal-text text-darken-3"
+                                                  data-badge-caption="(Silver)">300/500</span>
+            </div>
+            <div class="progress teal">
+              <div class="determinate" style="width: 60%"></div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Introduction</strong></td>
+          <td>{{user.coachInformation?.introduction}}
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Availability</strong></td>
+          <td>{{user.coachInformation?.availability}}
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
