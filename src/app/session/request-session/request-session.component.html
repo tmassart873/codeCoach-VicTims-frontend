@@ -26,11 +26,11 @@
               </div>
               <div class="row">
                 <div class="input-field col s6">
-                  <input id="date" type="text" class="datepicker" formControlName="date">
+                  <input id="date" type="text" class="datepicker validate" formControlName="date">
                   <label for="date">Date</label>
                 </div>
                 <div class="input-field col s6">
-                  <input id="timepicker" type="text" class="timepicker" formControlName="time">
+                  <input id="timepicker" type="text" class="timepicker validate" formControlName="time">
                   <label for="timepicker">Time</label>
                 </div>
               </div>
@@ -40,9 +40,7 @@
                   <small *ngIf="getFormAttribute('date').errors?.required" [style.color]="'red'">
                     Date is required.
                   </small>
-                  <small *ngIf="getFormAttribute('date').errors?.pattern" [style.color]="'red'">
-                    Date should be of pattern dd/mm/yyyy.
-                  </small>
+
                 </div>
                 <div class="col s6"
                      *ngIf="getFormAttribute('time').invalid && (getFormAttribute('time').dirty||getFormAttribute('time').touched)">

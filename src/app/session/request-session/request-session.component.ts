@@ -12,9 +12,10 @@ import {User} from "../../user/model/User";
   styleUrls: ['./request-session.component.css']
 })
 export class RequestSessionComponent implements OnInit {
-  private user!: User|null;
+  private user!: User | null;
   private coacheeId!: string | undefined;
-  private coachId!: string|undefined;
+  private coachId!: string | undefined;
+  private date: string | undefined;
 
 
   requestSessionForm = this.formBuilder.group({
@@ -24,12 +25,12 @@ export class RequestSessionComponent implements OnInit {
         Validators.required
       ]),
       date: new FormControl('', [
-        Validators.required,
-        Validators.pattern("^[0-9]{2}[\\/][0-9]{2}[\\/][0-9]{4}"),
+        // Validators.required,
+        //  Validators.pattern("^[0-9]{2}[\\/][0-9]{2}[\\/][0-9]{4}"),
       ]),
       time: new FormControl('', [
-        Validators.required,
-        Validators.pattern("^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$"),
+        // Validators.required,
+        // Validators.pattern("^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$"),
       ]),
       location: new FormControl('', [
         Validators.required
@@ -48,13 +49,25 @@ export class RequestSessionComponent implements OnInit {
 
   ngOnInit(): void {
     this.initService.initSelect();
-    this.coacheeId=this.user?.id;
-    console.log('init coacheeid:'+this.coacheeId);
-    this.coachId=this.userService.getSelectedCoachId();
-    console.log('init coachid:'+this.coachId);
+    this.initService.initTimePicker();
+    this.initService.initDatePicker();
+    this.coacheeId = this.user?.id;
+    console.log('init coacheeid:' + this.coacheeId);
+    this.coachId = this.userService.getSelectedCoachId();
+    console.log('init coachid:' + this.coachId);
     // if(this.coacheeId===undefined||this.coacheeId===null||this.coachId===undefined||this.coachId===null){
+    //alert( "coach not selected, vist a coach profile first." );
     //   this.router.navigate(['']);
     // } <-- activate this when everything works
+  }
+
+  setDate(){
+    let elems = document.querySelectorAll('.datepicker');
+    let instances = M.Datepicker.init(elems);
+    let instance = instances[0];
+    instance.setDate(new Date());
+    instance.setInputValue();
+    console.log(instance.date);
   }
 
   createSession() {
@@ -62,6 +75,7 @@ export class RequestSessionComponent implements OnInit {
       coachId: this.coachId,
       coacheeId: this.coacheeId
     });
+    this.setDate();
 
     console.log(this.requestSessionForm.value);
     this.sessionService.requestSession(this.requestSessionForm.value).subscribe();
