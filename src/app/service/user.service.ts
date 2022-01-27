@@ -101,4 +101,7 @@ export class UserService {
     }
   }
 
+  emptyUser() {
+    localStorage.setItem('userToLogin', JSON.stringify(null));
+  }
 }

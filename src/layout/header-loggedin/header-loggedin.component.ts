@@ -1,9 +1,8 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {KeycloakService} from "../../app/security/keycloak/keycloak.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {UserService} from "../../app/service/user.service";
 import {User} from "../../app/user/model/User";
-import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-header-loggedin',
@@ -28,6 +27,7 @@ export class HeaderLoggedinComponent implements OnInit {
   logOut() {
     this.keycloakService.logout();
     this.router.navigate(['']);
+    this.userService.emptyUser();
   }
 
   onRouterLinkActive(event: boolean) {
