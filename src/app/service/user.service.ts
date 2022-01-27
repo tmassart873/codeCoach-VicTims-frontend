@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {environment} from "../../environments/environment";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {User} from "../user/model/User";
-import {catchError, map, Observable, of, tap} from "rxjs";
+import {catchError, map, Observable, of, tap, throwError} from "rxjs";
 
 
 @Injectable({
@@ -51,7 +51,7 @@ export class UserService {
   createUser(user: User): Observable<User> {
     return this.http.post<User>(this.userUrl, user, this.httpOptions).pipe(
       tap(_ => UserService.log(`created new user`)),
-      catchError(this.handleError<any>('createUser'))
+      catchError((error) => throwError(error))
     )
   }
 

@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../service/user.service";
-import {FormBuilder, FormControl, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, ValidationErrors, Validators} from "@angular/forms";
+import {Router} from "@angular/router";
+
+
 
 @Component({
   selector: 'app-create-user',
@@ -10,11 +13,14 @@ import {FormBuilder, FormControl, Validators} from "@angular/forms";
 export class CreateUserComponent implements OnInit {
 
   passwordRepeat?: string;
+  private duplicateUserName!: string;
 
   constructor(
     private userService: UserService,
-    private formBuilder: FormBuilder
-  ) { }
+    private formBuilder: FormBuilder,
+    private router: Router
+  ) {
+  }
 
   ngOnInit(): void {
   }
@@ -27,17 +33,36 @@ export class CreateUserComponent implements OnInit {
       [Validators.required]),
     password: new FormControl('',
       [Validators.required, Validators.pattern("^(?=.*[0-9])(?=.*[A-Z]).{8,255}$"),]),
-    email:new FormControl('',
-      [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),]),
-    company:new FormControl(''),
+    email: new FormControl('',
+      [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),
+        () => this.validateUniqueEmail()]),
+    company: new FormControl(''),
   })
 
-  createUser(){
-    this.userService.createUser(this.userForm.value).subscribe();
+  private validateUniqueEmail(): ValidationErrors | null {
+    if(this.userForm && this.email.value === this.duplicateUserName) {
+      return {duplicateUserError:true};
+    }
+    return null;
+  }
+
+  createUser() {
+    this.userService.createUser(this.userForm.value)
+      .subscribe({
+        next: _ => {
+          console.log('success register')
+          this.router.navigate([`/login`]);
+        },
+        error: err => {
+          console.log('failed to register')
+          this.duplicateUserName = this.email.value
+          this.email.updateValueAndValidity()
+        }
+      });
   }
 
   onSubmit() {
-    if(this.userForm.invalid){
+    if (this.userForm.invalid) {
       this.userForm.markAllAsTouched();
     } else {
       this.createUser();
@@ -48,27 +73,27 @@ export class CreateUserComponent implements OnInit {
     this.passwordRepeat = event.target.value;
   }
 
-  validatePasswordEqualsPasswordRepeat(): boolean{
+  validatePasswordEqualsPasswordRepeat(): boolean {
     return this.passwordRepeat === this.userForm.get('password')?.value;
   }
 
-  get firstName(): FormControl{
+  get firstName(): FormControl {
     return this.userForm.get('firstName') as FormControl;
   }
 
-  get lastName(): FormControl{
+  get lastName(): FormControl {
     return this.userForm.get('lastName') as FormControl;
   }
 
-  get password(): FormControl{
+  get password(): FormControl {
     return this.userForm.get('password') as FormControl;
   }
 
-  get email(): FormControl{
+  get email(): FormControl {
     return this.userForm.get('email') as FormControl;
   }
 
-  get company(): FormControl{
+  get company(): FormControl {
     return this.userForm.get('company') as FormControl;
   }
 }
