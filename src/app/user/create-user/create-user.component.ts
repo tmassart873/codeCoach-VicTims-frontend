@@ -1,11 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../service/user.service";
-import {FormBuilder, FormControl, Validators} from "@angular/forms";
-import {catchError} from "rxjs";
-import {Router, RouterLink} from "@angular/router";
-import {error} from "jquery";
-import {HttpErrorResponse} from "@angular/common/http";
-import {resolve} from "@angular/compiler-cli";
+import {FormBuilder, FormControl, ValidationErrors, Validators} from "@angular/forms";
+import {Router} from "@angular/router";
+
 
 
 @Component({
@@ -16,12 +13,12 @@ import {resolve} from "@angular/compiler-cli";
 export class CreateUserComponent implements OnInit {
 
   passwordRepeat?: string;
-  private isDuplicateOfExistingUser = false;
+  private duplicateUserName!: string;
 
   constructor(
     private userService: UserService,
     private formBuilder: FormBuilder,
-    private routerLink: Router
+    private router: Router
   ) {
   }
 
@@ -37,28 +34,38 @@ export class CreateUserComponent implements OnInit {
     password: new FormControl('',
       [Validators.required, Validators.pattern("^(?=.*[0-9])(?=.*[A-Z]).{8,255}$"),]),
     email: new FormControl('',
-      [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),]),
+      [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),
+        () => this.validateUniqueEmail()]),
     company: new FormControl(''),
   })
 
+  private validateUniqueEmail(): ValidationErrors | null {
+    if(this.userForm && this.email.value === this.duplicateUserName) {
+      return {duplicateUserError:true};
+    }
+    return null;
+  }
+
   createUser() {
-    this.userService.createUser(this.userForm.value).subscribe({
-      next() {
-        return true;
-      },
-      error(msg: HttpErrorResponse) {
-        console.log('Error message test' + msg);
-        resolve("");
-      }
-    });
+    this.userService.createUser(this.userForm.value)
+      .subscribe({
+        next: _ => {
+          console.log('success register')
+          this.router.navigate([`/login`]);
+        },
+        error: err => {
+          console.log('failed to register')
+          this.duplicateUserName = this.email.value
+          this.email.updateValueAndValidity()
+        }
+      });
   }
 
   onSubmit() {
     if (this.userForm.invalid) {
       this.userForm.markAllAsTouched();
     } else {
-      console.log('value:' + this.createUser())
-      return this.createUser();
+      this.createUser();
     }
   }
 

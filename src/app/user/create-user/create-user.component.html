@@ -9,7 +9,7 @@
         <div class="content-container-with-padding z-depth-4">
 
           <div class="row">
-            <form class="col s12" [formGroup]="userForm" (ngSubmit)="onSubmit()">
+            <form class="col s12" [formGroup]="userForm">
               <div class="row">
                 <div class="input-field col s6">
                   <input id="first_name" type="text" class="validate" formControlName="firstName">
@@ -42,6 +42,9 @@
                     <div *ngIf="email.errors?.['pattern']" class="text-error red-text">
                       Email does not have the correct format.
                     </div>
+                    <div *ngIf="email.errors?.['duplicateUserError']" class="text-error red-text">
+                      Email already exists.
+                    </div>
                   </div>
                 </div>
               </div>
@@ -61,16 +64,16 @@
               </div>
               <div class="row">
                 <div class="input-field col s12">
-                  <input id="passwordVerification" type="password" class="validate" (input)="changePasswordRepeat($event)" >
+                  <input id="passwordVerification" type="password" class="validate" (input)="changePasswordRepeat($event)">
                   <label for="passwordVerification">Password (again)</label>
-                  <div *ngIf="!validatePasswordEqualsPasswordRepeat()" class="text-error red-text">
+                  <div *ngIf="!validatePasswordEqualsPasswordRepeat() && passwordRepeat" class="text-error red-text">
                       Password does not match.
                   </div>
                 </div>
               </div>
 
               <div class="row right-align">
-                <button class="waves-effect waves-light yellow darken-2 btn-large black-text" type="submit">Register<i class="material-icons right">send</i></button>
+                <button class="waves-effect waves-light yellow darken-2 btn-large black-text" (click)="onSubmit()">Register<i class="material-icons right">send</i></button>
               </div>
             </form>
           </div>
