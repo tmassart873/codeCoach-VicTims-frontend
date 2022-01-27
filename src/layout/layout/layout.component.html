@@ -6,7 +6,7 @@
     </div>
 
     <div *ngIf="isLoggedIn()">
-      <app-header-loggedin (eventActiveRouter)="adjustFooterStyle($event)"></app-header-loggedin>
+      <app-header-loggedin (isCoachProfileActive)="adjustFooterStyle($event)"></app-header-loggedin>
     </div>
 
   </div>

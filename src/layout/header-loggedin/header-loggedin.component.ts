@@ -15,7 +15,7 @@ export class HeaderLoggedinComponent implements OnInit {
   COACH: string = 'COACH';
 
   @Output()
-  eventActiveRouter: EventEmitter<boolean> = new EventEmitter<boolean>();
+  isCoachProfileActive: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(private keycloakService: KeycloakService,
               private router: Router,
@@ -31,7 +31,7 @@ export class HeaderLoggedinComponent implements OnInit {
   }
 
   onRouterLinkActive(event: boolean) {
-    this.eventActiveRouter.emit(event);
+    this.isCoachProfileActive.emit(event);
   }
 
   isACoach() {

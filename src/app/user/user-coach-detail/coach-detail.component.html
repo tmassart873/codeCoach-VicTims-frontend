@@ -8,18 +8,18 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-<main *ngIf="user">
+<main *ngIf="user" >
 
   <div class="row">
 
     <app-my-coach-profile-tab></app-my-coach-profile-tab>
 
-    <div class="col s12 m12">
+    <div class="col s12 m7 l10">
 
       <div class="content-container">
 
         <div class="row">
-          <app-user-detail></app-user-detail>
+          <app-user-detail [color] = "color!"></app-user-detail>
         </div>
 
         <div class="divider"></div>
