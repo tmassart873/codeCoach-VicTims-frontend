@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from "../model/User";
 import {UserService} from "../../service/user.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-coach-detail',
@@ -14,6 +15,7 @@ export class CoachDetailComponent implements OnInit {
 
   constructor(private userService: UserService) {
   }
+
 
   ngOnInit(): void {
     this.user = this.userService.user!;

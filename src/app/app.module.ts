@@ -11,6 +11,8 @@ import {UserService} from "./service/user.service";
 import {HomepageComponent} from './homepage/homepage.component';
 import {AuthenticationInterceptor} from "./security/keycloak/authentication-interceptor";
 import { ErrorComponent } from './security/error/error.component';
+import {RequestSessionComponent} from "./session/request-session/request-session.component";
+import {SessionModule} from "./session/session.module";
 import { FilterTopicsPipe } from './pipes/filter-topics.pipe';
 import { FilterFirstNameLastNameEmailPipe } from './pipes/filter-first-name-last-name-email.pipe';
 
@@ -24,6 +26,8 @@ import { FilterFirstNameLastNameEmailPipe } from './pipes/filter-first-name-last
   imports: [
     BrowserModule,
     LayoutModule,
+    UserModule,
+    SessionModule,
     AppRoutingModule,
     RouterModule.forRoot([]),
     HttpClientModule,

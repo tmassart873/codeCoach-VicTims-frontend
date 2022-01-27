@@ -8,6 +8,7 @@ import {UserDetailComponent} from "../app/user/user-detail/user-detail.component
 import {UserPanelComponent} from "../app/user/user-panel/user-panel.component";
 import {ApplyForCoachComponent} from "../app/user/apply-for-coach/apply-for-coach.component";
 import {CoachDetailComponent} from "../app/user/user-coach-detail/coach-detail.component";
+import {RequestSessionComponent} from "../app/session/request-session/request-session.component";
 import {CoachOverviewComponent} from "../app/user/user-coach-overview/coach-overview.component";
 
 const routes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
       {path: 'profile', component: UserDetailComponent},
       {path: 'become-coach', component: ApplyForCoachComponent}
     ]},
+  {path: 'sessions/request-session', component: RequestSessionComponent},
   {path: '**', redirectTo: ''}
 ]
 
