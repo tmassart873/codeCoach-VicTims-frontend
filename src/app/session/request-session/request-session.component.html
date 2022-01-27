@@ -12,49 +12,25 @@
             <form [formGroup]="requestSessionForm" class="col s12">
               <div class="row">
                 <div class="input-field col s12">
-                  <textarea id="topic" class="materialize-textarea" formControlName="subject"></textarea>
+                  <textarea id="topic" class="materialize-textarea validate" formControlName="subject" required></textarea>
                   <label for="topic">On which topic/subject would you like to have a coaching session?</label>
                 </div>
               </div>
               <div class="row">
-                <div class="col s12"
-                     *ngIf="getFormAttribute('subject').invalid && (getFormAttribute('subject').dirty||getFormAttribute('subject').touched)">
-                  <small *ngIf="getFormAttribute('subject').errors?.required" [style.color]="'red'">
-                    Subject is required.
-                  </small>
-                </div>
-              </div>
-              <div class="row">
                 <div class="input-field col s6">
-                  <input id="date" type="text" class="datepicker validate" formControlName="date">
+                  <input id="date" type="text" class="datepicker validate" formControlName="date" required>
                   <label for="date">Date</label>
                 </div>
                 <div class="input-field col s6">
-                  <input id="timepicker" type="text" class="timepicker validate" formControlName="time">
+                  <input id="timepicker" type="text" class="timepicker validate" formControlName="time" required>
                   <label for="timepicker">Time</label>
                 </div>
               </div>
-              <div class="row">
-                <div class="col s6"
-                     *ngIf="getFormAttribute('date').invalid && (getFormAttribute('date').dirty||getFormAttribute('date').touched)">
-                  <small *ngIf="getFormAttribute('date').errors?.required" [style.color]="'red'">
-                    Date is required.
-                  </small>
 
-                </div>
-                <div class="col s6"
-                     *ngIf="getFormAttribute('time').invalid && (getFormAttribute('time').dirty||getFormAttribute('time').touched)">
-                  <small *ngIf="getFormAttribute('time').errors?.required" [style.color]="'red'">
-                    Time is required.
-                  </small>
-                  <small *ngIf="getFormAttribute('time').errors?.pattern" [style.color]="'red'">
-                    Time should be of pattern hh:mm.
-                  </small>
-                </div>
-              </div>
               <div class="row">
                 <div class="input-field col s12">
-                  <select id="location" formControlName="location">
+                  <select id="location" formControlName="location" class="select-dropdown validate"  required>
+                    <option disabled>Please choose a location (required)</option>
                     <option value="FACE2FACE">Face2Face</option>
                     <option value="ONLINE">Online</option>
                   </select>
@@ -63,7 +39,7 @@
               </div>
               <div class="row">
                 <div class="col s12"
-                     *ngIf="getFormAttribute('location').invalid && (getFormAttribute('location').dirty||getFormAttribute('location').touched)">
+                     *ngIf="getFormAttribute('location').invalid && (getFormAttribute('location').pristine||getFormAttribute('location').touched||getFormAttribute('location').touches)">
                   <small *ngIf="getFormAttribute('location').errors?.required" [style.color]="'red'">
                     Location is required.
                   </small>
@@ -71,7 +47,7 @@
               </div>
               <div class="row">
                 <div class="input-field col s12">
-                  <textarea id="remarks" class="materialize-textarea" formControlName="remarks"></textarea>
+                  <textarea id="remarks" class="materialize-textarea validate" formControlName="remarks"></textarea>
                   <label for="remarks">Remarks for the coach?</label>
                 </div>
               </div>

@@ -32,7 +32,11 @@ export class InitService {
 
   initTimePicker() {
     $(document).ready(function () {
-      $('.timepicker').timepicker();
+      $('.timepicker').timepicker({
+        autoClose: true,
+        twelveHour: false,
+        showClearBtn: true,
+      });
     });
   }
 
@@ -43,11 +47,12 @@ export class InitService {
 
     $(document).ready(function() {
       $(".datepicker").datepicker({
-        format: "dd/mm/yyyy",
+        format: 'dd/mm/yyyy',
         defaultDate: new Date(currYear,currMonth,currDay+1),
-        // setDefaultDate: new Date(2000,01,31),
-        minDate: new Date(currYear,currMonth,currDay),
-        yearRange: [currYear, currYear+1],
+        minDate: new Date(currYear,currMonth,currDay-1),
+        maxDate: new Date(currYear+1,currMonth,currDay),
+        showClearBtn: true,
+        autoClose: true
       });
 
     });
