@@ -6,12 +6,14 @@ import {User} from "../user/model/User";
 })
 export class FilterFirstNameLastNameEmailPipe implements PipeTransform {
 
+  private MIN_FILTER_LENGTH: number = 2;
+
   transform(arrayOfCoaches: User[] | null, nameFilter: string):  User[] | null {
 
     if (nameFilter === undefined ||
       arrayOfCoaches === null ||
       nameFilter === null ||
-      nameFilter.length < 4) {
+      nameFilter.length <= this.MIN_FILTER_LENGTH) {
       return arrayOfCoaches;
     }
 
