@@ -11,6 +11,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 export class CoachDetailComponent implements OnInit {
 
   user!: User | null;
+  color? : string;
 
   constructor(private route: ActivatedRoute, private router: Router, private userService: UserService) {
   }
@@ -18,6 +19,7 @@ export class CoachDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.userService.user!;
+    this.color = 'waves-effect waves-light btn-large btn-floating teal lighten-3';
   }
 
   requestSession() {

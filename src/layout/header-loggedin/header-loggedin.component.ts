@@ -14,11 +14,8 @@ export class HeaderLoggedinComponent implements OnInit {
 
   COACH: string = 'COACH';
 
-  private email!: string | null;
-  user$!: Observable<User>;
-
   @Output()
-  eventActiveRouter: EventEmitter<boolean> = new EventEmitter<boolean>();
+  isCoachProfileActive: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(private keycloakService: KeycloakService,
               private router: Router,
@@ -26,10 +23,6 @@ export class HeaderLoggedinComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.email = this.keycloakService.getEmailAddress();
-    if (this.email !== null) {
-      this.user$ = this.userService.getUserByEmail(this.email);
-    }
   }
 
   logOut() {
@@ -38,7 +31,7 @@ export class HeaderLoggedinComponent implements OnInit {
   }
 
   onRouterLinkActive(event: boolean) {
-    this.eventActiveRouter.emit(event);
+    this.isCoachProfileActive.emit(event);
   }
 
   isACoach() {
@@ -46,7 +39,9 @@ export class HeaderLoggedinComponent implements OnInit {
       return this.userService.user.userRole === this.COACH;
     }
     return false;
-
   }
 
+  get user(): User | null {
+    return this.userService.user;
+  }
 }

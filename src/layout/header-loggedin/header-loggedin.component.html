@@ -37,18 +37,16 @@
       </ul>
 
     </div>
-    <div *ngIf="user$| async as user"
-         [ngClass]="{'nav-content yellow darken-2': !(eventActiveRouter | async),
-         'collection-item black-text active teal lighten-3': eventActiveRouter | async}">
-      <!-- TODO have to make a class selector based on being a coach or coachee -->
+    <div *ngIf="user"
+         [ngClass]="{'nav-content yellow darken-2': !(isCoachProfileActive | async),
+         'collection-item black-text active teal lighten-3': isCoachProfileActive | async}">
       <div class="container">
         <ul class="tabs tabs-transparent">
           <li class="tab">
-          <li class="tab"><a class="grey-text text-darken-2" [routerLink]="['./','users',user.id,'profile']">My Profile</a></li>
-<!--          <a class="grey-text text-darken-2" [routerLink]="['./','users',user.id,'profile']">My Profile</a>-->
-          <li class="tab"><a class="black-text" routerLink="/users/coaches-overview">Find a coach</a></li>
+          <li class="tab"><a class="black-text" routerLinkActive="active-link yellow darken-3" [routerLink]="['./','users',user.id,'profile']">My Profile</a></li>
+          <li class="tab"><a class="black-text" routerLinkActive="active-link yellow darken-3" routerLink="/users/coaches-overview">Find a coach</a></li>
           <li class="tab" *ngIf="isACoach()">
-          <a class="black-text" [routerLink]="['./','users',user.id,'coach-profile']" routerLinkActive="active-link" (isActiveChange)="this.onRouterLinkActive($event)" >My Coach Profile</a>
+          <a class="black-text" [routerLink]="['./','users',user.id,'coach-profile']" routerLinkActive="active-link teal darken-1" (isActiveChange)="this.onRouterLinkActive($event)" >My Coach Profile</a>
           </li>
         </ul>
       </div>

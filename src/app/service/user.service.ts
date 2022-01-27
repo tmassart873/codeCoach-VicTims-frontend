@@ -2,8 +2,7 @@ import {Injectable} from '@angular/core';
 import {environment} from "../../environments/environment";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {User} from "../user/model/User";
-import {catchError, map, Observable, of, Subject, tap} from "rxjs";
-import {KeycloakService} from "../security/keycloak/keycloak.service";
+import {catchError, map, Observable, of, tap} from "rxjs";
 
 
 @Injectable({
@@ -39,7 +38,14 @@ export class UserService {
         password: undefined,
         email: user.email,
         company: user.company,
-        userRole: user.userRole
+        userRole: user.userRole,
+        coachInformation: {
+          id: user.coachInformation?.id,
+          coachXp: user.coachInformation?.coachXp,
+          introduction: user.coachInformation?.introduction,
+          availability: user.coachInformation?.availability,
+          topics: user.coachInformation?.topics
+        }
       };
       localStorage.setItem('userToLogin', JSON.stringify(userToLogin));
     }))
@@ -74,7 +80,7 @@ export class UserService {
     return this.http.get<User[]>(this.userUrl + '?isCoach=true');
   }
 
-  private static log(message: string){
+  private static log(message: string) {
     console.log(`UserService: ${message}`);
   }
 
@@ -86,20 +92,22 @@ export class UserService {
    */
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-
-      // TODO: better job of transforming error for user consumption
+      console.error(error);
       UserService.log(`${operation} failed: ${error.message}`);
-
-      // Let the app keep running by returning an empty result.
       return of(result as T);
     };
   }
 
-  becomeCoach(id: string, value: any): Observable<void> {
-    return this.http.put<void>(`${this.userUrl}/${id}`, value);
+  becomeCoach(): void {
+    if (this.user) {
+      let user: User = this.user;
+      const id: String = this.user.id;
+      user.userRole = 'COACH';
+      this.http.put<User>(`${this.userUrl}/${id}`, null)
+        .pipe(
+          tap(user => localStorage.setItem('userToLogin', JSON.stringify(user)))
+        ).subscribe();
+    }
   }
 
 }

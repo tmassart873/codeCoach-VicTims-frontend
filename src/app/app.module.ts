@@ -13,12 +13,15 @@ import {AuthenticationInterceptor} from "./security/keycloak/authentication-inte
 import { ErrorComponent } from './security/error/error.component';
 import {RequestSessionComponent} from "./session/request-session/request-session.component";
 import {SessionModule} from "./session/session.module";
+import { FilterTopicsPipe } from './pipes/filter-topics.pipe';
+import { FilterFirstNameLastNameEmailPipe } from './pipes/filter-first-name-last-name-email.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomepageComponent,
     ErrorComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,9 @@ import {SessionModule} from "./session/session.module";
     UserService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true}
   ],
+
   bootstrap: [AppComponent]
 })
+
 export class AppModule {
 }
