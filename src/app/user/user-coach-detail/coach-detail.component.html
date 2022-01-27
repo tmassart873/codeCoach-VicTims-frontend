@@ -1,44 +1,15 @@
-<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>CodeCoach | My Profile</title>
-  <!-- CSS  -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-</head>
 <body>
-<main *ngIf="user" >
+<main *ngIf="user">
 
-  <div class="row">
+  <app-my-coach-profile-tab></app-my-coach-profile-tab>
 
-    <app-my-coach-profile-tab></app-my-coach-profile-tab>
+  <app-user-detail [color]="color!"></app-user-detail>
 
-    <div class="col s12 m7 l10">
+  <app-coach-information [user]="user"></app-coach-information>
 
-      <div class="content-container">
-
-        <div class="row">
-          <app-user-detail [color] = "color!"></app-user-detail>
-        </div>
-
-        <div class="divider"></div>
-
-        <app-coach-information [user]="user"></app-coach-information>
-
-        <div class="divider"></div>
-
-        <app-coaching-topics [user]="user" ></app-coaching-topics>
-
-      </div>
-    </div>
-  </div>
+  <app-coaching-topics [user]="user"></app-coaching-topics>
 
 </main>
-<!--  Scripts-->
-<script src="js/jquery-3.5.0.min.js"></script>
-<script src="js/materialize.js"></script>
-<script src="js/init.js"></script>
-
 </body>
 </html>
