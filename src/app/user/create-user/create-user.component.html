@@ -15,7 +15,7 @@
                   <input id="first_name" type="text" class="validate" formControlName="firstName">
                   <label for="first_name">First Name</label>
                   <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
-                    <div *ngIf="firstName.errors?.['required']" class="text-error">
+                    <div *ngIf="firstName.errors?.['required']" class="text-error red-text">
                       First Name is required.
                     </div>
                   </div>
@@ -24,7 +24,7 @@
                   <input id="last_name" type="text" class="validate" formControlName="lastName">
                   <label for="last_name">Last Name</label>
                   <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
-                    <div *ngIf="lastName.errors?.['required']" class="text-error">
+                    <div *ngIf="lastName.errors?.['required']" class="text-error red-text">
                       Last Name is required.
                     </div>
                   </div>
@@ -36,10 +36,10 @@
                   <input id="email" type="email" class="validate" formControlName="email">
                   <label for="email">Email</label>
                   <div *ngIf="email.invalid && (email.dirty || email.touched)">
-                    <div *ngIf="email.errors?.['required']" class="text-error">
+                    <div *ngIf="email.errors?.['required']" class="text-error red-text" >
                       Email is required.
                     </div>
-                    <div *ngIf="email.errors?.['pattern']" class="text-error">
+                    <div *ngIf="email.errors?.['pattern']" class="text-error red-text">
                       Email does not have the correct format.
                     </div>
                   </div>
@@ -50,10 +50,10 @@
                   <input id="password" type="password" class="validate" formControlName="password">
                   <label for="password">Password</label>
                   <div *ngIf="password.invalid && (password.dirty || password.touched)">
-                    <div *ngIf="password.errors?.['required']" class="text-error">
+                    <div *ngIf="password.errors?.['required']" class="text-error red-text">
                       Password is required.
                     </div>
-                    <div *ngIf="password.errors?.['pattern']" class="text-error">
+                    <div *ngIf="password.errors?.['pattern']" class="text-error red-text">
                       Password needs to be at least 8 characters long, have at least one number and one capital.
                     </div>
                   </div>
@@ -61,9 +61,9 @@
               </div>
               <div class="row">
                 <div class="input-field col s12">
-                  <input id="passwordVerification" type="password" class="validate" (change)="changePasswordRepeat($event)">
+                  <input id="passwordVerification" type="password" class="validate" (input)="changePasswordRepeat($event)" >
                   <label for="passwordVerification">Password (again)</label>
-                  <div *ngIf="!validatePasswordEqualsPasswordRepeat()">
+                  <div *ngIf="!validatePasswordEqualsPasswordRepeat()" class="text-error red-text">
                       Password does not match.
                   </div>
                 </div>
