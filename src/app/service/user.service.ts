@@ -9,6 +9,9 @@ import {catchError, map, Observable, of, tap, throwError} from "rxjs";
   providedIn: 'root'
 })
 export class UserService {
+  private userLoggedIn! : User;
+  private selectedCoachId!:string;
+
 
   private readonly userUrl: string;
   httpOptions = {
@@ -67,6 +70,12 @@ export class UserService {
     return null;
   }
 
+  setSelectedCoachId(id:string){
+    this.selectedCoachId= id;
+  }
+  getSelectedCoachId():string{
+    return this.selectedCoachId;
+  }
   getCoaches(): Observable<User[]> {
     return this.http.get<User[]>(this.userUrl + '?isCoach=true');
   }

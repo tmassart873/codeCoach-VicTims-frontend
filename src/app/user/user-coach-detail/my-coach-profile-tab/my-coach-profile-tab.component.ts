@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute, Router} from "@angular/router";
+import {UserService} from "../../../service/user.service";
+import {User} from "../../model/User";
 
 @Component({
   selector: 'app-my-coach-profile-tab',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyCoachProfileTabComponent implements OnInit {
 
-  constructor() { }
+  constructor(private route:ActivatedRoute, private router:Router, private userService: UserService) { }
 
   ngOnInit(): void {
   }
-
+  requestSession() {
+    let id = '';
+    this.route.params.subscribe(params => id = params['id']);
+    this.userService.setSelectedCoachId(id);
+    console.log(id);
+    console.log(this.userService.user?.id);
+    this.router.navigate(['/sessions/request-session']);
+  }
 }
