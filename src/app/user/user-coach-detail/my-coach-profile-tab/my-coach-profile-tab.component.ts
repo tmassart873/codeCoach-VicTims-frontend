@@ -29,4 +29,8 @@ export class MyCoachProfileTabComponent implements OnInit {
     this.route.params.subscribe(params => id = params['id']);
     return this.userService.user?.id === id;
   }
+
+  checkIfLoggedIn() {
+    return this.userService.user;
+  }
 }
