@@ -76,6 +76,7 @@ export class RequestSessionComponent implements OnInit {
   onSubmit() {
     if (this.requestSessionForm.invalid) {
       this.requestSessionForm.markAllAsTouched();
+      // this.requestSessionForm.reset();
     } else {
       this.createSession();
     }
