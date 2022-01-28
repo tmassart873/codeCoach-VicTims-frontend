@@ -89,16 +89,13 @@ export class UserService {
     };
   }
 
-  becomeCoach(): void {
-    if (this.user) {
-      let user: User = this.user;
-      const id: String = this.user.id;
+  becomeCoach(user:User): Observable<User> {
+      const id: String = user.id;
       user.userRole = 'COACH';
-      this.http.put<User>(`${this.userUrl}/${id}`, null)
+      return this.http.put<User>(`${this.userUrl}/${id}`, null)
         .pipe(
           tap(user => localStorage.setItem('userToLogin', JSON.stringify(user)))
-        ).subscribe();
-    }
+        );
   }
 
   emptyUser() {
