@@ -85,11 +85,5 @@ export class RequestSessionComponent implements OnInit {
     return this.requestSessionForm.get(`${formControlName}`) as FormControl;
   }
 
-  changedLocation(event:any) {
-    this.getFormAttribute('location').patchValue(event.target.value,{
-      onlySelf:true
-    });
-  }
-
 
 }

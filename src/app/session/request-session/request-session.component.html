@@ -29,7 +29,7 @@
 
               <div class="row">
                 <div class="input-field col s12" >
-                  <select id="location" formControlName="location" class="select-dropdown validate" (change)="changedLocation($event)" required>
+                  <select id="location" formControlName="location" class="select-dropdown validate" required>
                     <option disabled>Please choose a location (required)</option>
                     <option value="FACE2FACE">Face2Face</option>
                     <option value="ONLINE">Online</option>
@@ -39,8 +39,8 @@
               </div>
               <div class="row">
                 <div class="col s12"
-                     *ngIf="getFormAttribute('location').invalid && !getFormAttribute('location').pristine">
-                  <small *ngIf="getFormAttribute('location').errors?.['required']" [style.color]="'red'">
+                     *ngIf="getFormAttribute('location').invalid && (getFormAttribute('email').dirty||getFormAttribute('email').touched)">
+                  <small *ngIf="getFormAttribute('location').errors?.required" [style.color]="'red'">
                     Location is required.
                   </small>
                 </div>
