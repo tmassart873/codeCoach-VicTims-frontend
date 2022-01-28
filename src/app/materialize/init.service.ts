@@ -48,8 +48,8 @@ export class InitService {
     $(document).ready(function() {
       $(".datepicker").datepicker({
         format: 'dd/mm/yyyy',
-        defaultDate: new Date(currYear,currMonth,currDay+1),
-        minDate: new Date(currYear,currMonth,currDay-1),
+        defaultDate: new Date(currYear,currMonth,currDay),
+        minDate: new Date(Date.now()),
         maxDate: new Date(currYear+1,currMonth,currDay),
         showClearBtn: true,
         autoClose: true
