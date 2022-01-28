@@ -47,6 +47,44 @@ p {
   font-size: 16rem;
 }
 
+/* date time pickers */
+.datepicker-date-display {
+  background-color: #fbc02d;
+}
+.datepicker-table td.is-today {
+  color: #fbc02d;
+}
+
+.datepicker-table td.is-selected {
+  background-color: #fbc02d;
+}
+.datepicker-done {
+  color: #fbc02d;
+  padding: 0 1rem;
+}
+.datepicker-cancel{
+  color: #fbc02d;
+}
+
+.timepicker-digital-display {
+  background-color: #fbc02d;
+}
+.timepicker-canvas line {
+  stroke: #fbc02d;
+}
+.timepicker-canvas-bearing {
+  stroke: none;
+  fill: #fbc02d;
+}
+
+.timepicker-canvas-bg {
+  stroke: none;
+  fill: #fbc02d;
+}
+.timepicker-close {
+  color: #fbc02d;
+}
+
 /*Creates table with scrollable tbody*/
 .topics-table tbody {
   display:block;

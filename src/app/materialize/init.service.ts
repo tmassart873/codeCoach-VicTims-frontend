@@ -14,6 +14,7 @@ export class InitService {
     setTimeout(() => {
       console.log('init form select');
       M.Parallax.init(document.querySelectorAll('.parallax'));
+
     }, 1);
   }
 
