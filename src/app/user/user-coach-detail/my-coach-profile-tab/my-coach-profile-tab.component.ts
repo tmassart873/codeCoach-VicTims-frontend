@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../../../service/user.service";
-import {User} from "../../model/User";
 
 @Component({
   selector: 'app-my-coach-profile-tab',
