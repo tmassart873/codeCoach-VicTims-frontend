@@ -20,8 +20,8 @@ export class ApplyForCoachComponent implements OnInit {
   becomeCoach() {
     const user = this.userService.user;
     if (user) {
-      this.userService.becomeCoach();
-      this.router.navigate([`users/${user.id}/coach-profile`]);
+      this.userService.becomeCoach(user).subscribe(
+        user => this.router.navigate([`users/${user.id}/coach-profile`]));
     }
   }
 }
