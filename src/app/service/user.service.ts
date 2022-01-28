@@ -110,4 +110,8 @@ export class UserService {
   emptyUser() {
     localStorage.setItem('userToLogin', JSON.stringify(null));
   }
+
+  getUserById(id: string) : Observable<User> {
+    return this.http.get<User>(`${this.userUrl}/${id}`);
+  }
 }

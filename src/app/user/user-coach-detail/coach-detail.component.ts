@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {User} from "../model/User";
 import {UserService} from "../../service/user.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-coach-detail',
@@ -10,15 +11,19 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class CoachDetailComponent implements OnInit {
 
-  user!: User | null;
+  user$!: Observable<User> | null;
+  testUser! : User | null;
   color? : string;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService,
+              private activatedRoute: ActivatedRoute) {
   }
 
 
   ngOnInit(): void {
-    this.user = this.userService.user!;
+    const id = this.activatedRoute.snapshot.paramMap.get('id');
+    this.user$ =  this.userService.getUserById(id!);
+    console.log(this.user$.subscribe(user => this.testUser = user));
     this.color = 'waves-effect waves-light btn-large btn-floating teal lighten-3';
   }
 
