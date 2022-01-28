@@ -17,6 +17,7 @@ export class RequestSessionComponent implements OnInit {
   private coachId!: string | undefined;
 
 
+
   requestSessionForm = this.formBuilder.group({
       coacheeId: `${this.coacheeId}`,
       coachId: `${this.coachId}`,
@@ -25,11 +26,9 @@ export class RequestSessionComponent implements OnInit {
       ]),
       date: new FormControl('', [
         Validators.required,
-        //Validators.pattern("^[0-9]{2}[\\/][0-9]{2}[\\/][0-9]{4}"),
       ]),
       time: new FormControl('', [
         Validators.required,
-        // Validators.pattern("^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$"),
       ]),
       location: new FormControl('', [
         Validators.required
@@ -75,10 +74,22 @@ export class RequestSessionComponent implements OnInit {
 
 
   onSubmit() {
-    this.createSession()
+    if (this.requestSessionForm.invalid) {
+      this.requestSessionForm.markAllAsTouched();
+    } else {
+      this.createSession();
+    }
   }
 
-  getFormAttribute(formControlName: string): any {
-    return this.requestSessionForm.get(`${formControlName}`)
+  getFormAttribute(formControlName: string): FormControl {
+    return this.requestSessionForm.get(`${formControlName}`) as FormControl;
   }
+
+  changedLocation(event:any) {
+    this.getFormAttribute('location').patchValue(event.target.value,{
+      onlySelf:true
+    });
+  }
+
+
 }
