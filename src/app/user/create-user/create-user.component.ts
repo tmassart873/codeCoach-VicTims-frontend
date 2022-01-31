@@ -49,14 +49,14 @@ export class CreateUserComponent implements OnInit {
   createUser() {
     this.userService.createUser(this.userForm.value)
       .subscribe({
-        next: _ => {
-          console.log('success register')
+        next: user => {
+          M.toast({html: `Account for: ${user.email} has been successfully created`});
           this.router.navigate([`/login`]);
         },
         error: err => {
-          console.log('failed to register')
-          this.duplicateUserName = this.email.value
-          this.email.updateValueAndValidity()
+          M.toast({html: `A user with that email already exists`});
+          this.duplicateUserName = this.email.value;
+          this.email.updateValueAndValidity();
         }
       });
   }
