@@ -13,7 +13,6 @@ import {UserRoutingModule} from "../user/user-routing/user-routing.module";
     CommonModule,
     ReactiveFormsModule,
     UserRoutingModule
-
   ]
 })
 export class SessionModule {

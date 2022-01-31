@@ -4,7 +4,7 @@ import { HeaderComponent } from './header/header.component';
 import { LayoutComponent } from './layout/layout.component';
 import { FooterComponent } from './footer/footer.component';
 import {RouterModule} from "@angular/router";
-import { HeaderLoggedinComponent } from './header-loggedin/header-loggedin.component';
+import { HeaderLoggedinComponent } from './header-logged-in/header-loggedin.component';
 
 @NgModule({
   declarations: [

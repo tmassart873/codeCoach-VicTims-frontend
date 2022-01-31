@@ -1,21 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CreateUserComponent } from './create-user/create-user.component';
-import { CoachOverviewComponent } from './user-coach-overview/coach-overview.component';
-import { UserDetailComponent } from './user-detail/user-detail.component';
-import { ApplyForCoachComponent } from './apply-for-coach/apply-for-coach.component';
-import { CoachDetailComponent } from './user-coach-detail/coach-detail.component';
-import { UserLoginComponent } from './user-login/user-login.component';
+import { CreateUserComponent } from '../home/register/create-user.component';
+import { CoachOverviewComponent } from './find-coach/coach-overview.component';
+import { UserDetailComponent } from './my-profile/profile-information/user-detail.component';
+import { ApplyForCoachComponent } from './my-profile/apply-to-become-coach/apply-for-coach.component';
+import { UserLoginComponent } from '../home/login/user-login.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
 import {UserRoutingModule} from "./user-routing/user-routing.module";
-import { UserPanelComponent } from './user-panel/user-panel.component';
-import { UserSidebarComponent } from './user-sidebar/user-sidebar.component';
-import { CoachInformationComponent } from './user-coach-detail/coach-information/coach-information.component';
-import { CoachingTopicsComponent } from './user-coach-detail/coaching-topics/coaching-topics.component';
-import { MyCoachProfileTabComponent } from './user-coach-detail/my-coach-profile-tab/my-coach-profile-tab.component';
+import { UserPanelComponent } from './my-profile/user-panel.component';
+import { LeftTabComponent } from './my-profile/left-tab/left-tab.component';
+import { MyCoachInformationComponent } from './my-coach-profile/my-coach-information/my-coach-information.component';
+import { MyCoachingTopicsComponent } from './my-coach-profile/my-coaching-topics/my-coaching-topics.component';
+import { MyCoachProfileTabComponent } from './my-coach-profile/my-coach-profile/my-coach-profile-tab.component';
 import {FilterTopicsPipe} from "../pipes/filter-topics.pipe";
 import {FilterFirstNameLastNameEmailPipe} from "../pipes/filter-first-name-last-name-email.pipe";
+import {MyCoachProfileComponent} from "./my-coach-profile/my-coach-profile";
 
 @NgModule({
   declarations: [
@@ -23,12 +23,12 @@ import {FilterFirstNameLastNameEmailPipe} from "../pipes/filter-first-name-last-
     CoachOverviewComponent,
     UserDetailComponent,
     ApplyForCoachComponent,
-    CoachDetailComponent,
+    MyCoachProfileComponent,
     UserLoginComponent,
     UserPanelComponent,
-    UserSidebarComponent,
-    CoachInformationComponent,
-    CoachingTopicsComponent,
+    LeftTabComponent,
+    MyCoachInformationComponent,
+    MyCoachingTopicsComponent,
     MyCoachProfileTabComponent,
     FilterTopicsPipe,
     FilterFirstNameLastNameEmailPipe,
@@ -42,7 +42,9 @@ import {FilterFirstNameLastNameEmailPipe} from "../pipes/filter-first-name-last-
     ],
   exports: [
     FilterTopicsPipe,
-    FilterFirstNameLastNameEmailPipe
+    FilterFirstNameLastNameEmailPipe,
+    MyCoachInformationComponent,
+    MyCoachingTopicsComponent
   ],
 })
 export class UserModule { }

@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {UserDetailComponent} from "../user-detail/user-detail.component";
-import {ApplyForCoachComponent} from "../apply-for-coach/apply-for-coach.component";
+import {UserDetailComponent} from "../my-profile/profile-information/user-detail.component";
+import {ApplyForCoachComponent} from "../my-profile/apply-to-become-coach/apply-for-coach.component";
 
 const userRoutes: Routes = [
   {path: 'profile', component: UserDetailComponent},
