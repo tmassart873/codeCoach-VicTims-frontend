@@ -17,8 +17,6 @@ export class RequestSessionComponent implements OnInit, AfterViewInit {
   private coachId!: string | undefined;
 
 
-
-
   requestSessionForm = this.formBuilder.group({
       coacheeId: `${this.coacheeId}`,
       coachId: `${this.coachId}`,
@@ -49,13 +47,7 @@ export class RequestSessionComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.initService.initSelect();
     this.initService.initDatePicker();
-
-    document.addEventListener('DOMContentLoaded', function () {
-      var elems = document.querySelectorAll('.modal');
-      var instances = M.Modal.init(elems, {
-        dismissible: true,
-      });
-    });
+    this.initService.initModal();
 
     this.coacheeId = this.user?.id;
 
@@ -69,25 +61,26 @@ export class RequestSessionComponent implements OnInit, AfterViewInit {
     }
   }
 
-  ngAfterViewInit():void{
+  ngAfterViewInit(): void {
     this.initService.initTimePicker();
   }
 
 
-  openModalRequestSession(){
+  modalRequestSession() {
     let requestSessionModal = M.Modal.getInstance(document.querySelector('#requestsessionmodal')!);
+    console.log('requestsession:'+requestSessionModal);
     requestSessionModal.open();
   }
 
-  openModalSessionConfirmed(){
+  openModalSessionConfirmed() {
     let sessionConformedModal = M.Modal.getInstance(document.querySelector('#sessionconfirmed')!);
     sessionConformedModal.open();
   }
 
-  changeTime(time:any){
+  changeTime(time: any) {
     this.requestSessionForm.patchValue({
       time: $('.timepicker').val()
-  });
+    });
     this.requestSessionForm.get(['time'])?.valid;
   }
 
@@ -103,7 +96,6 @@ export class RequestSessionComponent implements OnInit, AfterViewInit {
   }
 
 
-
   onSubmit() {
     if (this.requestSessionForm.invalid) {
       console.log("touched");
@@ -114,7 +106,7 @@ export class RequestSessionComponent implements OnInit, AfterViewInit {
       this.createSession();
       this.openModalSessionConfirmed();
       console.log("session created");
-      this.router.navigate(['']);
+      this.router.navigate([`/users/${this.coachId}/coach-profile}`]); //later change this to sessions overview
     }
   }
 

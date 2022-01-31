@@ -76,7 +76,7 @@
                 </div>
               </div>
               <div class="row right-align">
-                <a class="waves-effect waves-light yellow darken-2 btn-large black-text" (click)="onSubmit()">Request
+                <a data-target="requestsessionmodal" class="waves-effect waves-light yellow darken-2 btn-large black-text" (click)="onSubmit()">Request
                   session<i class="material-icons right">send</i></a>
               </div>
             </form>
@@ -87,23 +87,23 @@
     </div>
 
   </div>
-  <div id="requestsessionmodal" class="modal">
-    <div class="modal-content">
-      <h4>Confirm session request</h4>
-      <p>Please confirm your request by clicking the confirm button</p>
-    </div>
-    <div class="modal-footer">
-      <a (click)="onSubmit()" class="modal-close waves-effect waves-green btn-flat">Confirm</a>
-    </div>
-  </div>
-  <div id="sessionconfirmed" class="modal">
-    <div class="modal-content">
-      <h4>Your request has been sent!</h4>
-      <p>Please await confirmation by the coach.</p>
-    </div>
-    <div class="modal-footer">
-
-    </div>
-  </div>
 
 </main>
+<div id="requestsessionmodal" class="modal">
+  <div class="modal-content">
+    <h4>Confirm session request</h4>
+    <p>Please confirm your request by clicking the confirm button</p>
+  </div>
+  <div class="modal-footer">
+    <a (click)="onSubmit()" class="modal-close waves-effect waves-green btn-flat">Confirm</a>
+  </div>
+</div>
+<div id="sessionconfirmed" class="modal">
+  <div class="modal-content">
+    <h4>Your request has been sent!</h4>
+    <p>Please await confirmation by the coach.</p>
+  </div>
+  <div class="modal-footer">
+
+  </div>
+</div>
