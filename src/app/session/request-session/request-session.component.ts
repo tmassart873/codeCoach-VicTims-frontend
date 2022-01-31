@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {UserService} from "../../service/user.service";
 import {SessionService} from "../../service/session.service";
 import {FormBuilder, FormControl, Validators,} from "@angular/forms";
@@ -11,10 +11,11 @@ import {User} from "../../user/model/User";
   templateUrl: './request-session.component.html',
   styleUrls: ['./request-session.component.css']
 })
-export class RequestSessionComponent implements OnInit {
+export class RequestSessionComponent implements OnInit, AfterViewInit {
   private user!: User | null;
   private coacheeId!: string | undefined;
   private coachId!: string | undefined;
+
 
 
 
@@ -47,7 +48,6 @@ export class RequestSessionComponent implements OnInit {
 
   ngOnInit(): void {
     this.initService.initSelect();
-    this.initService.initTimePicker();
     this.initService.initDatePicker();
 
     document.addEventListener('DOMContentLoaded', function () {
@@ -59,8 +59,6 @@ export class RequestSessionComponent implements OnInit {
 
     this.coacheeId = this.user?.id;
 
-
-
     console.log('init coacheeid:' + this.coacheeId);
     this.coachId = this.userService.getSelectedCoachId();
     console.log('init coachid:' + this.coachId);
@@ -70,6 +68,11 @@ export class RequestSessionComponent implements OnInit {
       this.router.navigate(['users/coaches-overview']);
     }
   }
+
+  ngAfterViewInit():void{
+    this.initService.initTimePicker();
+  }
+
 
   openModalRequestSession(){
     let requestSessionModal = M.Modal.getInstance(document.querySelector('#requestsessionmodal')!);
@@ -81,6 +84,13 @@ export class RequestSessionComponent implements OnInit {
     sessionConformedModal.open();
   }
 
+  changeTime(time:any){
+    this.requestSessionForm.patchValue({
+      time: $('.timepicker').val()
+  });
+    this.requestSessionForm.get(['time'])?.valid;
+  }
+
   createSession() {
     this.requestSessionForm.patchValue({
       coachId: this.coachId,
@@ -88,7 +98,6 @@ export class RequestSessionComponent implements OnInit {
       date: $('.datepicker').val(),
       time: $('.timepicker').val()
     });
-
     this.sessionService.requestSession(this.requestSessionForm.value).subscribe();
 
   }
