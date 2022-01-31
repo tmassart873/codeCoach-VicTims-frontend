@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {UserService} from "../../service/user.service";
 import {FormBuilder, FormControl, ValidationErrors, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
+import {InitService} from "../../materialize/init.service";
 
 
 
@@ -10,7 +11,7 @@ import {Router} from "@angular/router";
   templateUrl: './create-user.component.html',
   styleUrls: ['./create-user.component.css']
 })
-export class CreateUserComponent implements OnInit {
+export class CreateUserComponent implements OnInit, AfterViewInit {
 
   passwordRepeat?: string;
   private duplicateUserName!: string;
@@ -18,11 +19,15 @@ export class CreateUserComponent implements OnInit {
   constructor(
     private userService: UserService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private initService: InitService
   ) {
   }
 
   ngOnInit(): void {
+  }
+  ngAfterViewInit() {
+    this.initService.initModal();
   }
 
   userForm = this.formBuilder.group({
@@ -44,6 +49,11 @@ export class CreateUserComponent implements OnInit {
       return {duplicateUserError:true};
     }
     return null;
+  }
+
+  creatuserModal(){
+    let modal = M.Modal.getInstance(document.querySelector('#registerusermodal')!);
+    modal.open();
   }
 
   createUser() {

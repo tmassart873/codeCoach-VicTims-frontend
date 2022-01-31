@@ -73,7 +73,7 @@
               </div>
 
               <div class="row right-align">
-                <button class="waves-effect waves-light yellow darken-2 btn-large black-text" (click)="onSubmit()">Register<i class="material-icons right">send</i></button>
+                <button class="waves-effect waves-light yellow darken-2 btn-large black-text" (click)="creatuserModal()">Register<i class="material-icons right">send</i></button>
               </div>
             </form>
           </div>
@@ -84,3 +84,12 @@
 
   </div>
 </main>
+<div id="registerusermodal" class="modal">
+  <div class="modal-content">
+    <h4>Confirm registration</h4>
+    <p>If you are sure about the information you provided please click the confirm button.</p>
+  </div>
+  <div class="modal-footer">
+    <a (click)="onSubmit()" class="modal-close waves-effect waves-light yellow darken-2 btn-flat black-text">Confirm</a>
+  </div>
+</div>
