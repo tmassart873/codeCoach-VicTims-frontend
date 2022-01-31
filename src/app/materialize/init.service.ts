@@ -54,7 +54,6 @@ export class InitService {
         showClearBtn: true,
         autoClose: true
       });
-
     });
 
   }

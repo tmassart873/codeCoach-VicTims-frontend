@@ -32,6 +32,7 @@ export class HeaderLoggedinComponent implements OnInit {
 
   onRouterLinkActive(event: boolean) {
     this.isCoachProfileActive.emit(event);
+    console.log(event);
   }
 
   isACoach() {

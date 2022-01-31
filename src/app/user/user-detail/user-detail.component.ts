@@ -1,24 +1,24 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {UserService} from "../../service/user.service";
 import {User} from "../model/User";
-import {ActivatedRoute, Router} from "@angular/router";
-import {Subscription} from "rxjs";
+import {ActivatedRoute, ParamMap, Router} from "@angular/router";
+import {Observable, Subscription} from "rxjs";
 
 @Component({
   selector: 'app-user-detail',
   templateUrl: './user-detail.component.html',
   styleUrls: ['./user-detail.component.css']
 })
-export class UserDetailComponent implements OnInit{
-  coaches = Subscription;
-  user! : User | null;
-  email!: string | null;
-  isCoach!: boolean;
+export class UserDetailComponent implements OnInit {
+
+  user!: User | null;
+  id!: string | null;
 
   @Input()
-  color : string = 'waves-effect waves-light btn-large btn-floating yellow darken-2';
+  color: string = 'waves-effect waves-light btn-large btn-floating yellow darken-2';
 
-  constructor(private userService: UserService, private route:ActivatedRoute, private router:Router) {
+  constructor(private userService: UserService,
+              private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {

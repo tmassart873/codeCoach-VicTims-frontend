@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {environment} from "../../environments/environment";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {User} from "../user/model/User";
 import {catchError, map, Observable, of, tap, throwError} from "rxjs";
 
@@ -9,7 +9,6 @@ import {catchError, map, Observable, of, tap, throwError} from "rxjs";
   providedIn: 'root'
 })
 export class UserService {
-  private userLoggedIn! : User;
   private selectedCoachId!:string;
 
 
@@ -30,7 +29,9 @@ export class UserService {
   }
 
   getUserByEmail(email: string): Observable<User> {
-    return this.http.get<User>(`${this.userUrl}/${encodeURIComponent(email)}`).pipe(tap(user => {
+    let param = new HttpParams().set('email', email);
+    return this.http.get<User>(`${this.userUrl}`, {params : param})
+      .pipe(tap(user => {
       const userToLogin: User = {
         id: user.id,
         firstName: user.firstName,
@@ -62,6 +63,10 @@ export class UserService {
     return this.getUserByEmail(email).pipe(map(user => user.id));
   }
 
+  getUserById(id : string | null): Observable<User> {
+    return this.http.get<User>(`${this.userUrl}/${id}`);
+  }
+
   get user(): User | null {
     const userToLogin = localStorage.getItem('userToLogin');
     if (userToLogin) {
@@ -76,8 +81,10 @@ export class UserService {
   getSelectedCoachId():string{
     return this.selectedCoachId;
   }
+
   getCoaches(): Observable<User[]> {
-    return this.http.get<User[]>(this.userUrl + '?isCoach=true');
+    let param = new HttpParams().set('is-coach', true);
+    return this.http.get<User[]>(`${this.userUrl}`, {params : param});
   }
 
   private static log(message: string) {
