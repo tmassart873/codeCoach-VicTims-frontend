@@ -40,11 +40,16 @@ export class UserLoginComponent implements OnInit {
       .subscribe({
         next: _ => {
           this.message = 'Success!';
-          this.userService.getUserId(this.loginForm.get('email')?.value)
-            .subscribe(id => this.router.navigate([`/users/${id}`])
+          this.userService.getUserId(this.getFormAttribute('email')?.value)
+            .subscribe(id => {
+              M.toast({html: `User ${this.getFormAttribute('email')?.value}
+              has been successfully logged in`});
+              this.router.navigate([`/users/${id}`]);
+              }
             );
         },
-        error: err => {
+        error: _ => {
+          M.toast({html: `Wrong username and/or password!`})
           this.message = 'Wrong username and/or password!';
           this.loginForm.reset();
           this.router.navigate([`/login`])

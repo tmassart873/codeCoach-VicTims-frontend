@@ -26,8 +26,9 @@ export class HeaderLoggedinComponent implements OnInit {
 
   logOut() {
     this.keycloakService.logout();
-    this.router.navigate(['']);
     this.userService.emptyUser();
+    M.toast({html: `Successfully logged out`});
+    this.router.navigate(['']);
   }
 
   onRouterLinkActive(event: boolean) {

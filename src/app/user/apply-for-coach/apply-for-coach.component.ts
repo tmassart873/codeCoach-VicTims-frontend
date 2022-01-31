@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../service/user.service";
-import {User} from "../model/User";
 import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
@@ -21,7 +20,10 @@ export class ApplyForCoachComponent implements OnInit {
     const user = this.userService.user;
     if (user) {
       this.userService.becomeCoach(user).subscribe(
-        user => this.router.navigate([`users/${user.id}/coach-profile`]));
+        user => {
+          M.toast({html: `Changed the role of ${user.email} to Coach`});
+          this.router.navigate([`users/${user.id}/coach-profile`]);
+        });
     }
   }
 }
