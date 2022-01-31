@@ -28,23 +28,23 @@
 
               <div class="row">
                 <div class="input-field col s6">
-                  <input id="date" type="text" class="datepicker validate" formControlName="date" required autocomplete="off">
+                  <input id="date" type="text" class="datepicker validate" formControlName="date" required (change)="changeDate()" autocomplete="off">
                   <label for="date">Date</label>
                 </div>
                 <div class="input-field col s6">
-                  <input id="timepicker" type="text" class="timepicker validate" formControlName="time" required  autocomplete="off" (change)="changeTime($event)">
+                  <input id="timepicker" type="text" class="timepicker validate" formControlName="time" required (change)="changeTime()" autocomplete="off">
                   <label for="timepicker">Time</label>
                 </div>
               </div>
               <div class="row">
                 <div class="col s6"
-                     *ngIf="getFormAttribute('date').valueChanges  && (getFormAttribute('date').touched)">
+                     *ngIf="date.invalid  && (date.touched || date.dirty)">
                   <small [style.color]="'red'">
                     Date is required.
                   </small>
                 </div>
-                <div class="col s6"
-                     *ngIf="getFormAttribute('time').invalid  && (getFormAttribute('time').touched||getFormAttribute('time').dirty)">
+                <div class="col s6 right"
+                     *ngIf="time.invalid  && (time.touched||time.dirty)">
                   <small [style.color]="'red'">
                     Time is required.
                   </small>
@@ -76,7 +76,7 @@
                 </div>
               </div>
               <div class="row right-align">
-                <a data-target="requestsessionmodal" class="waves-effect waves-light yellow darken-2 btn-large black-text" (click)="modalRequestSession()">Request
+                <a class="waves-effect waves-light yellow darken-2 btn-large black-text" (click)="modalRequestSession()">Request
                   session<i class="material-icons right">send</i></a>
               </div>
             </form>
@@ -107,3 +107,4 @@
 
   </div>
 </div>
+</main>

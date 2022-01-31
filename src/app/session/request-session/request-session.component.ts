@@ -77,11 +77,18 @@ export class RequestSessionComponent implements OnInit, AfterViewInit {
     sessionConformedModal.open();
   }
 
-  changeTime(time: any) {
+  changeTime() {
     this.requestSessionForm.patchValue({
       time: $('.timepicker').val()
     });
     this.requestSessionForm.get(['time'])?.valid;
+  }
+
+  changeDate() {
+    this.requestSessionForm.patchValue({
+      date: $('.datepicker').val()
+    });
+    this.requestSessionForm.get(['date'])?.valid;
   }
 
   createSession() {
@@ -95,6 +102,13 @@ export class RequestSessionComponent implements OnInit, AfterViewInit {
 
   }
 
+  get date(): FormControl {
+    return this.requestSessionForm.get('date') as FormControl;
+  }
+
+  get time(): FormControl {
+    return this.requestSessionForm.get('time') as FormControl;
+  }
 
   onSubmit() {
     if (this.requestSessionForm.invalid) {

@@ -46,7 +46,7 @@ export class InitService {
     let currDay = (new Date()).getDay();
 
     $(document).ready(function () {
-      $(".datepicker").datepicker({
+      $('.datepicker').datepicker({
           format: 'dd/mm/yyyy',
           defaultDate: new Date(currYear, currMonth, currDay),
           minDate: new Date(Date.now()),
