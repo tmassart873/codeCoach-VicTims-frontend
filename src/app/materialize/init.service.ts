@@ -52,7 +52,8 @@ export class InitService {
           minDate: new Date(Date.now()),
           maxDate: new Date(currYear + 1, currMonth, currDay),
           showClearBtn: true,
-          autoClose: true
+          autoClose: true,
+
         },
       );
 

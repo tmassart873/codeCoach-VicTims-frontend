@@ -15,6 +15,7 @@ export class RequestSessionComponent implements OnInit, AfterViewInit {
   private user!: User | null;
   private coacheeId!: string | undefined;
   private coachId!: string | undefined;
+  private requestSessionModal: any;
 
 
   requestSessionForm = this.formBuilder.group({
@@ -45,10 +46,6 @@ export class RequestSessionComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.initService.initSelect();
-    this.initService.initDatePicker();
-    this.initService.initModal();
-
     this.coacheeId = this.user?.id;
 
     console.log('init coacheeid:' + this.coacheeId);
@@ -62,17 +59,20 @@ export class RequestSessionComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    this.initService.initSelect();
+    this.initService.initDatePicker();
     this.initService.initTimePicker();
+    this.initService.initModal();
   }
 
 
-  modalRequestSession() {
-    let requestSessionModal = M.Modal.getInstance(document.querySelector('#requestsessionmodal')!);
-    console.log('requestsession:'+requestSessionModal);
-    requestSessionModal.open();
+  modalRequestSession():void {
+    this.requestSessionModal = M.Modal.getInstance(document.querySelector('#requestsessionmodal')!);
+    console.log('requestsession:'+this.requestSessionModal);
+    this.requestSessionModal.open();
   }
 
-  openModalSessionConfirmed() {
+  modalSessionConfirmed():void {
     let sessionConformedModal = M.Modal.getInstance(document.querySelector('#sessionconfirmed')!);
     sessionConformedModal.open();
   }
@@ -104,7 +104,7 @@ export class RequestSessionComponent implements OnInit, AfterViewInit {
       console.log("untouched");
       this.requestSessionForm.markAsUntouched();
       this.createSession();
-      this.openModalSessionConfirmed();
+      this.modalSessionConfirmed();
       console.log("session created");
       this.router.navigate([`/users/${this.coachId}/coach-profile}`]); //later change this to sessions overview
     }
