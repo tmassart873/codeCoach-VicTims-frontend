@@ -72,11 +72,6 @@ export class RequestSessionComponent implements OnInit, AfterViewInit {
     this.requestSessionModal.open();
   }
 
-  modalSessionConfirmed():void {
-    let sessionConformedModal = M.Modal.getInstance(document.querySelector('#sessionconfirmed')!);
-    sessionConformedModal.open();
-  }
-
   changeTime() {
     this.requestSessionForm.patchValue({
       time: $('.timepicker').val()
@@ -98,7 +93,10 @@ export class RequestSessionComponent implements OnInit, AfterViewInit {
       date: $('.datepicker').val(),
       time: $('.timepicker').val()
     });
-    this.sessionService.requestSession(this.requestSessionForm.value).subscribe();
+    this.sessionService.requestSession(this.requestSessionForm.value).subscribe(()=>{
+      M.toast({html:`Session Confirmed with coach:': ${this.coachId}`})//later change this to coach name
+      this.router.navigate([`/users/${this.coacheeId}/profile`]);
+    });
 
   }
 
@@ -118,9 +116,6 @@ export class RequestSessionComponent implements OnInit, AfterViewInit {
       console.log("untouched");
       this.requestSessionForm.markAsUntouched();
       this.createSession();
-      this.modalSessionConfirmed();
-      console.log("session created");
-      this.router.navigate([`/users/${this.coachId}/coach-profile}`]); //later change this to sessions overview
     }
   }
 
