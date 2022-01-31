@@ -76,14 +76,12 @@ export class RequestSessionComponent implements OnInit, AfterViewInit {
     this.requestSessionForm.patchValue({
       time: $('.timepicker').val()
     });
-    this.requestSessionForm.get(['time'])?.valid;
   }
 
   changeDate() {
     this.requestSessionForm.patchValue({
       date: $('.datepicker').val()
     });
-    this.requestSessionForm.get(['date'])?.valid;
   }
 
   createSession() {
