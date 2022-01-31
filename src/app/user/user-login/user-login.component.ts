@@ -46,7 +46,8 @@ export class UserLoginComponent implements OnInit {
         },
         error: err => {
           this.message = 'Wrong username and/or password!';
-          this.loginForm.reset()
+          this.loginForm.reset();
+          this.router.navigate([`/login`])
         }
       });
   }
