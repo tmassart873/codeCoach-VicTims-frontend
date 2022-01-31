@@ -49,36 +49,63 @@ export class RequestSessionComponent implements OnInit {
     this.initService.initSelect();
     this.initService.initTimePicker();
     this.initService.initDatePicker();
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('.modal');
+      var instances = M.Modal.init(elems, {
+        dismissible: true,
+      });
+    });
+
     this.coacheeId = this.user?.id;
+
+
+
     console.log('init coacheeid:' + this.coacheeId);
     this.coachId = this.userService.getSelectedCoachId();
     console.log('init coachid:' + this.coachId);
 
     if (this.coacheeId === undefined || this.coacheeId === null || this.coachId === undefined || this.coachId === null) {
-      alert("coach not selected, visit a coach profile first.");
+      M.toast({html: "coach not selected, visit a coach profile first."});
       this.router.navigate(['users/coaches-overview']);
     }
   }
 
+  openModalRequestSession(){
+    let requestSessionModal = M.Modal.getInstance(document.querySelector('#requestsessionmodal')!);
+    requestSessionModal.open();
+  }
+
+  openModalSessionConfirmed(){
+    let sessionConformedModal = M.Modal.getInstance(document.querySelector('#sessionconfirmed')!);
+    sessionConformedModal.open();
+  }
 
   createSession() {
-
     this.requestSessionForm.patchValue({
       coachId: this.coachId,
       coacheeId: this.coacheeId,
       date: $('.datepicker').val(),
       time: $('.timepicker').val()
     });
+
     this.sessionService.requestSession(this.requestSessionForm.value).subscribe();
+
   }
+
 
 
   onSubmit() {
     if (this.requestSessionForm.invalid) {
+      console.log("touched");
       this.requestSessionForm.markAllAsTouched();
-      // this.requestSessionForm.reset();
     } else {
+      console.log("untouched");
+      this.requestSessionForm.markAsUntouched();
       this.createSession();
+      this.openModalSessionConfirmed();
+      console.log("session created");
+      this.router.navigate(['']);
     }
   }
 
