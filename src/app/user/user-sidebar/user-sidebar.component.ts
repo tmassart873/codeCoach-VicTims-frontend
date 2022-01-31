@@ -20,4 +20,8 @@ export class UserSidebarComponent implements OnInit {
   getUserProfile() {
     this._id = String(this.activatedRoute.snapshot.paramMap.get('id'));
   }
+
+  checkIfLoggedIn() {
+    return this.userService.user;
+  }
 }
