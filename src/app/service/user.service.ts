@@ -2,15 +2,16 @@ import {Injectable} from '@angular/core';
 import {environment} from "../../environments/environment";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {User} from "../user/model/User";
-import {catchError, map, Observable, of, tap, throwError} from "rxjs";
+import {catchError, filter, firstValueFrom, map, Observable, of, tap, throwError} from "rxjs";
+import {findFirstMatchingNode} from "@angular/compiler-cli/src/ngtsc/typecheck/src/comments";
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  private userLoggedIn! : User;
-  private selectedCoachId!:string;
+  private userLoggedIn!: User;
+  private selectedCoachId!: string;
 
 
   private readonly userUrl: string;
@@ -30,7 +31,8 @@ export class UserService {
   }
 
   getUserByEmail(email: string): Observable<User> {
-    return this.http.get<User>(`${this.userUrl}/${encodeURIComponent(email)}`).pipe(tap(user => {
+    return this.http.get<User>(`${this.userUrl}/${encodeURIComponent(email)}`).pipe(
+      tap(user => {;
       const userToLogin: User = {
         id: user.id,
         firstName: user.firstName,
@@ -70,12 +72,14 @@ export class UserService {
     return null;
   }
 
-  setSelectedCoachId(id:string){
-    this.selectedCoachId= id;
+  setSelectedCoachId(id: string) {
+    this.selectedCoachId = id;
   }
-  getSelectedCoachId():string{
+
+  getSelectedCoachId(): string {
     return this.selectedCoachId;
   }
+
   getCoaches(): Observable<User[]> {
     return this.http.get<User[]>(this.userUrl + '?isCoach=true');
   }
@@ -98,16 +102,20 @@ export class UserService {
     };
   }
 
-  becomeCoach(user:User): Observable<User> {
-      const id: String = user.id;
-      user.userRole = 'COACH';
-      return this.http.put<User>(`${this.userUrl}/${id}`, null)
-        .pipe(
-          tap(user => localStorage.setItem('userToLogin', JSON.stringify(user)))
-        );
+  becomeCoach(user: User): Observable<User> {
+    const id: String = user.id;
+    user.userRole = 'COACH';
+    return this.http.put<User>(`${this.userUrl}/${id}`, null)
+      .pipe(
+        tap(user => localStorage.setItem('userToLogin', JSON.stringify(user)))
+      );
   }
 
   emptyUser() {
     localStorage.setItem('userToLogin', JSON.stringify(null));
+  }
+
+  getUserById(id: string) {
+    return this.http.get<User>(this.userUrl + '/' + id);
   }
 }
