@@ -9,24 +9,9 @@ import {UserService} from "../../../service/user/user.service";
 })
 export class MyCoachProfileTabComponent implements OnInit {
 
-  constructor(private route:ActivatedRoute,
-              private router:Router,
-              private userService: UserService) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
-  requestSession() {
-    let id = '';
-    this.route.params.subscribe(params => id = params['id']);
-    this.userService.setSelectedCoachId(id);
-    console.log(id);
-    console.log(this.userService.user?.id);
-    this.router.navigate(['/sessions/request-session']);
-  }
 
-  checkIfThisIsMyCoachProfile() : boolean{
-    let id = '';
-    this.route.params.subscribe(params => id = params['id']);
-    return this.userService.user?.id === id;
-  }
 }
