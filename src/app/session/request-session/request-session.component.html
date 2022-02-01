@@ -12,9 +12,12 @@
             <form [formGroup]="requestSessionForm" class="col s12">
               <div class="row">
                 <div class="input-field col s12">
-                  <textarea id="topic" class="materialize-textarea validate" formControlName="subject"
-                            required></textarea>
-                  <label for="topic">On which topic/subject would you like to have a coaching session?</label>
+                  <select id="topic" formControlName="subject"  class="select-dropdown validate" required>
+                    <option disabled>Please choose a topic (required)</option>
+                    <option *ngFor="let topic of topics" [value]="topic.name">
+                      {{topic.name}}
+                    </option>
+                  </select>
                 </div>
               </div>
               <div class="row">
