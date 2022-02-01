@@ -1,10 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {UserService} from "../../service/user.service";
-import {SessionService} from "../../service/session.service";
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, Validators,} from "@angular/forms";
 import {Router} from "@angular/router";
 import {InitService} from "../../materialize/init.service";
 import {User} from "../../user/model/User";
+import {SessionService} from "../../service/session/session.service";
+import {UserService} from "../../service/user/user.service";
 
 @Component({
   selector: 'app-request-session',

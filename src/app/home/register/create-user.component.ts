@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {UserService} from "../../service/user.service";
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, ValidationErrors, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {InitService} from "../../materialize/init.service";
+import {UserService} from "../../service/user/user.service";
 
 
 
