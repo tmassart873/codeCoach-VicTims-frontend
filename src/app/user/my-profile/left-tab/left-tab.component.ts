@@ -20,4 +20,8 @@ export class LeftTabComponent implements OnInit {
   getUserProfile() {
     this._id = String(this.activatedRoute.snapshot.paramMap.get('id'));
   }
+
+  checkIfUserIsCoachee() : boolean {
+    return this.userService.user?.userRole === 'COACHEE';
+  }
 }

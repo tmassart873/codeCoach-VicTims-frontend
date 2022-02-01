@@ -2,9 +2,14 @@
   <div class="content-container">
     <h6>My Profile</h6>
     <div class="collection">
-      <a  class="collection-item grey-text darken-2" routerLink="profile" routerLinkActive="black-text active yellow">Profile Information</a>
-      <a  class="collection-item grey-text darken-2" routerLink="sessions-overview" routerLinkActive="black-text active yellow">Coaching sessions</a>
-      <a  class="collection-item grey-text darken-2" routerLink="become-coach" routerLinkActive="black-text active yellow">Apply to become a coach</a>
+      <a class="collection-item grey-text darken-2" routerLink="profile" routerLinkActive="black-text active yellow">Profile
+        Information</a>
+      <a class="collection-item grey-text darken-2" routerLink="sessions-overview"
+         routerLinkActive="black-text active yellow">Coaching sessions</a>
+      <div *ngIf="checkIfUserIsCoachee()">
+        <a class="collection-item grey-text darken-2" routerLink="become-coach"
+           routerLinkActive="black-text active yellow">Apply to become a coach</a>
+      </div>
     </div>
   </div>
 </div>
