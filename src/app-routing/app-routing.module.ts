@@ -7,10 +7,10 @@ import {UserRoutingModule} from "../app/user/user-routing/user-routing.module";
 import {UserDetailComponent} from "../app/user/my-profile/profile-information/user-detail.component";
 import {UserPanelComponent} from "../app/user/my-profile/user-panel.component";
 import {ApplyForCoachComponent} from "../app/user/my-profile/apply-to-become-coach/apply-for-coach.component";
-import {RequestSessionComponent} from "../app/session/request-session/request-session.component";
 import {CoachOverviewComponent} from "../app/user/find-coach/coach-overview.component";
 import {MyCoachProfileComponent} from "../app/user/my-coach-profile/my-coach-profile";
 import {CoachComponent} from "../app/coach/coach.component";
+import {RequestSessionComponent} from "../app/session/request-session/request-session.component";
 
 const routes: Routes = [
   {path: '', component: HomepageComponent},
