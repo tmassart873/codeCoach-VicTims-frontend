@@ -2,9 +2,10 @@ import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, Validators,} from "@angular/forms";
 import {Router} from "@angular/router";
 import {InitService} from "../../materialize/init.service";
-import {User} from "../../user/model/User";
+import {Topic, User} from "../../user/model/User";
 import {SessionService} from "../../service/session/session.service";
 import {UserService} from "../../service/user/user.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-request-session',
@@ -16,7 +17,8 @@ export class RequestSessionComponent implements OnInit, AfterViewInit {
   private coacheeId!: string | undefined;
   private coachId!: string | undefined;
   private requestSessionModal: any;
-
+  private coach!: User | null;
+  public topics!: Topic[] | undefined;
 
   requestSessionForm = this.formBuilder.group({
       coacheeId: `${this.coacheeId}`,
@@ -46,7 +48,6 @@ export class RequestSessionComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.initService.initSelect();
     this.initService.initTimePicker();
     this.initService.initDatePicker();
     this.coacheeId = this.user?.id;
@@ -59,6 +60,15 @@ export class RequestSessionComponent implements OnInit, AfterViewInit {
       alert("coach not selected, visit a coach profile first.");
       this.router.navigate(['users/coaches-overview']);
     }
+
+    this.userService.getUserById(this.coachId).subscribe(
+      user => {
+        this.coach = user;
+        this.topics = user.coachInformation?.topics;
+        console.log('get current coach name: ' + this.coach?.firstName);
+        this.topics?.forEach(topic => console.log('get current topic names: ' + topic.name));
+        this.initService.initSelect();
+      });
   }
 
   ngAfterViewInit(): void {
@@ -124,6 +134,5 @@ export class RequestSessionComponent implements OnInit, AfterViewInit {
   getFormAttribute(formControlName: string): FormControl {
     return this.requestSessionForm.get(`${formControlName}`) as FormControl;
   }
-
 
 }

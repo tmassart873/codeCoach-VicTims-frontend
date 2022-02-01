@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {environment} from "../../../environments/environment";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
-import {User} from "../../user/model/User";
+import {Topic, User} from "../../user/model/User";
 import {catchError, map, Observable, of, tap, throwError} from "rxjs";
 
 
@@ -117,4 +117,5 @@ export class UserService {
   emptyUser() {
     localStorage.setItem('userToLogin', JSON.stringify(null));
   }
+
 }
