@@ -25,7 +25,7 @@ export class ApplyForCoachComponent implements OnInit {
       this.userService.becomeCoach(user).subscribe(
         user => {
           M.toast({html: `Changed the role of ${user.email} to Coach`});
-          this.router.navigate([`users/${user.id}/coach-profile`]);
+          this.router.navigate([`users/${user.id}/my-coach-profile`]);
         });
     }
   }
