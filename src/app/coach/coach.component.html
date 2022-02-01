@@ -1,11 +1,10 @@
 <html lang="en">
 <body>
 <main *ngIf="user">
-
   <app-coach-session-tab></app-coach-session-tab>
-  <app-coach-profile></app-coach-profile>
-  <app-coach-information></app-coach-information>
-  <app-coaching-topics></app-coaching-topics>
+  <app-coach-profile [user]="user"></app-coach-profile>
+  <app-coach-information [user]="user"></app-coach-information>
+  <app-coaching-topics [user]="user"></app-coaching-topics>
 </main>
 </body>
 </html>

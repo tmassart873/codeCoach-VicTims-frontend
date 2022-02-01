@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Topic, User} from "../../user/model/User";
 
 @Component({
   selector: 'app-coaching-topics',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CoachingTopicsComponent implements OnInit {
 
-  constructor() { }
+  @Input()
+  user!: User;
+
+  topics?: Topic[]
+
+  constructor() {
+  }
 
   ngOnInit(): void {
+    this.topics = this.user.coachInformation!.topics;
   }
 
 }

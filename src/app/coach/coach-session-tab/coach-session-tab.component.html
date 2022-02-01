@@ -1,1 +1,10 @@
-<p>coach-session-tab works!</p>
+<div class="col s12 m12 l3">
+  <div class="content-container">
+    <h6>Coach Profile</h6>
+    <div class="collection" *ngIf="userIsLoggedIn()">
+      <a routerLink="/sessions/request-session" class="collection-item grey-text text-darken-2" (click)="requestSession()">Request a session
+        <a routerLink="/sessions/request-session" class="material-icons right" (click)="requestSession()">calendar_today</a>
+      </a>
+    </div>
+  </div>
+</div>

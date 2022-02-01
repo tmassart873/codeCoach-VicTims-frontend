@@ -1,1 +1,22 @@
-<p>coaching-topics works!</p>
+<div class="col s0 m0 l3 ">
+</div>
+<div class="col s12 m12 l9 ">
+  <section class="card-panel grey lighten-5">
+    <h5>Coaching topics</h5>
+    <div class="divider"></div>
+    <div class="row">
+      <div class="col s12">
+        <table class="highlight">
+          <tbody>
+          <tr *ngFor="let topic of topics">
+            <td><strong>{{topic.name}}</strong></td>
+            <td>
+              HERE COMES THE JUNIOR/MEDIOR/SENIOR
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</div>
