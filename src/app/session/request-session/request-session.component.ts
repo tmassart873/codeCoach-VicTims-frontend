@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../service/user.service";
 import {SessionService} from "../../service/session.service";
 import {FormBuilder, FormControl, Validators,} from "@angular/forms";
@@ -46,6 +46,9 @@ export class RequestSessionComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    this.initService.initSelect();
+    this.initService.initTimePicker();
+    this.initService.initDatePicker();
     this.coacheeId = this.user?.id;
 
     console.log('init coacheeid:' + this.coacheeId);
@@ -53,7 +56,7 @@ export class RequestSessionComponent implements OnInit, AfterViewInit {
     console.log('init coachid:' + this.coachId);
 
     if (this.coacheeId === undefined || this.coacheeId === null || this.coachId === undefined || this.coachId === null) {
-      M.toast({html: "coach not selected, visit a coach profile first."});
+      alert("coach not selected, visit a coach profile first.");
       this.router.navigate(['users/coaches-overview']);
     }
   }
@@ -85,6 +88,7 @@ export class RequestSessionComponent implements OnInit, AfterViewInit {
   }
 
   createSession() {
+
     this.requestSessionForm.patchValue({
       coachId: this.coachId,
       coacheeId: this.coacheeId,

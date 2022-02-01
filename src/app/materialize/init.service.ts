@@ -40,7 +40,7 @@ export class InitService {
     });
   }
 
-  initDatePicker() {
+  initDatePicker(){
     var currYear = (new Date()).getFullYear();
     let currMonth = (new Date()).getMonth();
     let currDay = (new Date()).getDay();
@@ -64,5 +64,6 @@ export class InitService {
     $(document).ready(function(){
       $('.modal').modal();
     });
+
   }
 }
