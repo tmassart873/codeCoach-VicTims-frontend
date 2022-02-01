@@ -15,13 +15,8 @@ import {SessionModule} from "./session/session.module";
 import { CoachComponent } from './coach/coach.component';
 import { CoachInformationComponent } from './coach/coach-information/coach-information.component';
 import { CoachingTopicsComponent } from './coach/coaching-topics/coaching-topics.component';
-import { CoachTabComponent } from './coach/coach-tab/coach-tab.component';
-import { CoachProfileTabComponent } from './coach/coach-profile-tab/coach-profile-tab.component';
-import { CoachNavTabComponent } from './coach/coach-nav-tab/coach-nav-tab.component';
 import { CoachProfileComponent } from './coach/coach-profile/coach-profile.component';
-import { CoachInformationBisComponent } from './coach/coach-information-bis/coach-information-bis.component';
 import { CoachSessionTabComponent } from './coach/coach-session-tab/coach-session-tab.component';
-import { CoachSesionTabComponent } from './coach/coach-sesion-tab/coach-sesion-tab.component';
 
 @NgModule({
   declarations: [
@@ -31,14 +26,8 @@ import { CoachSesionTabComponent } from './coach/coach-sesion-tab/coach-sesion-t
     CoachComponent,
     CoachInformationComponent,
     CoachingTopicsComponent,
-    CoachTabComponent,
-    CoachProfileTabComponent,
-    CoachNavTabComponent,
     CoachProfileComponent,
-    CoachInformationBisComponent,
     CoachSessionTabComponent,
-    CoachSesionTabComponent,
-
   ],
   imports: [
     BrowserModule,
