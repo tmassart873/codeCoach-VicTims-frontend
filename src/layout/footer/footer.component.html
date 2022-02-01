@@ -1,4 +1,4 @@
-<footer  [ngClass]="{'page-footer yellow darken-2': !activeRouteIsProfileCoach,
+<footer [ngClass]="{'page-footer yellow darken-2': !activeRouteIsProfileCoach,
          'page-footer teal lighten-3': activeRouteIsProfileCoach}">
   <div class="container">
     <div class="row">
@@ -12,25 +12,29 @@
       <div class="col l3 s12">
         <h5 class="black-text">Navigation</h5>
         <ul>
-          <li><a class="grey-text text-darken-3" href="#"><i class="tiny material-icons">chevron_right</i>Home</a>
-          </li>
-          <li><a class="grey-text text-darken-3" href="#" routerLink="/login"><i class="tiny material-icons">chevron_right</i>Sign in</a>
+          <li>
+            <a class="grey-text text-darken-3" routerLink="/"><i class="tiny material-icons">chevron_right</i>Home</a>
           </li>
           <li>
-            <a class="grey-text text-darken-3" href="#" routerLink="/register"><i class="tiny material-icons">chevron_right</i>Register</a>
+            <a class="grey-text text-darken-3" routerLink="/login"><i class="tiny material-icons">chevron_right</i>Sign in</a>
           </li>
-          <li><a class="grey-text text-darken-3" href="#"><i class="tiny material-icons">chevron_right</i>Contact</a>
+          <li>
+            <a class="grey-text text-darken-3" routerLink="/register"><i class="tiny material-icons">chevron_right</i>Register</a>
           </li>
-          <li><a class="grey-text text-darken-3" href="#"><i class="tiny material-icons">chevron_right</i>About
-            us</a></li>
+          <li>
+            <a class="grey-text text-darken-3" href="#"><i class="tiny material-icons">chevron_right</i>Contact</a>
+          </li>
+          <li>
+            <a class="grey-text text-darken-3" href="#"><i class="tiny material-icons">chevron_right</i>About us</a>
+          </li>
         </ul>
       </div>
     </div>
   </div>
   <div class="footer-copyright">
     <div class="container black-text">
-      Web application proudly created by <a class="grey-text text-darken-2"
-                                            href="https://switchfully.com">Switchfully</a>
+      Web application proudly created by
+      <a class="grey-text text-darken-2" href="https://switchfully.com">Switchfully</a>
       students.
     </div>
   </div>

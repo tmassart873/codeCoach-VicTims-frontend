@@ -1,5 +1,3 @@
-import {CoachInformation} from "./CoachInformation";
-
 export interface User{
   id: string,
   firstName: string,
@@ -9,4 +7,17 @@ export interface User{
   company: string,
   userRole?: string
   coachInformation?: CoachInformation | null
+}
+
+export interface CoachInformation {
+  id?: string,
+  coachXp?: number,
+  introduction?: string,
+  availability?: string,
+  topics?: Topic[]
+}
+
+export interface  Topic {
+  id: string,
+  name: string
 }

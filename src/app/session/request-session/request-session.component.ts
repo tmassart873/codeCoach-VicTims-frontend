@@ -1,21 +1,21 @@
-import {Component, OnInit} from '@angular/core';
-import {UserService} from "../../service/user.service";
-import {SessionService} from "../../service/session.service";
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, Validators,} from "@angular/forms";
 import {Router} from "@angular/router";
 import {InitService} from "../../materialize/init.service";
 import {User} from "../../user/model/User";
+import {SessionService} from "../../service/session/session.service";
+import {UserService} from "../../service/user/user.service";
 
 @Component({
   selector: 'app-request-session',
   templateUrl: './request-session.component.html',
   styleUrls: ['./request-session.component.css']
 })
-export class RequestSessionComponent implements OnInit {
+export class RequestSessionComponent implements OnInit, AfterViewInit {
   private user!: User | null;
   private coacheeId!: string | undefined;
   private coachId!: string | undefined;
-
+  private requestSessionModal: any;
 
 
   requestSessionForm = this.formBuilder.group({
@@ -50,6 +50,7 @@ export class RequestSessionComponent implements OnInit {
     this.initService.initTimePicker();
     this.initService.initDatePicker();
     this.coacheeId = this.user?.id;
+
     console.log('init coacheeid:' + this.coacheeId);
     this.coachId = this.userService.getSelectedCoachId();
     console.log('init coachid:' + this.coachId);
@@ -60,6 +61,31 @@ export class RequestSessionComponent implements OnInit {
     }
   }
 
+  ngAfterViewInit(): void {
+    this.initService.initSelect();
+    this.initService.initDatePicker();
+    this.initService.initTimePicker();
+    this.initService.initModal();
+  }
+
+
+  modalRequestSession():void {
+    this.requestSessionModal = M.Modal.getInstance(document.querySelector('#requestsessionmodal')!);
+    console.log('requestsession:'+this.requestSessionModal);
+    this.requestSessionModal.open();
+  }
+
+  changeTime() {
+    this.requestSessionForm.patchValue({
+      time: $('.timepicker').val()
+    });
+  }
+
+  changeDate() {
+    this.requestSessionForm.patchValue({
+      date: $('.datepicker').val()
+    });
+  }
 
   createSession() {
 
@@ -69,15 +95,28 @@ export class RequestSessionComponent implements OnInit {
       date: $('.datepicker').val(),
       time: $('.timepicker').val()
     });
-    this.sessionService.requestSession(this.requestSessionForm.value).subscribe();
+    this.sessionService.requestSession(this.requestSessionForm.value).subscribe(()=>{
+      M.toast({html:`Session Confirmed with coach:': ${this.coachId}`})//later change this to coach name
+      this.router.navigate([`/users/${this.coacheeId}/profile`]);
+    });
+
   }
 
+  get date(): FormControl {
+    return this.requestSessionForm.get('date') as FormControl;
+  }
+
+  get time(): FormControl {
+    return this.requestSessionForm.get('time') as FormControl;
+  }
 
   onSubmit() {
     if (this.requestSessionForm.invalid) {
+      console.log("touched");
       this.requestSessionForm.markAllAsTouched();
-      // this.requestSessionForm.reset();
     } else {
+      console.log("untouched");
+      this.requestSessionForm.markAsUntouched();
       this.createSession();
     }
   }

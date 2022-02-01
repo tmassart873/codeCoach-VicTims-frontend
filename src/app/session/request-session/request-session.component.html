@@ -28,24 +28,24 @@
 
               <div class="row">
                 <div class="input-field col s6">
-                  <input id="date" type="text" class="datepicker validate" formControlName="date" required>
+                  <input id="date" type="text" class="datepicker validate" formControlName="date" required (change)="changeDate()" autocomplete="off">
                   <label for="date">Date</label>
                 </div>
                 <div class="input-field col s6">
-                  <input id="timepicker" type="text" class="timepicker validate" formControlName="time" required>
+                  <input id="timepicker" type="text" class="timepicker validate" formControlName="time" required (change)="changeTime()" autocomplete="off">
                   <label for="timepicker">Time</label>
                 </div>
               </div>
               <div class="row">
                 <div class="col s6"
-                     *ngIf="getFormAttribute('date').invalid && (getFormAttribute('date').dirty||getFormAttribute('date').touched)">
-                  <small *ngIf="getFormAttribute('date').errors?.['required']" [style.color]="'red'">
+                     *ngIf="date.invalid  && (date.touched || date.dirty)">
+                  <small [style.color]="'red'">
                     Date is required.
                   </small>
                 </div>
-                <div class="col s6"
-                     *ngIf="getFormAttribute('time').invalid && (getFormAttribute('time').dirty||getFormAttribute('time').touched)">
-                  <small *ngIf="getFormAttribute('time').errors?.['required']" [style.color]="'red'">
+                <div class="col s6 right"
+                     *ngIf="time.invalid  && (time.touched||time.dirty)">
+                  <small [style.color]="'red'">
                     Time is required.
                   </small>
                 </div>
@@ -63,8 +63,8 @@
               </div>
               <div class="row">
                 <div class="col"
-                     *ngIf="getFormAttribute('location').invalid && (getFormAttribute('location').dirty||getFormAttribute('location').touched)">
-                  <small *ngIf="getFormAttribute('location').errors?.['required']" [style.color]="'red'">
+                     *ngIf="getFormAttribute('location').invalid && (getFormAttribute('location').touched)">
+                  <small [style.color]="'red'">
                     Location is required.
                   </small>
                 </div>
@@ -76,8 +76,8 @@
                 </div>
               </div>
               <div class="row right-align">
-                <button type="submit" class="waves-effect waves-light yellow darken-2 btn-large black-text"
-                        (click)="onSubmit()">Request session<i class="material-icons right">send</i></button>
+                <a class="waves-effect waves-light yellow darken-2 btn-large black-text" (click)="modalRequestSession()">Request
+                  session<i class="material-icons right">send</i></a>
               </div>
             </form>
           </div>
@@ -87,4 +87,24 @@
     </div>
 
   </div>
+
 </main>
+<div id="requestsessionmodal" class="modal">
+  <div class="modal-content">
+    <h4>Confirm session request</h4>
+    <p>Please confirm your request by clicking the confirm button</p>
+  </div>
+  <div class="modal-footer">
+    <a (click)="onSubmit()" class="modal-close waves-effect waves-light yellow darken-2 btn-flat black-text">Confirm</a>
+  </div>
+</div>
+<div id="sessionconfirmed" class="modal">
+  <div class="modal-content">
+    <h4>Your request has been sent!</h4>
+    <p>Please await confirmation by the coach.</p>
+  </div>
+  <div class="modal-footer">
+
+  </div>
+</div>
+

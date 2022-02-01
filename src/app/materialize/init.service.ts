@@ -45,16 +45,24 @@ export class InitService {
     let currMonth = (new Date()).getMonth();
     let currDay = (new Date()).getDay();
 
-    $(document).ready(function() {
-      $(".datepicker").datepicker({
-        format: 'dd/mm/yyyy',
-        defaultDate: new Date(currYear,currMonth,currDay),
-        minDate: new Date(Date.now()),
-        maxDate: new Date(currYear+1,currMonth,currDay),
-        showClearBtn: true,
-        autoClose: true
-      });
+    $(document).ready(function () {
+      $('.datepicker').datepicker({
+          format: 'dd/mm/yyyy',
+          defaultDate: new Date(currYear, currMonth, currDay),
+          minDate: new Date(Date.now()),
+          maxDate: new Date(currYear + 1, currMonth, currDay),
+          showClearBtn: true,
+          autoClose: true,
 
+        },
+      );
+
+    });
+  }
+
+  initModal(){
+    $(document).ready(function(){
+      $('.modal').modal();
     });
 
   }
