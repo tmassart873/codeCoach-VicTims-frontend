@@ -89,6 +89,9 @@
             },
             "development": {
               "browserTarget": "codeCoach-VicTims-frontend:build:development"
+            },
+            "staging": {
+              "browserTarget": "codeCoach-VicTims-frontend:build:staging"
             }
           },
           "defaultConfiguration": "development"
