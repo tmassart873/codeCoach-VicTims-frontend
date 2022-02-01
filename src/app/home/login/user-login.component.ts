@@ -43,7 +43,8 @@ export class UserLoginComponent implements OnInit {
             .subscribe(id => {
               M.toast({html: `User ${this.getFormAttribute('email')?.value}
               has been successfully logged in`});
-              this.router.navigate([`/users/${id}`]);
+              // this.router.navigate([`users/${id}`]);
+                this.router.navigateByUrl(`/users/${id}`)
               }
             );
         },

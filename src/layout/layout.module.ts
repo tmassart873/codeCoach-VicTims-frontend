@@ -13,9 +13,10 @@ import { HeaderLoggedinComponent } from './header-logged-in/header-loggedin.comp
     FooterComponent,
     HeaderLoggedinComponent
   ],
-  exports: [
-    LayoutComponent
-  ],
+    exports: [
+        LayoutComponent,
+        FooterComponent
+    ],
   imports: [
     CommonModule,
     RouterModule

@@ -1,14 +1,15 @@
-import {Component, OnInit} from '@angular/core';
-import {User} from "../user/model/User";
-import {UserService} from "../service/user/user.service";
+import { Component, OnInit } from '@angular/core';
+import {User} from "../../user/model/User";
 import {ActivatedRoute} from "@angular/router";
+import {UserService} from "../../service/user/user.service";
 
 @Component({
-  selector: 'app-coach',
-  templateUrl: './coach.component.html',
-  styleUrls: ['./coach.component.css']
+  selector: 'app-coachee-profile',
+  templateUrl: './coachee-profile.component.html',
+  styleUrls: ['./coachee-profile.component.css']
 })
-export class CoachComponent implements OnInit {
+
+export class CoacheeProfileComponent implements OnInit {
   user!: User | null;
   id!: string | null;
 
@@ -20,5 +21,4 @@ export class CoachComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get('id');
     this.userService.getUserById(this.id).subscribe((user) => this.user = user);
   }
-
 }

@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from "../model/User";
 import {UserService} from "../../service/user/user.service";
+import {ActivatedRoute, Router} from "@angular/router";
+
 
 @Component({
   selector: 'app-coach-detail',
@@ -9,13 +11,22 @@ import {UserService} from "../../service/user/user.service";
 })
 export class MyCoachProfileComponent implements OnInit {
 
-  user!: User | null;
+  loggedInUser!: User | null;
   color? : string;
+  id!: string | null;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService,
+              private router: Router,
+              private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.user = this.userService.user;
+    this.loggedInUser = this.userService.user;
     this.color = 'waves-effect waves-light btn-large btn-floating teal lighten-3';
+  }
+
+  goToProfileNotLoggedIn(): void {
+    this.id = this.route.snapshot.paramMap.get('id');
+    console.log("id: " + this.id)
+    this.router.navigate(['users/' + this.id + '/coach-profile']);
   }
 }

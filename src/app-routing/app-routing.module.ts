@@ -3,7 +3,6 @@ import {RouterModule, Routes} from "@angular/router";
 import {CreateUserComponent} from "../app/home/register/create-user.component";
 import {HomepageComponent} from "../app/home/homepage/homepage.component";
 import {UserLoginComponent} from "../app/home/login/user-login.component";
-import {UserRoutingModule} from "../app/user/user-routing/user-routing.module";
 import {UserDetailComponent} from "../app/user/my-profile/profile-information/user-detail.component";
 import {UserPanelComponent} from "../app/user/my-profile/user-panel.component";
 import {ApplyForCoachComponent} from "../app/user/my-profile/apply-to-become-coach/apply-for-coach.component";
@@ -11,6 +10,7 @@ import {CoachOverviewComponent} from "../app/user/find-coach/coach-overview.comp
 import {MyCoachProfileComponent} from "../app/user/my-coach-profile/my-coach-profile";
 import {CoachComponent} from "../app/coach/coach.component";
 import {RequestSessionComponent} from "../app/session/request-session/request-session.component";
+import {CoacheeProfileComponent} from "../app/coachee/coachee-profile/coachee-profile.component";
 
 const routes: Routes = [
   {path: '', component: HomepageComponent},
@@ -19,6 +19,7 @@ const routes: Routes = [
   {path: 'users/coaches-overview', component: CoachOverviewComponent},
   {path: 'users/:id/my-coach-profile', component: MyCoachProfileComponent},
   {path: 'users/:id/coach-profile', component: CoachComponent},
+  {path: 'users/:id/coachee-profile', component: CoacheeProfileComponent},
   {path: 'users/:id', component: UserPanelComponent, children: [
       {path: 'profile', component: UserDetailComponent},
       {path: 'become-coach', component: ApplyForCoachComponent}
@@ -29,7 +30,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [],
-  imports: [RouterModule.forRoot(routes), UserRoutingModule],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}

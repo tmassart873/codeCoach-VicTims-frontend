@@ -12,22 +12,14 @@ import {HomepageComponent} from './home/homepage/homepage.component';
 import {AuthenticationInterceptor} from "./security/keycloak/authentication-interceptor";
 import {ErrorComponent} from './security/error/error.component';
 import {SessionModule} from "./session/session.module";
-import { CoachComponent } from './coach/coach.component';
-import { CoachInformationComponent } from './coach/coach-information/coach-information.component';
-import { CoachingTopicsComponent } from './coach/coaching-topics/coaching-topics.component';
-import { CoachProfileComponent } from './coach/coach-profile/coach-profile.component';
-import { CoachSessionTabComponent } from './coach/coach-session-tab/coach-session-tab.component';
+import {CoacheeProfileComponent} from "./coachee/coachee-profile/coachee-profile.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomepageComponent,
     ErrorComponent,
-    CoachComponent,
-    CoachInformationComponent,
-    CoachingTopicsComponent,
-    CoachProfileComponent,
-    CoachSessionTabComponent,
+    CoacheeProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -39,14 +31,10 @@ import { CoachSessionTabComponent } from './coach/coach-session-tab/coach-sessio
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule
-
   ],
   providers: [
     UserService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true}
-  ],
-  exports: [
-
   ],
   bootstrap: [AppComponent]
 })

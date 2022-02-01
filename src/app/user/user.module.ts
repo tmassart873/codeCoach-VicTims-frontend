@@ -16,6 +16,12 @@ import { MyCoachProfileTabComponent } from './my-coach-profile/my-coach-profile/
 import {FilterTopicsPipe} from "../pipes/filter-topics.pipe";
 import {FilterFirstNameLastNameEmailPipe} from "../pipes/filter-first-name-last-name-email.pipe";
 import {MyCoachProfileComponent} from "./my-coach-profile/my-coach-profile";
+import {CoachComponent} from "../coach/coach.component";
+import {CoachInformationComponent} from "../coach/coach-information/coach-information.component";
+import {CoachingTopicsComponent} from "../coach/coaching-topics/coaching-topics.component";
+import {CoachProfileComponent} from "../coach/coach-profile/coach-profile.component";
+import {CoachSessionTabComponent} from "../coach/coach-session-tab/coach-session-tab.component";
+import {LayoutModule} from "../../layout/layout.module";
 
 @NgModule({
   declarations: [
@@ -32,14 +38,20 @@ import {MyCoachProfileComponent} from "./my-coach-profile/my-coach-profile";
     MyCoachProfileTabComponent,
     FilterTopicsPipe,
     FilterFirstNameLastNameEmailPipe,
+    CoachComponent,
+    CoachInformationComponent,
+    CoachingTopicsComponent,
+    CoachProfileComponent,
+    CoachSessionTabComponent,
   ],
-    imports: [
-        CommonModule,
-        ReactiveFormsModule,
-        FormsModule,
-        RouterModule,
-        UserRoutingModule,
-    ],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    RouterModule,
+    UserRoutingModule,
+    LayoutModule,
+  ],
   exports: [
     FilterTopicsPipe,
     FilterFirstNameLastNameEmailPipe,

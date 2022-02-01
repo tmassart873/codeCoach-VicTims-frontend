@@ -1,12 +1,10 @@
-<html lang="en">
-<body>
-<main *ngIf="user">
+<div *ngIf="!loggedInUser">
+  {{goToProfileNotLoggedIn()}}
+</div>
 
+<div *ngIf="loggedInUser">
   <app-my-coach-profile-tab></app-my-coach-profile-tab>
   <app-user-detail [color]="color!"></app-user-detail>
-  <app-my-coach-information [user]="user"></app-my-coach-information>
-  <app-my-coaching-topics [user]="user"></app-my-coaching-topics>
-
-</main>
-</body>
-</html>
+  <app-my-coach-information [user]="loggedInUser"></app-my-coach-information>
+  <app-my-coaching-topics [user]="loggedInUser"></app-my-coaching-topics>
+</div>

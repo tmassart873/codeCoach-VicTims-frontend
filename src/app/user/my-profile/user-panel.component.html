@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" *ngIf="isUserLoggedIn()">
   <app-left-tab></app-left-tab>
   <router-outlet></router-outlet>
 </div>
