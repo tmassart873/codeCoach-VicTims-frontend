@@ -11,6 +11,7 @@ import {CoachOverviewComponent} from "../app/user/find-coach/coach-overview.comp
 import {MyCoachProfileComponent} from "../app/user/my-coach-profile/my-coach-profile";
 import {CoachComponent} from "../app/coach/coach.component";
 import {RequestSessionComponent} from "../app/session/request-session/request-session.component";
+import {EditMyProfileComponent} from "../app/user/my-profile/edit-my-profile/edit-my-profile.component";
 
 const routes: Routes = [
   {path: '', component: HomepageComponent},
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path: 'users/:id/coach-profile', component: CoachComponent},
   {path: 'users/:id', component: UserPanelComponent, children: [
       {path: 'profile', component: UserDetailComponent},
+      {path: 'edit-my-profile', component: EditMyProfileComponent},
       {path: 'become-coach', component: ApplyForCoachComponent}
     ]},
   {path: 'sessions/request-session', component: RequestSessionComponent},

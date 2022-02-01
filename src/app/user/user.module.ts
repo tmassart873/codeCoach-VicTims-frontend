@@ -16,6 +16,7 @@ import { MyCoachProfileTabComponent } from './my-coach-profile/my-coach-profile/
 import {FilterTopicsPipe} from "../pipes/filter-topics.pipe";
 import {FilterFirstNameLastNameEmailPipe} from "../pipes/filter-first-name-last-name-email.pipe";
 import {MyCoachProfileComponent} from "./my-coach-profile/my-coach-profile";
+import { EditMyProfileComponent } from './my-profile/edit-my-profile/edit-my-profile.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import {MyCoachProfileComponent} from "./my-coach-profile/my-coach-profile";
     MyCoachProfileTabComponent,
     FilterTopicsPipe,
     FilterFirstNameLastNameEmailPipe,
+    EditMyProfileComponent,
   ],
     imports: [
         CommonModule,
