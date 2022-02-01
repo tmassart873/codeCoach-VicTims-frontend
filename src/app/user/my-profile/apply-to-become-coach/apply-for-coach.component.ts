@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../../../service/user/user.service";
+import {User} from "../../model/User";
 
 @Component({
   selector: 'app-apply-for-coach',
@@ -8,7 +9,6 @@ import {UserService} from "../../../service/user/user.service";
   styleUrls: ['./apply-for-coach.component.css']
 })
 export class ApplyForCoachComponent implements OnInit {
-
 
   constructor(private userService: UserService,
               private activatedRoute: ActivatedRoute,
@@ -29,4 +29,5 @@ export class ApplyForCoachComponent implements OnInit {
         });
     }
   }
+
 }
