@@ -17,15 +17,15 @@ const routes: Routes = [
   {path: '', component: HomepageComponent},
   {path: 'login', component: UserLoginComponent},
   {path: 'register', component: CreateUserComponent},
-  {path: 'users/coaches-overview', component: CoachOverviewComponent},
-  {path: 'users/:id/my-coach-profile', component: MyCoachProfileComponent,canActivate: [AuthGuardService]},
+  {path: 'users/coaches-overview', component: CoachOverviewComponent, canActivate:[AuthGuardService]},
+  {path: 'users/:id/my-coach-profile', component: MyCoachProfileComponent},
   {path: 'users/:id/coach-profile', component: CoachComponent},
   {path: 'users/:id/coachee-profile', component: CoacheeProfileComponent},
   {path: 'users/:id', component: UserPanelComponent, children: [
       {path: 'profile', component: UserDetailComponent},
-      {path: 'become-coach', component: ApplyForCoachComponent}
+      {path: 'become-coach', component: ApplyForCoachComponent, canActivate:[AuthGuardService]}
     ]},
-  {path: 'sessions/request-session', component: RequestSessionComponent},
+  {path: 'sessions/request-session', component: RequestSessionComponent, canActivate:[AuthGuardService]},
   {path: '**', redirectTo: ''}
 ]
 

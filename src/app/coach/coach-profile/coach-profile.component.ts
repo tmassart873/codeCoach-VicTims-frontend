@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {User} from "../../user/model/User";
+import {ActivatedRoute, Router} from "@angular/router";
+import {UserService} from "../../service/user/user.service";
 
 @Component({
   selector: 'app-coach-profile',
@@ -9,11 +11,36 @@ import {User} from "../../user/model/User";
 export class CoachProfileComponent implements OnInit {
 
   @Input()
-  user! : User;
+  user!: User;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private userService: UserService
+  ) {
+
+  }
 
   ngOnInit(): void {
+  }
+
+  ngAfterViewInit(): void {
+    if (!this.checkIfUserIsAuthorized()) {
+      this.router.navigate([`users/${this.userService.user?.id}/profile`])
+    }
+  }
+
+  checkIfUserIsAuthorized() {
+    let urlUserId = this.route.snapshot.paramMap.get('id');
+
+    if(urlUserId!== this.userService.user?.id){
+      return true;
+    }
+    if(urlUserId === this.userService.user?.id){
+      return this.userService.user.userRole === 'COACH';
+    }
+
+    return false;
+
   }
 
 }
