@@ -83,7 +83,7 @@ export class UserService {
   }
 
   getCoaches(): Observable<User[]> {
-    let param = new HttpParams().set('is-coach', true);
+    let param = new HttpParams().set('isCoach', true);
     return this.http.get<User[]>(`${this.userUrl}`, {params : param});
   }
 
@@ -108,7 +108,7 @@ export class UserService {
   becomeCoach(user:User): Observable<User> {
       const id: String = user.id;
       user.userRole = 'COACH';
-      return this.http.put<User>(`${this.userUrl}/${id}`, null)
+      return this.http.post<User>(`${this.userUrl}/${id}/becomeCoach`, null)
         .pipe(
           tap(user => localStorage.setItem('userToLogin', JSON.stringify(user)))
         );
@@ -116,5 +116,12 @@ export class UserService {
 
   emptyUser() {
     localStorage.setItem('userToLogin', JSON.stringify(null));
+  }
+
+  updateUser(user: User) {
+    return this.http.put<User>(`${this.userUrl}/${user.id}`, user)
+      .pipe(
+        tap(user => localStorage.setItem('userToLogin', JSON.stringify(user)))
+      );
   }
 }

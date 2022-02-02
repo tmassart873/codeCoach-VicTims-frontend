@@ -2,42 +2,71 @@
   <div class="content-container">
 
     <section class="card-panel grey lighten-5">
-      <div class="right">
-        <a class="{{color}}"><i
-          class="material-icons left">edit</i>Edit</a>
-      </div>
-      <h5>Profile Information</h5>
+      <h5>Edit Profile Information</h5>
       <div class="divider"></div>
       <div class="row">
-        <div class="col l2 m2 s12">
+        <div class="col l2 m12 s12">
           <img src="../../../../assets/img/dummy/profile-picture.png" class="responsive-img circle"
                alt="Profile Picture">
         </div>
-        <div class="col l10 m12 s12">
+        <form class="col l10 m12 s12 highlight" [formGroup]="editProfileForm">
           <table class="highlight">
             <tbody>
-            <tr>
-              <td><strong>First name</strong></td>
-              <td>{{user.firstName}}</td>
-            </tr>
-            <tr>
-              <td><strong>Last name</strong></td>
-              <td>{{user.lastName}}</td>
-            </tr>
-            <tr>
-              <td><strong>Email</strong></td>
-              <td>{{user.email}}</td>
-            </tr>
-            <tr>
-              <td><strong>CodeCoach role</strong></td>
-              <td>{{user.userRole | lowercase}}</td>
-            </tr>
+              <tr>
+                <td><strong>First name</strong></td>
+                <td>
+                  <div class="input-field">
+                    <input id="first_name" type="text" class="validate" formControlName="firstName">
+                    <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
+                      <div *ngIf="firstName.errors?.['required']" class="text-error red-text">
+                        First name is required.
+                      </div>
+                      <div *ngIf="firstName.errors?.['pattern']" class="text-error red-text">
+                        First name cannot be a number or end with a space or a dash
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Last name</strong></td>
+                <td>
+                  <div class="input-field">
+                    <input id="last_name" type="text" class="validate" formControlName="lastName">
+                    <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
+                      <div *ngIf="lastName.errors?.['required']" class="text-error red-text">
+                        Last name is required.
+                      </div>
+                      <div *ngIf="firstName.errors?.['pattern']" class="text-error red-text">
+                        Last name cannot be a number or end with a space or a dash
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>User Role</strong></td>
+                <td>
+                  <div class="input-field">
+                    <select id="user_role" formControlName="userRole" class="select-dropdown validate" required>
+                      <option disabled>Please choose a userRole (required)</option>
+                      <option value="COACHEE">Coachee</option>
+                      <option value="COACH">Coach</option>
+                      <option value="ADMIN">Admin</option>
+                    </select>
+                  </div>
+                </td>
+              </tr>
             </tbody>
           </table>
-        </div>
+          <div class="row right-align">
+            <button class="waves-effect waves-light yellow darken-2 btn-large black-text"
+                    (click)="cancel()">Cancel</button>
+            <button class="waves-effect waves-light yellow darken-2 btn-large black-text"
+                    (click)="onSubmit()">Save<i class="material-icons right">send</i></button>
+          </div>
+        </form>
       </div>
-      <button>Cancel</button>
-      <button>Save</button>
     </section>
 
   </div>
