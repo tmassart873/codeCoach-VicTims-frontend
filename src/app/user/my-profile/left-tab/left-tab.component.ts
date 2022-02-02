@@ -11,7 +11,7 @@ export class LeftTabComponent implements OnInit {
 
   _id!: String;
 
-  constructor(private userService: UserService, private activatedRoute: ActivatedRoute) { }
+  constructor(public userService: UserService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.getUserProfile();

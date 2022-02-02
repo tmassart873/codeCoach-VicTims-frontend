@@ -3,7 +3,6 @@ import {User} from "../model/User";
 import {UserService} from "../../service/user/user.service";
 import {ActivatedRoute, Router} from "@angular/router";
 
-
 @Component({
   selector: 'app-coach-detail',
   templateUrl: './coach-detail.component.html',
@@ -31,7 +30,6 @@ export class MyCoachProfileComponent implements OnInit, AfterViewInit {
     }
   }
 
-
   goToProfileNotLoggedIn()
     :
     void {
@@ -49,8 +47,6 @@ export class MyCoachProfileComponent implements OnInit, AfterViewInit {
     if (urlUserId === this.userService.user?.id) {
       return this.userService.user.userRole === 'COACH';
     }
-
     return false;
-
   }
 }

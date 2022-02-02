@@ -5,7 +5,6 @@ import {InitService} from "../../materialize/init.service";
 import {Topic, User} from "../../user/model/User";
 import {SessionService} from "../../service/session/session.service";
 import {UserService} from "../../service/user/user.service";
-import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-request-session',
@@ -66,6 +65,13 @@ export class RequestSessionComponent implements OnInit, AfterViewInit {
         this.coach = user;
         this.topics = user.coachInformation?.topics;
         console.log('get current coach name: ' + this.coach?.firstName);
+
+        if(this.topics?.length === 0) {
+          this.topics.push(new class implements Topic {
+            id ='0202d2af-5f2f-43c1-860d-66bdfbd206d1';
+            name = 'no topic';
+          })
+        }
         this.topics?.forEach(topic => console.log('get current topic names: ' + topic.name));
         this.initService.initSelect();
       });

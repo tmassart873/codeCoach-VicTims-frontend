@@ -4,7 +4,7 @@
       <a id="logo-container-signed-in" href="#" class="brand-logo">CodeCoach</a>
       <ul class="right hide-on-med-and-down">
         <li>
-          <a href="#">Home</a>
+          <a routerLink="">Home</a>
         </li>
         <li>
           <a class="waves-effect waves-light grey lighten-2 btn black-text" (click)="logOut()">Sign out
@@ -15,7 +15,7 @@
       <a href="#" data-target="nav-mobile-signed-in" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul id="nav-mobile-signed-in" class="sidenav">
         <li>
-          <a href="#">Home</a>
+          <a routerLink="">Home</a>
         </li>
         <li>
           <div *ngIf="user"
@@ -30,8 +30,8 @@
                 <a class="black-text" routerLink="/users/coaches-overview">Find a coach</a>
               </li>
               <li *ngIf="isACoach()">
-                <a class="black-text" [routerLink]="['./','users',user.id,'coach-profile']"
-                   routerLinkActive="active-link teal darken-1" (isActiveChange)="this.onRouterLinkActive($event)">My
+                <a class="black-text" [routerLink]="['./','users',user.id,'my-coach-profile']"
+                   routerLinkActive="active-link " (isActiveChange)="this.onRouterLinkActive($event)">My
                   Coach Profile</a>
               </li>
             </ul>

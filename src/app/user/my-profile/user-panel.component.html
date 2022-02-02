@@ -1,4 +1,13 @@
 <div class="row" *ngIf="isUserLoggedIn()">
+<!--  <div class="col s12 m7 l9">-->
+<!--    <div class="content-container">-->
+<!--    </div>-->
+<!--  </div>-->
+
   <app-left-tab></app-left-tab>
-  <router-outlet></router-outlet>
+  <div class="col s12 m7 l9">
+    <div class="content-container">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
 </div>

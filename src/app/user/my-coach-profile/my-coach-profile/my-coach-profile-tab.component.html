@@ -1,10 +1,11 @@
 <div class="col s12 m12 l3">
-  <div class="content-container">
+<!--  <div class="content-container">-->
     <h6>My Coach Profile</h6>
-    <div class="collection">
-      <a href="#!" class="collection-item black-text active teal lighten-3">Profile Information</a>
+    <div class="collection" *ngIf="userService.user">
+      <a class="collection-item black-text active teal lighten-3">Profile Information</a>
+<!--      <a routerLink="users/{{userService.user.id}}/my-coach-profile" class="collection-item black-text active teal lighten-3">Profile Information</a>-->
 <!--      <a href="#!" class="collection-item grey-text text-darken-2">Coaching sessions</a>
       <a href="#!" class="collection-item grey-text text-darken-2">Request profile change</a>-->
     </div>
   </div>
-</div>
+<!--</div>-->

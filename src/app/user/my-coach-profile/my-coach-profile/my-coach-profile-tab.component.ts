@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../../../service/user/user.service";
 
 @Component({
@@ -9,7 +8,7 @@ import {UserService} from "../../../service/user/user.service";
 })
 export class MyCoachProfileTabComponent implements OnInit {
 
-  constructor() {
+  constructor(public userService:UserService) {
   }
 
   ngOnInit(): void {
@@ -17,6 +16,4 @@ export class MyCoachProfileTabComponent implements OnInit {
 
   ngAfterViewInit(): void {
   }
-
-
 }
