@@ -83,7 +83,7 @@ export class UserService {
   }
 
   getCoaches(): Observable<User[]> {
-    let param = new HttpParams().set('is-coach', true);
+    let param = new HttpParams().set('isCoach', true);
     return this.http.get<User[]>(`${this.userUrl}`, {params : param});
   }
 
