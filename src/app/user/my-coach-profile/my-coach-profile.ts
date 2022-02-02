@@ -27,8 +27,8 @@ export class MyCoachProfileComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     if (!this.checkIfUserIsAuthorized()) {
-          this.router.navigate([`users/${this.userService.user?.id}/coach-profile`]);}
-
+          this.router.navigate([`users/${this.route.snapshot.paramMap.get('id')}/coach-profile`]);
+    }
   }
 
 
