@@ -16,7 +16,6 @@ export class AppComponent {
 
   ngOnInit(): void {
     this.loggedInUser$ = this.keycloakService.loggedInUser$;
-    //Ugly but I couldn't think of a better way
     setTimeout(() => this.keycloakService.sendSignal(), 1);
   }
 

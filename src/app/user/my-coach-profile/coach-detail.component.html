@@ -3,8 +3,16 @@
 </div>
 
 <div *ngIf="loggedInUser">
-  <app-my-coach-profile-tab></app-my-coach-profile-tab>
-  <app-user-detail [color]="color!"></app-user-detail>
-  <app-my-coach-information [user]="loggedInUser"></app-my-coach-information>
-  <app-my-coaching-topics [user]="loggedInUser"></app-my-coaching-topics>
+    <app-my-coach-profile-tab></app-my-coach-profile-tab>
+  <div>
+    <app-user-detail [color]="color!"></app-user-detail>
+    <div class="col s0 m0 l3 ">
+    </div>
+    <div  class="col s12 m7 l9">
+      <div class="content-container">
+        <app-my-coach-information [user]="loggedInUser"></app-my-coach-information>
+        <app-my-coaching-topics [user]="loggedInUser"></app-my-coaching-topics>
+      </div>
+    </div>
+  </div>
 </div>
