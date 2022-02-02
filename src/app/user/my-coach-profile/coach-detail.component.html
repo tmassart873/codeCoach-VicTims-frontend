@@ -2,7 +2,7 @@
   {{goToProfileNotLoggedIn()}}
 </div>
 
-<div *ngIf="loggedInUser">
+<div *ngIf="loggedInUser && checkIfUserIsAuthorized()">
   <app-my-coach-profile-tab></app-my-coach-profile-tab>
   <app-user-detail [color]="color!"></app-user-detail>
   <app-my-coach-information [user]="loggedInUser"></app-my-coach-information>
