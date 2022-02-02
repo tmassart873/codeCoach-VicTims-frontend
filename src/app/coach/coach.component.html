@@ -1,10 +1,20 @@
-<html lang="en">
-<body>
 <main *ngIf="user">
-  <app-coach-session-tab></app-coach-session-tab>
-  <app-coach-profile [user]="user"></app-coach-profile>
-  <app-coach-information [user]="user"></app-coach-information>
-  <app-coaching-topics [user]="user"></app-coaching-topics>
+  <div class="row">
+    <app-coach-session-tab></app-coach-session-tab>
+    <div class="col s12 m7 l9 " *ngIf="isLoggedIn()">
+      <app-coach-profile [user]="user"></app-coach-profile>
+      <div class="content-container">
+      <app-coach-information [user]="user"></app-coach-information>
+      <app-coaching-topics [user]="user"></app-coaching-topics>
+        </div>
+    </div>
+
+    <div class="col s12 m12 l12 " *ngIf="!isLoggedIn()">
+      <app-coach-profile [user]="user"></app-coach-profile>
+      <div class="content-container">
+      <app-coach-information [user]="user"></app-coach-information>
+      <app-coaching-topics [user]="user"></app-coaching-topics>
+    </div>
+    </div>
+  </div>
 </main>
-</body>
-</html>
