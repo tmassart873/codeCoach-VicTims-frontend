@@ -1,10 +1,20 @@
 <html lang="en">
 <body>
-<main *ngIf="user">
+<main *ngIf="user && checkIfUserIdIsCoach()">
   <app-coach-session-tab></app-coach-session-tab>
   <app-coach-profile [user]="user"></app-coach-profile>
   <app-coach-information [user]="user"></app-coach-information>
   <app-coaching-topics [user]="user"></app-coaching-topics>
+  <div id="notacoach" class="modal">
+    <div class="modal-content">
+      <h4>You are not a coach!</h4>
+      <p>There is no information to display of this coach profile.</p>
+      <p>Returning to you coachee profile.</p>
+    </div>
+    <div class="modal-footer">
+
+    </div>
+  </div>
 </main>
 </body>
 </html>
