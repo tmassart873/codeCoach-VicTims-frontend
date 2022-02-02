@@ -23,6 +23,7 @@ export class CoachComponent implements OnInit {
     this.userService.getUserById(this.id).subscribe((user) => this.user = user);
   }
 
+
   isLoggedIn() {
     return this.keycloackService.isLoggedIn();
   }
