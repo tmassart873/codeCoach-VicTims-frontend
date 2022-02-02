@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from "../user/model/User";
 import {UserService} from "../service/user/user.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
+import {KeycloakService} from "../security/keycloak/keycloak.service";
 
 @Component({
   selector: 'app-coach',
@@ -13,9 +14,8 @@ export class CoachComponent implements OnInit {
   id!: string | null;
 
   constructor(private route: ActivatedRoute,
-              private router: Router,
               private userService: UserService,
-  ) {
+              private keycloackService: KeycloakService) {
   }
 
   ngOnInit(): void {
@@ -24,4 +24,7 @@ export class CoachComponent implements OnInit {
   }
 
 
+  isLoggedIn() {
+    return this.keycloackService.isLoggedIn();
+  }
 }
