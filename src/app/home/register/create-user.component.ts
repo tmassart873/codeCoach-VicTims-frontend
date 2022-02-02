@@ -26,6 +26,7 @@ export class CreateUserComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
   }
+
   ngAfterViewInit() {
     this.initService.initModal();
   }

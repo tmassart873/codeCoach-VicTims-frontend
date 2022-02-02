@@ -1,18 +1,14 @@
 <main>
   <div class="container">
-
     <div class="row">
       <div class="col s12 m12">
-
-
-        <h1 class="center teal-text lighten-3">Request a session</h1>
+        <h1 class="center teal-text lighten-3; " style="word-break: normal">Request a session</h1>
         <div class="content-container-with-padding z-depth-4">
-
           <div class="row">
             <form [formGroup]="requestSessionForm" class="col s12">
               <div class="row">
                 <div class="input-field col s12">
-                  <select id="topic" formControlName="subject"  class="select-dropdown validate" required>
+                  <select id="topic" formControlName="subject" class="select-dropdown validate" required>
                     <option disabled>Please choose a topic (required)</option>
                     <option *ngFor="let topic of topics" [value]="topic.name">
                       {{topic.name}}
@@ -31,11 +27,13 @@
 
               <div class="row">
                 <div class="input-field col s6">
-                  <input id="date" type="text" class="datepicker validate" formControlName="date" required (change)="changeDate()" autocomplete="off">
+                  <input id="date" type="text" class="datepicker validate" formControlName="date" required
+                         (change)="changeDate()" autocomplete="off">
                   <label for="date">Date</label>
                 </div>
                 <div class="input-field col s6">
-                  <input id="timepicker" type="text" class="timepicker validate" formControlName="time" required (change)="changeTime()" autocomplete="off">
+                  <input id="timepicker" type="text" class="timepicker validate" formControlName="time" required
+                         (change)="changeTime()" autocomplete="off">
                   <label for="timepicker">Time</label>
                 </div>
               </div>
@@ -46,11 +44,20 @@
                     Date is required.
                   </small>
                 </div>
+
                 <div class="col s6 right"
                      *ngIf="time.invalid  && (time.touched||time.dirty)">
-                  <small [style.color]="'red'">
-                    Time is required.
-                  </small>
+                  <div *ngIf="time.errors?.['required']">
+                    <small [style.color]="'red'">
+                      Time is required.
+                    </small>
+                  </div>
+                  <div *ngIf="time.errors?.['forbiddenTime']">
+                    <small [style.color]="'red'">
+                      Time can not be set before current time.
+                    </small>
+                  </div>
+
                 </div>
               </div>
 
@@ -79,7 +86,8 @@
                 </div>
               </div>
               <div class="row right-align">
-                <a class="waves-effect waves-light yellow darken-2 btn-large black-text" (click)="modalRequestSession()">Request
+                <a class="waves-effect waves-light yellow darken-2 btn-large black-text"
+                   (click)="modalRequestSession()">Request
                   session<i class="material-icons right">send</i></a>
               </div>
             </form>
