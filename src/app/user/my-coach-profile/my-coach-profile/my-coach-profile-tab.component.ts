@@ -9,30 +9,14 @@ import {UserService} from "../../../service/user/user.service";
 })
 export class MyCoachProfileTabComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute,
-              private router: Router,
-              private userService: UserService) { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
+
   ngAfterViewInit(): void {
-    if (!this.checkIfUserIsAuthorized()) {
-      this.router.navigate([`users/${this.userService.user?.id}/profile`])
-    }
   }
 
-  checkIfUserIsAuthorized() {
-    let urlUserId = this.route.snapshot.paramMap.get('id');
-
-    if(urlUserId!== this.userService.user?.id){
-      return true;
-    }
-    if(urlUserId === this.userService.user?.id){
-      return this.userService.user.userRole === 'COACH';
-    }
-
-    return false;
-
-  }
 
 }
