@@ -84,11 +84,10 @@ p {
 .timepicker-close {
   color: #fbc02d;
 }
-
-tbody {
-  overflow:auto;
+* {
   word-break: break-all;
 }
+
 
 /*Creates table with scrollable tbody*/
 .topics-table tbody {
