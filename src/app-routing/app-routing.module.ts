@@ -10,6 +10,7 @@ import {CoachOverviewComponent} from "../app/user/find-coach/coach-overview.comp
 import {MyCoachProfileComponent} from "../app/user/my-coach-profile/my-coach-profile";
 import {CoachComponent} from "../app/coach/coach.component";
 import {RequestSessionComponent} from "../app/session/request-session/request-session.component";
+import {EditMyProfileComponent} from "../app/user/my-profile/edit-my-profile/edit-my-profile.component";
 import {CoacheeProfileComponent} from "../app/coachee/coachee-profile/coachee-profile.component";
 import {AuthGuardService} from "../app/service/authguard/auth-guard.service";
 
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path: 'users/:id/coachee-profile', component: CoacheeProfileComponent},
   {path: 'users/:id', component: UserPanelComponent, children: [
       {path: 'profile', component: UserDetailComponent},
+      {path: 'edit-my-profile', component: EditMyProfileComponent},
       {path: 'become-coach', component: ApplyForCoachComponent, canActivate:[AuthGuardService]}
     ]},
   {path: 'sessions/request-session', component: RequestSessionComponent, canActivate:[AuthGuardService]},

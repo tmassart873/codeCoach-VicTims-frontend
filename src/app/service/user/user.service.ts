@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {environment} from "../../../environments/environment";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
-import {Topic, User} from "../../user/model/User";
+import {User} from "../../user/model/User";
 import {catchError, map, Observable, of, tap, throwError} from "rxjs";
 
 
@@ -108,7 +108,7 @@ export class UserService {
   becomeCoach(user:User): Observable<User> {
       const id: String = user.id;
       user.userRole = 'COACH';
-      return this.http.put<User>(`${this.userUrl}/${id}`, null)
+      return this.http.post<User>(`${this.userUrl}/${id}/becomeCoach`, null)
         .pipe(
           tap(user => localStorage.setItem('userToLogin', JSON.stringify(user)))
         );
@@ -118,4 +118,10 @@ export class UserService {
     localStorage.setItem('userToLogin', JSON.stringify(null));
   }
 
+  updateUser(user: User) {
+    return this.http.put<User>(`${this.userUrl}/${user.id}`, user)
+      .pipe(
+        tap(user => localStorage.setItem('userToLogin', JSON.stringify(user)))
+      );
+  }
 }

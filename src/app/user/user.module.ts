@@ -22,6 +22,7 @@ import {CoachingTopicsComponent} from "../coach/coaching-topics/coaching-topics.
 import {CoachProfileComponent} from "../coach/coach-profile/coach-profile.component";
 import {CoachSessionTabComponent} from "../coach/coach-session-tab/coach-session-tab.component";
 import {LayoutModule} from "../../layout/layout.module";
+import { EditMyProfileComponent } from './my-profile/edit-my-profile/edit-my-profile.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import {LayoutModule} from "../../layout/layout.module";
     CoachingTopicsComponent,
     CoachProfileComponent,
     CoachSessionTabComponent,
+    EditMyProfileComponent,
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,73 @@
+<div class="col s12 m7 l9" *ngIf="user">
+  <div class="content-container">
+
+    <section class="card-panel grey lighten-5">
+      <h5>Edit Profile Information</h5>
+      <div class="divider"></div>
+      <div class="row">
+        <div class="col l2 m12 s12">
+          <img src="../../../../assets/img/dummy/profile-picture.png" class="responsive-img circle"
+               alt="Profile Picture">
+        </div>
+        <form class="col l10 m12 s12 highlight" [formGroup]="editProfileForm">
+          <table class="highlight">
+            <tbody>
+              <tr>
+                <td><strong>First name</strong></td>
+                <td>
+                  <div class="input-field">
+                    <input id="first_name" type="text" class="validate" formControlName="firstName">
+                    <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
+                      <div *ngIf="firstName.errors?.['required']" class="text-error red-text">
+                        First name is required.
+                      </div>
+                      <div *ngIf="firstName.errors?.['pattern']" class="text-error red-text">
+                        First name cannot be a number or end with a space or a dash
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Last name</strong></td>
+                <td>
+                  <div class="input-field">
+                    <input id="last_name" type="text" class="validate" formControlName="lastName">
+                    <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
+                      <div *ngIf="lastName.errors?.['required']" class="text-error red-text">
+                        Last name is required.
+                      </div>
+                      <div *ngIf="firstName.errors?.['pattern']" class="text-error red-text">
+                        Last name cannot be a number or end with a space or a dash
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>User Role</strong></td>
+                <td>
+                  <div class="input-field">
+                    <select id="user_role" formControlName="userRole" class="select-dropdown validate" required>
+                      <option disabled>Please choose a userRole (required)</option>
+                      <option value="COACHEE">Coachee</option>
+                      <option value="COACH">Coach</option>
+                      <option value="ADMIN">Admin</option>
+                    </select>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="row right-align">
+            <button class="waves-effect waves-light yellow darken-2 btn-large black-text" style="margin-top: 50px"
+                    (click)="cancel()">Cancel</button>
+            <button class="waves-effect waves-light yellow darken-2 btn-large black-text" style="margin-top: 50px; margin-left: 20px"
+                    (click)="onSubmit()">Save<i class="material-icons right">send</i></button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+  </div>
+</div>

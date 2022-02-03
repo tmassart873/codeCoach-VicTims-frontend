@@ -1,11 +1,11 @@
-<div class="col s12 m7 l9" >
+<div class="col s12 m7 l9" *ngIf="user">
   <div class="content-container">
 
     <section class="card-panel grey lighten-5">
-<!--      <div *ngIf="color === 'waves-effect waves-light btn-large btn-floating yellow darken-2'" class="right">-->
-<!--        <a class="{{color}}"><i-->
-<!--          class="material-icons left">edit</i>Edit</a>-->
-<!--      </div>-->
+      <div class="right">
+        <a class="{{color}}" [routerLink]="['/users',user.id,'edit-my-profile']"><i
+          class="material-icons left">edit</i>Edit</a>
+      </div>
       <h5>Profile Information</h5>
       <div class="divider"></div>
       <div class="row">
@@ -18,19 +18,19 @@
             <tbody>
             <tr>
               <td><strong>First name</strong></td>
-              <td>{{user?.firstName}}</td>
+              <td>{{user.firstName}}</td>
             </tr>
             <tr>
               <td><strong>Last name</strong></td>
-              <td>{{user?.lastName}}</td>
+              <td>{{user.lastName}}</td>
             </tr>
             <tr>
               <td><strong>Email</strong></td>
-              <td>{{user?.email}}</td>
+              <td>{{user.email}}</td>
             </tr>
             <tr>
               <td><strong>CodeCoach role</strong></td>
-              <td>{{user?.userRole | lowercase}}</td>
+              <td>{{user.userRole | lowercase}}</td>
             </tr>
             </tbody>
           </table>
