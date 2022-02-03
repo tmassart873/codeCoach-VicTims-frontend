@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {KeycloakService} from "../../app/security/keycloak/keycloak.service";
 
 @Component({
   selector: 'app-footer',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class FooterComponent implements OnInit {
   activeRouteIsProfileCoach!: boolean;
 
-  constructor() { }
+  constructor(public keycloakService: KeycloakService) { }
 
   ngOnInit(): void {
   }

@@ -11,7 +11,7 @@ import {FooterComponent} from "../footer/footer.component";
 export class LayoutComponent implements OnInit, AfterViewInit {
 
   @ViewChild('footerComponent', {static : true})
-  private footer : FooterComponent = new FooterComponent();
+  private footer : FooterComponent = new FooterComponent(this.keyCloakService);
 
   constructor(private keyCloakService: KeycloakService,
               private initService: InitService) { }

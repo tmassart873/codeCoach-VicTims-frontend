@@ -85,7 +85,7 @@ p {
   color: #fbc02d;
 }
 * {
-  word-break: break-all;
+  word-break: normal;
 }
 
 
