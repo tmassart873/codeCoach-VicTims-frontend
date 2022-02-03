@@ -12,7 +12,7 @@
             <form [formGroup]="requestSessionForm" class="col s12">
               <div class="row">
                 <div class="input-field col s12">
-                  <select id="topic" formControlName="subject"  class="select-dropdown validate" required>
+                  <select id="topic" formControlName="subject" class="select-dropdown validate" required>
                     <option disabled>Please choose a topic (required)</option>
                     <option *ngFor="let topic of topics" [value]="topic.name">
                       {{topic.name}}
@@ -20,6 +20,7 @@
                   </select>
                 </div>
               </div>
+
               <div class="row">
                 <div class="col s6"
                      *ngIf="getFormAttribute('subject').invalid && (getFormAttribute('subject').dirty||getFormAttribute('subject').touched)">
@@ -31,11 +32,13 @@
 
               <div class="row">
                 <div class="input-field col s6">
-                  <input id="date" type="text" class="datepicker validate" formControlName="date" required (change)="changeDate()" autocomplete="off">
+                  <input id="date" type="text" class="datepicker validate" formControlName="date" required
+                         (change)="changeDate()" autocomplete="off">
                   <label for="date">Date</label>
                 </div>
                 <div class="input-field col s6">
-                  <input id="timepicker" type="text" class="timepicker validate" formControlName="time" required (change)="changeTime()" autocomplete="off">
+                  <input id="timepicker" type="text" class="timepicker validate" formControlName="time" required
+                         (change)="changeTime()" autocomplete="off">
                   <label for="timepicker">Time</label>
                 </div>
               </div>
@@ -48,40 +51,48 @@
                 </div>
                 <div class="col s6 right"
                      *ngIf="time.invalid  && (time.touched||time.dirty)">
-                  <small [style.color]="'red'">
-                    Time is required.
-                  </small>
+                  <div *ngIf="time.errors?.['required'] && !isHourBeforeNow ">
+                    <small [style.color]="'red'">
+                      Time is required.
+                    </small>
+                  </div>
+                  <div *ngIf="isHourBeforeNow">
+                    <small [style.color]="'red'">
+                      Time can not be set before current time.
+                    </small>
+                  </div>
                 </div>
               </div>
 
-              <div class="row">
-                <div class="input-field col s12">
-                  <select id="location" formControlName="location" class="select-dropdown validate" required>
-                    <option disabled>Please choose a location (required)</option>
-                    <option value="FACE2FACE">Face2Face</option>
-                    <option value="ONLINE">Online</option>
-                  </select>
-                  <label for="location">Location</label>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <select id="location" formControlName="location" class="select-dropdown validate" required>
+                      <option disabled>Please choose a location (required)</option>
+                      <option value="FACE2FACE">Face2Face</option>
+                      <option value="ONLINE">Online</option>
+                    </select>
+                    <label for="location">Location</label>
+                  </div>
                 </div>
-              </div>
-              <div class="row">
-                <div class="col"
-                     *ngIf="getFormAttribute('location').invalid && (getFormAttribute('location').touched)">
-                  <small [style.color]="'red'">
-                    Location is required.
-                  </small>
+                <div class="row">
+                  <div class="col"
+                       *ngIf="getFormAttribute('location').invalid && (getFormAttribute('location').touched)">
+                    <small [style.color]="'red'">
+                      Location is required.
+                    </small>
+                  </div>
                 </div>
-              </div>
-              <div class="row">
-                <div class="input-field col s12">
-                  <textarea id="remarks" class="materialize-textarea validate" formControlName="remarks"></textarea>
-                  <label for="remarks">Remarks for the coach?</label>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <textarea id="remarks" class="materialize-textarea validate" formControlName="remarks"></textarea>
+                    <label for="remarks">Remarks for the coach?</label>
+                  </div>
                 </div>
-              </div>
-              <div class="row right-align">
-                <a class="waves-effect waves-light yellow darken-2 btn-large black-text" (click)="modalRequestSession()">Request
-                  session<i class="material-icons right">send</i></a>
-              </div>
+                <div class="row right-align">
+                  <a class="waves-effect waves-light yellow darken-2 btn-large black-text"
+                     (click)="modalRequestSession()">Request
+                    session<i class="material-icons right">send</i></a>
+                </div>
             </form>
           </div>
 
