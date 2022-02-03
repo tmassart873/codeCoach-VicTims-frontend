@@ -30,7 +30,7 @@
                     <div *ngIf="lastName.errors?.['required']" class="text-error red-text">
                       Last name is required.
                     </div>
-                    <div *ngIf="firstName.errors?.['pattern']" class="text-error red-text">
+                    <div *ngIf="lastName.errors?.['pattern']" class="text-error red-text">
                       Last name cannot be a number or end with a space or a dash
                     </div>
                   </div>
