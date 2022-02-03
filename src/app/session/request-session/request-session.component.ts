@@ -17,7 +17,7 @@ export class RequestSessionComponent implements OnInit, AfterViewInit {
   private coacheeId!: string | undefined;
   private coachId!: string | undefined;
   private requestSessionModal: any;
-  private coach!: User | null;
+  public coach!: User | null;
   public topics!: Topic[] | undefined;
 
   requestSessionForm = this.formBuilder.group({
@@ -106,7 +106,7 @@ export class RequestSessionComponent implements OnInit, AfterViewInit {
       time: $('.timepicker').val()
     });
     this.sessionService.requestSession(this.requestSessionForm.value).subscribe(()=>{
-      M.toast({html:`Session Confirmed with coach:': ${this.coachId}`})//later change this to coach name
+      M.toast({html:`Session Confirmed with Coach:${this.coach?.firstName} ${this.coach?.lastName}`})//later change this to coach name
       this.router.navigate([`/users/${this.coacheeId}/profile`]);
     });
 
