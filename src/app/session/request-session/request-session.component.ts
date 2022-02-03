@@ -1,11 +1,11 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, Validators,} from "@angular/forms";
+import {AbstractControl, FormBuilder, FormControl, ValidationErrors, ValidatorFn, Validators,} from "@angular/forms";
 import {Router} from "@angular/router";
 import {InitService} from "../../materialize/init.service";
 import {Topic, User} from "../../user/model/User";
 import {SessionService} from "../../service/session/session.service";
 import {UserService} from "../../service/user/user.service";
-import {Observable} from "rxjs";
+import {global} from "@angular/compiler/src/util";
 
 @Component({
   selector: 'app-request-session',
@@ -17,10 +17,11 @@ export class RequestSessionComponent implements OnInit, AfterViewInit {
   private coacheeId!: string | undefined;
   private coachId!: string | undefined;
   private requestSessionModal: any;
-  public coach!: User | null;
+  private coach!: User | null;
   public topics!: Topic[] | undefined;
+  isHourBeforeNow = false;
 
-  requestSessionForm = this.formBuilder.group({
+  public requestSessionForm = this.formBuilder.group({
       coacheeId: `${this.coacheeId}`,
       coachId: `${this.coachId}`,
       subject: new FormControl('', [
@@ -31,6 +32,7 @@ export class RequestSessionComponent implements OnInit, AfterViewInit {
       ]),
       time: new FormControl('', [
         Validators.required,
+        this.forbiddenNameValidator()
       ]),
       location: new FormControl('', [
         Validators.required
@@ -65,7 +67,14 @@ export class RequestSessionComponent implements OnInit, AfterViewInit {
       user => {
         this.coach = user;
         this.topics = user.coachInformation?.topics;
-        console.log('get current coach name: ' + this.coach?.firstName);
+        // console.log('get current coach name: ' + this.coach?.firstName);
+
+        // if (this.topics?.length === 0) {
+        //   this.topics.push(new class implements Topic {
+        //     id = '0202d2af-5f2f-43c1-860d-66bdfbd206d1';
+        //     name = 'no topic';
+        //   })
+        // }
         this.topics?.forEach(topic => console.log('get current topic names: ' + topic.name));
         this.initService.initSelect();
       });
@@ -79,9 +88,9 @@ export class RequestSessionComponent implements OnInit, AfterViewInit {
   }
 
 
-  modalRequestSession():void {
+  modalRequestSession(): void {
     this.requestSessionModal = M.Modal.getInstance(document.querySelector('#requestsessionmodal')!);
-    console.log('requestsession:'+this.requestSessionModal);
+    console.log('requestsession:' + this.requestSessionModal);
     this.requestSessionModal.open();
   }
 
@@ -89,24 +98,42 @@ export class RequestSessionComponent implements OnInit, AfterViewInit {
     this.requestSessionForm.patchValue({
       time: $('.timepicker').val()
     });
+
+    this.isHourBeforeNow = false;
+    if (this.checkIfHourIsAlreadyHappened()) {
+      this.requestSessionForm.get('time')?.reset();
+      this.isHourBeforeNow = true;
+    }
+    this.requestSessionForm.get('time')?.updateValueAndValidity();
+    this.requestSessionForm.get('time')?.markAsTouched();
+    // this.requestSessionForm.controls['time'].setErrors({'incorrect': true});
   }
 
   changeDate() {
     this.requestSessionForm.patchValue({
       date: $('.datepicker').val()
     });
+    // this.requestSessionForm.get('time')?.markAsUntouched();
+    this.isHourBeforeNow = false;
+    this.requestSessionForm.get('time')?.reset();
+    this.requestSessionForm.get('time')?.markAsPristine();
+
+    // if (this.checkIfHourIsAlreadyHappened()) {
+    //   this.requestSessionForm.get('time')?.reset();
+    //   this.isHourBeforeNow = true;
+    // }
+    // this.requestSessionForm.get('time')?.updateValueAndValidity();
   }
 
   createSession() {
-
     this.requestSessionForm.patchValue({
       coachId: this.coachId,
       coacheeId: this.coacheeId,
       date: $('.datepicker').val(),
       time: $('.timepicker').val()
     });
-    this.sessionService.requestSession(this.requestSessionForm.value).subscribe(()=>{
-      M.toast({html:`Session Confirmed with Coach: ${this.coach?.firstName} ${this.coach?.lastName}`})//later change this to coach name
+    this.sessionService.requestSession(this.requestSessionForm.value).subscribe(() => {
+      M.toast({html: `Session Confirmed with coach:': ${this.coachId}`})//later change this to coach name
       this.router.navigate([`/users/${this.coacheeId}/profile`]);
     });
 
@@ -135,4 +162,52 @@ export class RequestSessionComponent implements OnInit, AfterViewInit {
     return this.requestSessionForm.get(`${formControlName}`) as FormControl;
   }
 
+  private checkIfHourIsAlreadyHappened(): boolean {
+    if (!this.requestSessionForm) {
+      return false;
+    }
+    if(!this.requestSessionForm.get('time')?.value) {
+      return false;
+    }
+
+    if(this.isTheSameDate()) {
+      console.log('time: ' + this.requestSessionForm.get('time')?.value)
+      let now = new Date(Date.now());
+      let sumMinutes = now.getMinutes()+now.getHours()*60;
+      let arrayHoursMin = this.requestSessionForm.get('time')?.value.split(":");
+      let sumArrayHoursMin =  parseInt(arrayHoursMin[0])*60 + parseInt(arrayHoursMin[1]);
+      console.log(sumArrayHoursMin)
+      console.log("nowFunction: " + sumMinutes)
+      return sumArrayHoursMin < sumMinutes;
+    }
+    return false;
+  }
+
+  private isTheSameDate(): boolean {
+    if (!this.requestSessionForm) {
+      return false;
+    }
+    if(!this.requestSessionForm.get('date')?.value) {
+      return false;
+    }
+
+    let now = new Date(Date.now());
+    now.setDate(now.getDate())
+
+    let nowString = now.toLocaleDateString('en-GB');
+    if (this.requestSessionForm.get('date')?.value === nowString) {
+      return true;
+    }
+    return false;
+  }
+
+  forbiddenNameValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      if (this.checkIfHourIsAlreadyHappened()) {
+        return {forbiddenTime: {value: control.value}};
+      } else {
+        return null;
+      }
+    }
+  }
 }
