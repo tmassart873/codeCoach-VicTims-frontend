@@ -17,7 +17,7 @@ export class RequestSessionComponent implements OnInit, AfterViewInit {
   private coacheeId!: string | undefined;
   private coachId!: string | undefined;
   private requestSessionModal: any;
-  private coach!: User | null;
+  public coach!: User | null;
   public topics!: Topic[] | undefined;
   isHourBeforeNow = false;
 
